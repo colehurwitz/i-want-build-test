@@ -77,10 +77,9 @@
       "type": "tool_call",
       "tool_name": "log_interaction",
       "arg_matching": {
-        "summary": "fuzzy",
-        "follow_up_date": "ignore"
+        "summary": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Create an expansion proposal for account A-500 \u2014 they've been growing and want to add more seats"
+  "starting_sentence": "Create an expansion proposal for account A-500 \u2014 they've been growing and want to add more seats. Schedule follow-up for April 15, 2024"
 }

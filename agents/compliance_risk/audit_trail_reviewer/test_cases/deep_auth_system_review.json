@@ -37,11 +37,7 @@
       },
       "name": "get_audit_logs-1",
       "type": "tool_call",
-      "tool_name": "get_audit_logs",
-      "arg_matching": {
-        "start_date": "ignore",
-        "end_date": "ignore"
-      }
+      "tool_name": "get_audit_logs"
     },
     {
       "args": {
@@ -97,5 +93,5 @@
       "tool_name": "generate_audit_report"
     }
   ],
-  "starting_sentence": "Check auth_system logs for 48 hours, search for both unauthorized_access and unusual_hours anomalies, investigate affected users, flag all findings"
+  "starting_sentence": "Check auth_system logs from July 22, 2024 to July 29, 2024, search for both unauthorized_access and unusual_hours anomalies, investigate affected users, flag all findings"
 }

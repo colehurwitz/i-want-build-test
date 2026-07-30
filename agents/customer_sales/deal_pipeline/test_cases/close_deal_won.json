@@ -53,10 +53,9 @@
       "type": "tool_call",
       "tool_name": "add_deal_activity",
       "arg_matching": {
-        "description": "fuzzy",
-        "next_action_date": "ignore"
+        "description": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Deal D-200 is closing! Update it to closed_won and log the final negotiation"
+  "starting_sentence": "Deal D-200 is closing! Update it to closed_won and log the final negotiation. Set the next follow-up for April 15, 2024"
 }

@@ -53,10 +53,9 @@
       "type": "tool_call",
       "tool_name": "add_deal_activity",
       "arg_matching": {
-        "description": "fuzzy",
-        "next_action_date": "ignore"
+        "description": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Move deal D-100 from qualification to proposal and log a demo activity"
+  "starting_sentence": "Move deal D-100 from qualification to proposal and log a demo activity. Set the next follow-up for April 1, 2024"
 }

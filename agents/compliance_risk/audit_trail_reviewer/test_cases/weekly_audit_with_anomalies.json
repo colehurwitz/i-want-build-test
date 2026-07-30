@@ -33,11 +33,7 @@
       },
       "name": "get_audit_logs-1",
       "type": "tool_call",
-      "tool_name": "get_audit_logs",
-      "arg_matching": {
-        "start_date": "ignore",
-        "end_date": "ignore"
-      }
+      "tool_name": "get_audit_logs"
     },
     {
       "args": {
@@ -84,5 +80,5 @@
       "tool_name": "generate_audit_report"
     }
   ],
-  "starting_sentence": "Review auth_system audit logs for the last 7 days, check for anomalies, and generate a report"
+  "starting_sentence": "Review auth_system audit logs from July 22, 2024 to July 29, 2024, check for anomalies, and generate a report"
 }

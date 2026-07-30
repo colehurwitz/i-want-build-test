@@ -82,10 +82,9 @@
       "type": "tool_call",
       "tool_name": "log_interaction",
       "arg_matching": {
-        "summary": "fuzzy",
-        "follow_up_date": "ignore"
+        "summary": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Review accounts A-400 and A-100 \u2014 compare their usage trends and check competitive intel for A-400"
+  "starting_sentence": "Review accounts A-400 and A-100 \u2014 compare their usage trends and check competitive intel for A-400. Schedule follow-up for June 30, 2024"
 }

@@ -55,10 +55,9 @@
       "type": "tool_call",
       "tool_name": "add_deal_activity",
       "arg_matching": {
-        "description": "fuzzy",
-        "next_action_date": "ignore"
+        "description": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Show me rep SR-100's Q3 pipeline and create a new $50k deal for account A-200"
+  "starting_sentence": "Show me rep SR-100's Q3 pipeline and create a new $50k deal for account A-200. Schedule a follow-up for April 5, 2024"
 }

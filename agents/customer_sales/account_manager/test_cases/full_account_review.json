@@ -71,10 +71,9 @@
       "type": "tool_call",
       "tool_name": "log_interaction",
       "arg_matching": {
-        "summary": "fuzzy",
-        "follow_up_date": "ignore"
+        "summary": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Full account review for A-100 \u2014 overview, usage, contract, and competitive intel"
+  "starting_sentence": "Full account review for A-100 \u2014 overview, usage, contract, and competitive intel. Schedule follow-up for June 15, 2024"
 }

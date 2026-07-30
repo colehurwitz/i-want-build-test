@@ -77,10 +77,9 @@
       "type": "tool_call",
       "tool_name": "log_interaction",
       "arg_matching": {
-        "summary": "fuzzy",
-        "follow_up_date": "ignore"
+        "summary": "fuzzy"
       }
     }
   ],
-  "starting_sentence": "Account A-300 usage is declining. Check competitive intel and create a retention proposal"
+  "starting_sentence": "Account A-300 usage is declining. Check competitive intel and create a retention proposal. Schedule follow-up for March 25, 2024"
 }

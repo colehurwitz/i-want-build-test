@@ -39,10 +39,7 @@
       },
       "name": "create_requisition-1",
       "type": "tool_call",
-      "tool_name": "create_requisition",
-      "arg_matching": {
-        "estimated_cost": "ignore"
-      }
+      "tool_name": "create_requisition"
     },
     {
       "args": {
@@ -95,11 +92,8 @@
       },
       "name": "issue_purchase_order-1",
       "type": "tool_call",
-      "tool_name": "issue_purchase_order",
-      "arg_matching": {
-        "approver_id": "ignore"
-      }
+      "tool_name": "issue_purchase_order"
     }
   ],
-  "starting_sentence": "Purchase 20 headsets. I'm pm@company.com. Find vendors rated 4.0+, get quotes from top 2, compare, and order from the winner"
+  "starting_sentence": "Purchase 20 headsets, estimated budget of $3,000. I'm pm@company.com. Find vendors rated 4.0+, get quotes from top 2, compare, and order from the winner. Get approval from PM Manager, ID MGR-PM-001"
 }
