@@ -36,7 +36,7 @@
     "schedule_orientation-1": [],
     "schedule_orientation-2": []
   },
-  "story": "Two new Software Engineers (E-503 and E-504) are both joining Engineering on Oct 1. The agent must onboard both, but the Engineering buddy pool has limited capacity: Sarah Kim (0/2), James Park (1/2), and Chen Wei (2/2 - at max). After assigning E-503 a buddy, E-504 may find all eligible buddies at capacity. This tests multi-entity tracking and buddy capacity management across simultaneous onboardings.",
+  "story": "Two new Software Engineers (E-503 and E-504) are both joining Engineering on Oct 1. Standard Engineering accounts to provision are: email, vpn, slack, github, jira, aws_console. Standard orientation sessions for Software Engineers include: Company Overview, IT Setup, Security Training, Department Introduction, Team Meet, and Role-Specific Training. The Engineering buddy pool has limited capacity: Sarah Kim (0/2), James Park (1/2), and Chen Wei (2/2 - at max). After assigning E-503 a buddy, E-504 may find all eligible buddies at capacity. This tests multi-entity tracking and buddy capacity management.",
   "goal_details": [
     {
       "args": {
@@ -165,5 +165,5 @@
       }
     }
   ],
-  "starting_sentence": "Onboard two new Software Engineers starting October 1, 2024 in Engineering: E-503 and E-504. Create checklists for both, provision accounts, check the buddy pool, assign buddies, and schedule orientations for each"
+  "starting_sentence": "We have two new Software Engineers joining Engineering on October 1, 2024: E-503 and E-504. Please get them fully set up"
 }

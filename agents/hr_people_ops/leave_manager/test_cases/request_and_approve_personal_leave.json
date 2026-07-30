@@ -93,5 +93,5 @@
       "tool_name": "check_team_calendar"
     }
   ],
-  "starting_sentence": "Employee E-101 wants personal leave November 22-25, 2024. Check balance, team calendar, submit, approve as M-100, then show history and updated calendar"
+  "starting_sentence": "I need to request personal leave for employee E-101, November 22-25, 2024, and get it approved by manager M-100"
 }

@@ -48,5 +48,5 @@
       "tool_name": "list_user_permissions"
     }
   ],
-  "starting_sentence": "I'm admin@company.com. Show bob@company.com's permissions, grant him write access to api_gateway, then show his updated permissions"
+  "starting_sentence": "I'm admin@company.com. I need to give bob@company.com write access to api_gateway"
 }

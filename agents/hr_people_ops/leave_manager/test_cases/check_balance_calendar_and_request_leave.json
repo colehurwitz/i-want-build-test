@@ -65,5 +65,5 @@
       "tool_name": "get_leave_history"
     }
   ],
-  "starting_sentence": "I'm employee E-100 in Engineering. Check my annual leave balance, verify the team calendar for December 23-27, 2024, submit my leave request for those dates for holiday vacation, and show my 2024 leave history"
+  "starting_sentence": "I'm employee E-100 in Engineering. I'd like to take annual leave December 23-27, 2024 for the holidays"
 }

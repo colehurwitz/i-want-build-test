@@ -18,7 +18,7 @@
     "create_vendor_scorecard-1": [],
     "create_vendor_scorecard-2": []
   },
-  "story": "Compare V-100 and V-400. Both vendor performance lookups happen independently, each followed by scorecard creation. Two parallel chains for side-by-side comparison.",
+  "story": "Compare V-100 and V-400 side-by-side. Standard vendor scorecard categories are: delivery, quality, pricing, responsiveness, and innovation. Both vendor performance lookups happen independently, each followed by scorecard creation. Two parallel chains for side-by-side comparison.",
   "goal_details": [
     {
       "args": {

@@ -34,5 +34,5 @@
       "tool_name": "verify_line_items"
     }
   ],
-  "starting_sentence": "Look up invoice INV-1003 and check its PO match"
+  "starting_sentence": "Can you verify invoice INV-1003 matches its purchase order?"
 }

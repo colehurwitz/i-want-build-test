@@ -30,7 +30,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "Two incidents reported simultaneously: INC-500 (malware, P2) and INC-600 (unauthorized access, P3). The agent must triage both, handle the higher-severity malware incident first by isolating the workstation, collecting evidence (memory dump and network logs), notifying stakeholders, and filing a consolidated report.",
+  "story": "Two incidents reported simultaneously: INC-500 (malware, P2) and INC-600 (unauthorized access, P3). The agent must triage both and prioritize by severity. For malware incidents, both memory_dump and network_logs should be collected as evidence. P2 incidents with team-level impact require notifying security_team and it_department as stakeholder groups. The agent should isolate the affected workstation, collect evidence, notify stakeholders, and file a consolidated report.",
   "goal_details": [
     {
       "args": {
@@ -117,5 +117,5 @@
       }
     }
   ],
-  "starting_sentence": "Two incidents: INC-500 (malware) and INC-600 (unauthorized access). Triage both, handle higher severity first"
+  "starting_sentence": "We have two incidents reported: INC-500 is a suspected malware infection and INC-600 is unauthorized access. Please investigate and respond appropriately"
 }

@@ -21,7 +21,7 @@
     ],
     "update_case-1": []
   },
-  "story": "Customer disputes a billing charge. Pull history, then search for billing dispute procedures AND create a support case in parallel. Both converge on updating the case with the resolution.",
+  "story": "Customer C-200 disputes a billing charge. The agent should pull their history, investigate billing dispute procedures, create a support case, and resolve it with the appropriate credit memo.",
   "goal_details": [
     {
       "args": {
@@ -75,5 +75,5 @@
       }
     }
   ],
-  "starting_sentence": "Customer C-200 has a billing dispute. Check their history, create a case, search KB, and resolve"
+  "starting_sentence": "Customer C-200 is disputing a charge on their latest invoice. Can you help resolve this?"
 }

@@ -53,5 +53,5 @@
       }
     }
   ],
-  "starting_sentence": "Check if Entity-D is compliant with REG-100 and generate the report"
+  "starting_sentence": "I need a compliance assessment for Entity-D against REG-100"
 }

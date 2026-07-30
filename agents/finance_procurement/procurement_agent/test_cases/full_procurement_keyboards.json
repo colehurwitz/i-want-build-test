@@ -31,7 +31,7 @@
     ],
     "issue_purchase_order-1": []
   },
-  "story": "Full procurement lifecycle: purchase 50 ergonomic keyboards for Engineering. The estimated cost is $7,500 which is under $10K but the agent should still get 3 quotes as best practice. After creating the requisition, search for keyboard vendors, get quotes from all 3, compare them, and issue a PO to the recommended vendor (ErgoSupply Co at $6,750). This is the most complete test of the 7-step procurement workflow.",
+  "story": "Full procurement lifecycle: purchase 50 ergonomic keyboards for Engineering. The estimated cost is $7,500 which is under $10K but the agent should still get 3 quotes as best practice. After comparing, ErgoSupply Co at $6,750 is the recommended vendor. The requester eng.manager@company.com maps to employee ID ENG-MGR-001. Approval required from Engineering Manager (ID: MGR-ENG-001).",
   "goal_details": [
     {
       "args": {
@@ -110,5 +110,5 @@
       "tool_name": "issue_purchase_order"
     }
   ],
-  "starting_sentence": "I need to purchase 50 ergonomic keyboards for the Engineering team, estimated budget of $7,500. I'm eng.manager@company.com. Get approval from Engineering Manager, ID MGR-ENG-001"
+  "starting_sentence": "I'm eng.manager@company.com. I need to purchase 50 ergonomic keyboards for the Engineering team, estimated budget $7,500"
 }

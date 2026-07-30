@@ -46,5 +46,5 @@
       "tool_name": "get_tax_withholdings"
     }
   ],
-  "starting_sentence": "Calculate gross pay for E-101 (80 regular hours, 10 overtime), then show benefits and tax withholdings"
+  "starting_sentence": "I need a full compensation breakdown for E-101 this pay period — 80 regular hours and 10 overtime"
 }

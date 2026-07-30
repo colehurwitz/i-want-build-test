@@ -62,5 +62,5 @@
       "tool_name": "generate_budget_report"
     }
   ],
-  "starting_sentence": "Analyze Engineering's budget health \u2014 spending breakdown, forecast, and generate a full report"
+  "starting_sentence": "I need a full budget health analysis for the Engineering department"
 }

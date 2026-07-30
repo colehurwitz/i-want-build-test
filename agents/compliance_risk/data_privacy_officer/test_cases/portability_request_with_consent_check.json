@@ -41,5 +41,5 @@
       "tool_name": "generate_privacy_report"
     }
   ],
-  "starting_sentence": "Process data portability request for user@uk-company.co.uk, generate the report, and confirm consent for data transfer"
+  "starting_sentence": "user@uk-company.co.uk has requested data portability under UK GDPR. Please process their request"
 }

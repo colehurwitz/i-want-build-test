@@ -63,5 +63,5 @@
       }
     }
   ],
-  "starting_sentence": "Process payment for ORD-300 and create the fulfillment"
+  "starting_sentence": "I need order ORD-300 paid and fulfilled"
 }

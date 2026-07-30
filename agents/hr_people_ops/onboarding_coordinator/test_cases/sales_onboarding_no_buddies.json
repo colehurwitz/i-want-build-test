@@ -24,7 +24,7 @@
     ],
     "schedule_orientation-1": []
   },
-  "story": "Onboarding for a Sales Representative where the buddy pool has no eligible candidates (only one person with 4 months tenure, below the 6-month minimum). The agent should detect this from the buddy pool check and handle it gracefully, noting the escalation needed. Additionally, the Zoom Pro provisioning will fail due to license limits. This tests the agent's ability to handle two failure conditions in one workflow.",
+  "story": "Onboarding for a Sales Representative where the buddy pool has no eligible candidates (only one person with 4 months tenure, below the 6-month minimum). Standard Sales accounts to provision are: email, vpn, slack, salesforce, zoom_pro. Standard orientation sessions for Sales Representatives include: Company Overview, IT Setup, Security Training, Department Introduction, Team Meet, and Sales Methodology Training. The Zoom Pro provisioning will fail due to license limits. This tests the agent's ability to handle two failure conditions in one workflow (no eligible buddy + failed provisioning).",
   "goal_details": [
     {
       "args": {

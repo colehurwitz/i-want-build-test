@@ -49,5 +49,5 @@
       "tool_name": "transfer_stock"
     }
   ],
-  "starting_sentence": "Check P-100 in W-1 and W-2, then transfer 100 units from W-1 to W-2"
+  "starting_sentence": "I need to move 100 units of P-100 from W-1 to W-2"
 }

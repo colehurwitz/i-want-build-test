@@ -83,5 +83,5 @@
       }
     }
   ],
-  "starting_sentence": "Entity-B has 4 prior violations for REG-200. Check compliance, get remediation, escalate"
+  "starting_sentence": "I'm concerned about Entity-B — they have 4 prior violations for REG-200. What's their current compliance status and what should we do about it?"
 }

@@ -27,7 +27,7 @@
     ],
     "issue_purchase_order-1": []
   },
-  "story": "Order 100 monitors with an estimated cost of $45,000. This exceeds the $25K VP-level approval threshold and exceeds $10K requiring 3+ quotes. Only 2 vendors provide quotes here. After comparing, the cheaper vendor (ScreenPro Global at $38K) is recommended. The agent must use VP-level approval for the PO.",
+  "story": "Order 100 monitors with an estimated cost of $45,000. This exceeds the $25K VP-level approval threshold and exceeds $10K requiring 3+ quotes. Only 2 vendors provide quotes here. After comparing, the cheaper vendor (ScreenPro Global at $38K) is recommended. The requester admin@company.com maps to employee ID ADMIN-001. Approval required from VP of IT (ID: VP-IT-001).",
   "goal_details": [
     {
       "args": {
@@ -95,5 +95,5 @@
       "tool_name": "issue_purchase_order"
     }
   ],
-  "starting_sentence": "Order 100 monitors, estimated budget of $45,000, requester: admin@company.com. Get quotes, compare, and issue PO to the cheapest vendor. Get approval from VP of IT, ID VP-IT-001"
+  "starting_sentence": "I'm admin@company.com. We need to order 100 monitors, estimated budget $45,000. Please find the best deal"
 }

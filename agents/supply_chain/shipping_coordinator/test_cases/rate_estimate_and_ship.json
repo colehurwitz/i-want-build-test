@@ -9,6 +9,9 @@
   ],
   "agent": "shipping_coordinator",
   "goals": {
+    "get_order_details-1": [
+      "get_carrier_rates-1"
+    ],
     "get_carrier_rates-1": [
       "get_delivery_estimate-1"
     ],
@@ -19,6 +22,14 @@
   },
   "story": "The user wants to ship a 25kg package from Chicago to LA via express for order ORD-300. The agent gets rates first, then a delivery estimate, and finally creates the shipment.",
   "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-300"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
     {
       "args": {
         "origin": "Chicago",
@@ -60,5 +71,5 @@
       }
     }
   ],
-  "starting_sentence": "Get rates for a 25kg package from Chicago to LA, then create an express shipment for order ORD-300"
+  "starting_sentence": "I need to ship order ORD-300 from Chicago to LA, about 25kg, express service"
 }

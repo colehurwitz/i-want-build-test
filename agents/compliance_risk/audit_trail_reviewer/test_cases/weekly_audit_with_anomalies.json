@@ -80,5 +80,5 @@
       "tool_name": "generate_audit_report"
     }
   ],
-  "starting_sentence": "Review auth_system audit logs from July 22, 2024 to July 29, 2024, check for anomalies, and generate a report"
+  "starting_sentence": "I need the weekly audit report for auth_system, covering July 22-29, 2024. Flag anything suspicious"
 }

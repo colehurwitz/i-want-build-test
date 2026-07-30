@@ -24,7 +24,7 @@
     ],
     "manage_vendor_relationship-1": []
   },
-  "story": "V-500 quality dropped. Get profile, then fan out to check performance AND contract terms in parallel. Both converge on creating the scorecard, then initiate offboarding.",
+  "story": "V-500 quality has dropped significantly and offboarding may be necessary. Standard vendor scorecard categories are: delivery, quality, pricing, responsiveness, and innovation. Get profile first, then check performance and contract terms in parallel. Both converge on creating the scorecard to document the decline, then initiate vendor_offboarding.",
   "goal_details": [
     {
       "args": {
@@ -89,5 +89,5 @@
       }
     }
   ],
-  "starting_sentence": "Vendor V-500 quality has dropped significantly. Get their profile, check performance, and start the offboarding process"
+  "starting_sentence": "Vendor V-500's quality has dropped significantly. We may need to terminate the relationship"
 }

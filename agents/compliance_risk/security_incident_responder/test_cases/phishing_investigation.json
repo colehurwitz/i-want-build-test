@@ -23,7 +23,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "A phishing incident INC-200 is reported. The agent triages the incident, checks threat intel for the suspicious phishing URL, collects evidence from the email gateway, notifies stakeholders, and files a report. Tests P2 response without system isolation.",
+  "story": "A phishing incident INC-200 is reported involving a suspicious login portal URL. For phishing incidents, evidence is collected from the email-gateway as network_logs. P2 phishing incidents require notifying security_team and affected_departments as stakeholder groups. No system isolation is needed for phishing — the focus is on threat intel lookup, evidence collection, notification, and reporting.",
   "goal_details": [
     {
       "args": {

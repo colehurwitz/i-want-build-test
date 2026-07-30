@@ -87,5 +87,5 @@
       "tool_name": "create_fulfillment"
     }
   ],
-  "starting_sentence": "Check status of ORD-400 and ORD-500, then process whichever is ready"
+  "starting_sentence": "I have two pending orders, ORD-400 and ORD-500. Please process whichever one is ready to go"
 }

@@ -62,5 +62,5 @@
       "tool_name": "generate_privacy_report"
     }
   ],
-  "starting_sentence": "Process a data access request for user@eu-company.com \u2014 show all their data and generate a report"
+  "starting_sentence": "I need to fulfill a data access request for user@eu-company.com under GDPR"
 }
