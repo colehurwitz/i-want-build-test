@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "data_privacy_officer",
+  "goals": {
+    "lookup_data_subject-1": ["update_consent-1"],
+    "update_consent-1": ["update_consent-2"],
+    "update_consent-2": []
+  },
+  "story": "A user wants to update multiple consent preferences — opt out of analytics and opt in to newsletters (marketing). The agent must look up the subject and then update both consent records.",
+  "goal_details": [
+    {
+      "args": {"identifier": "user@company.com", "identifier_type": "email"},
+      "name": "lookup_data_subject-1",
+      "type": "tool_call",
+      "tool_name": "lookup_data_subject"
+    },
+    {
+      "args": {"subject_id": "DS-103", "purpose": "analytics", "consent_given": false},
+      "name": "update_consent-1",
+      "type": "tool_call",
+      "tool_name": "update_consent"
+    },
+    {
+      "args": {"subject_id": "DS-103", "purpose": "marketing", "consent_given": true},
+      "name": "update_consent-2",
+      "type": "tool_call",
+      "tool_name": "update_consent"
+    }
+  ],
+  "starting_sentence": "Update consent for user@company.com — opt out of analytics and opt in to newsletters"
+}

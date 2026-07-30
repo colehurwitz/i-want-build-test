@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:easy",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "data_privacy_officer",
+  "goals": {
+    "lookup_data_subject-1": ["check_consent_status-1"],
+    "check_consent_status-1": []
+  },
+  "story": "A user wants to check what data the company has on a specific person and their current marketing consent status. Simple two-step lookup chain.",
+  "goal_details": [
+    {
+      "args": {"identifier": "user@company.com", "identifier_type": "email"},
+      "name": "lookup_data_subject-1",
+      "type": "tool_call",
+      "tool_name": "lookup_data_subject"
+    },
+    {
+      "args": {"subject_id": "DS-103", "purpose": "marketing"},
+      "name": "check_consent_status-1",
+      "type": "tool_call",
+      "tool_name": "check_consent_status"
+    }
+  ],
+  "starting_sentence": "Check what data we have on subject user@company.com and their current consent status for marketing"
+}

@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "data_privacy_officer",
+  "goals": {
+    "lookup_data_subject-1": ["check_consent_status-1"],
+    "check_consent_status-1": ["process_data_request-1"],
+    "process_data_request-1": ["generate_privacy_report-1"],
+    "generate_privacy_report-1": []
+  },
+  "story": "A UK-based data subject requests data portability. The agent must look up the subject, check their consent for essential services (to verify active account), process the portability request to export all data, and generate a processing activities report confirming data transfer compliance.",
+  "goal_details": [
+    {
+      "args": {"identifier": "user@uk-company.co.uk", "identifier_type": "email"},
+      "name": "lookup_data_subject-1",
+      "type": "tool_call",
+      "tool_name": "lookup_data_subject"
+    },
+    {
+      "args": {"subject_id": "DS-104", "purpose": "essential_services"},
+      "name": "check_consent_status-1",
+      "type": "tool_call",
+      "tool_name": "check_consent_status"
+    },
+    {
+      "args": {"subject_id": "DS-104", "request_type": "portability", "scope": "full"},
+      "name": "process_data_request-1",
+      "type": "tool_call",
+      "tool_name": "process_data_request"
+    },
+    {
+      "args": {"subject_id": "DS-104", "report_type": "processing_activities", "include_processing_activities": true},
+      "name": "generate_privacy_report-1",
+      "type": "tool_call",
+      "tool_name": "generate_privacy_report"
+    }
+  ],
+  "starting_sentence": "Process data portability request for user@uk-company.co.uk, generate the report, and confirm consent for data transfer"
+}

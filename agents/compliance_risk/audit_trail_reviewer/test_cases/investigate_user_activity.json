@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "audit_trail_reviewer",
+  "goals": {
+    "get_user_activity-1": ["search_anomalies-1"],
+    "search_anomalies-1": ["flag_finding-1"],
+    "flag_finding-1": []
+  },
+  "story": "Investigate a specific user U-500 by checking their activity for 30 days, searching for privilege escalation anomalies, and flagging suspicious findings. This tests targeted user investigation without starting from audit logs.",
+  "goal_details": [
+    {
+      "args": {"user_id": "U-500", "days": 30},
+      "name": "get_user_activity-1",
+      "type": "tool_call",
+      "tool_name": "get_user_activity"
+    },
+    {
+      "args": {"system": "auth_system", "anomaly_type": "privilege_escalation"},
+      "name": "search_anomalies-1",
+      "type": "tool_call",
+      "tool_name": "search_anomalies"
+    },
+    {
+      "args": {"system": "auth_system", "finding_type": "privilege_escalation", "severity": "critical", "description": "Self-elevated to admin role without approval workflow from TOR exit node", "evidence": "U-500 changed role from user to admin at 2024-07-23T03:15:00Z, approved_by: self, IP: 185.220.101.42 (TOR). 12 restricted resources accessed after escalation."},
+      "name": "flag_finding-1",
+      "type": "tool_call",
+      "tool_name": "flag_finding"
+    }
+  ],
+  "starting_sentence": "Investigate user U-500 — check their activity for 30 days, search for privilege escalation, flag suspicious activity"
+}

@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_entity",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "audit_trail_reviewer",
+  "goals": {
+    "generate_audit_report-1": [],
+    "generate_audit_report-2": []
+  },
+  "story": "Generate quarterly audit reports for both the payment_system and hr_system. This tests multi-system reporting without investigation — a straightforward compliance reporting scenario.",
+  "goal_details": [
+    {
+      "args": {"system": "payment_system", "period": "quarterly", "include_findings": true},
+      "name": "generate_audit_report-1",
+      "type": "tool_call",
+      "tool_name": "generate_audit_report"
+    },
+    {
+      "args": {"system": "hr_system", "period": "quarterly", "include_findings": true},
+      "name": "generate_audit_report-2",
+      "type": "tool_call",
+      "tool_name": "generate_audit_report"
+    }
+  ],
+  "starting_sentence": "Generate audit reports for both payment_system and hr_system for Q2"
+}

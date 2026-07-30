@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "security_incident_responder",
+  "goals": {
+    "triage_incident-1": ["isolate_system-1"],
+    "isolate_system-1": ["collect_evidence-1", "collect_evidence-2"],
+    "collect_evidence-1": ["notify_stakeholders-1"],
+    "collect_evidence-2": ["notify_stakeholders-1"],
+    "notify_stakeholders-1": ["file_incident_report-1"],
+    "file_incident_report-1": []
+  },
+  "story": "Critical data breach INC-300. The agent must triage, immediately isolate the customer database, collect both network_logs and access_logs as required for data breaches, notify CISO and legal (regulatory notification required), and file a report noting the 72-hour GDPR deadline.",
+  "goal_details": [
+    {
+      "args": {"incident_id": "INC-300"},
+      "name": "triage_incident-1",
+      "type": "tool_call",
+      "tool_name": "triage_incident"
+    },
+    {
+      "args": {"system_name": "customer-db-primary", "isolation_level": "full"},
+      "name": "isolate_system-1",
+      "type": "tool_call",
+      "tool_name": "isolate_system"
+    },
+    {
+      "args": {"incident_id": "INC-300", "system_name": "customer-db-primary", "evidence_type": "network_logs"},
+      "name": "collect_evidence-1",
+      "type": "tool_call",
+      "tool_name": "collect_evidence"
+    },
+    {
+      "args": {"incident_id": "INC-300", "system_name": "customer-db-primary", "evidence_type": "access_logs"},
+      "name": "collect_evidence-2",
+      "type": "tool_call",
+      "tool_name": "collect_evidence"
+    },
+    {
+      "args": {"incident_id": "INC-300", "severity": "critical", "stakeholder_groups": ["ciso", "legal", "executive_team"], "message": "Data breach confirmed. 50,000 PII records exfiltrated. Database isolated. GDPR notification required within 72 hours."},
+      "name": "notify_stakeholders-1",
+      "type": "tool_call",
+      "tool_name": "notify_stakeholders"
+    },
+    {
+      "args": {"incident_id": "INC-300", "severity": "critical", "type": "data_breach", "root_cause": "Compromised service account SA-DB-READER used to exfiltrate 50,000 PII records to external IP 45.33.32.156", "remediation": "Database isolated, service account disabled, evidence collected. Regulatory notification in progress.", "evidence_ids": ["EVD-7004", "EVD-7005"]},
+      "name": "file_incident_report-1",
+      "type": "tool_call",
+      "tool_name": "file_incident_report"
+    }
+  ],
+  "starting_sentence": "Data breach INC-300. Isolate the database, collect network_logs and access_logs, notify legal and CISO, file report"
+}

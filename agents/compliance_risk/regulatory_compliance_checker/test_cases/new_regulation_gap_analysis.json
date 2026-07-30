@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "regulatory_compliance_checker",
+  "goals": {
+    "get_regulation_details-1": ["assess_compliance_status-1"],
+    "assess_compliance_status-1": ["get_remediation_steps-1"],
+    "get_remediation_steps-1": ["file_compliance_report-1"],
+    "file_compliance_report-1": ["notify_compliance_officer-1"],
+    "notify_compliance_officer-1": []
+  },
+  "story": "REG-500 (AI Governance) just went into effect. Assess Entity-E's readiness — they score 30% (non-compliant) with no AI inventory, no bias assessments, and no transparency reports. Get remediation steps, file a report, and urgently notify the compliance officer.",
+  "goal_details": [
+    {
+      "args": {"regulation_id": "REG-500"},
+      "name": "get_regulation_details-1",
+      "type": "tool_call",
+      "tool_name": "get_regulation_details"
+    },
+    {
+      "args": {"entity": "Entity-E", "regulation_id": "REG-500"},
+      "name": "assess_compliance_status-1",
+      "type": "tool_call",
+      "tool_name": "assess_compliance_status"
+    },
+    {
+      "args": {"violation_type": "governance"},
+      "name": "get_remediation_steps-1",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps"
+    },
+    {
+      "args": {"entity": "Entity-E", "regulation_id": "REG-500", "status": "non_compliant", "findings": "Score 30%. CRITICAL: REQ-500-A fail (no AI inventory), REQ-500-B fail (no bias assessments), REQ-500-C fail (no transparency reports), REQ-500-D partial (limited human oversight). Regulation effective 2024-08-01.", "remediation_plan": "Establish governance committee (2 weeks), create AI system inventory (4 weeks), conduct bias assessments (8 weeks), publish transparency reports (6 weeks)."},
+      "name": "file_compliance_report-1",
+      "type": "tool_call",
+      "tool_name": "file_compliance_report"
+    },
+    {
+      "args": {"entity": "Entity-E", "severity": "critical", "message": "URGENT: Entity-E scores 30% on REG-500 (AI Governance) effective 2024-08-01. No AI inventory, no bias assessments, no transparency reports. Penalty: up to 6% annual turnover. Immediate executive action required."},
+      "name": "notify_compliance_officer-1",
+      "type": "tool_call",
+      "tool_name": "notify_compliance_officer"
+    }
+  ],
+  "starting_sentence": "REG-500 just went into effect. Assess Entity-E, identify all gaps, create remediation plan"
+}

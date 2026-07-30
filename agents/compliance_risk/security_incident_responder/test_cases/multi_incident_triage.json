@@ -1,0 +1,66 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_entity",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "security_incident_responder",
+  "goals": {
+    "triage_incident-1": ["isolate_system-1"],
+    "triage_incident-2": ["isolate_system-1"],
+    "isolate_system-1": ["collect_evidence-1", "collect_evidence-2"],
+    "collect_evidence-1": ["notify_stakeholders-1"],
+    "collect_evidence-2": ["notify_stakeholders-1"],
+    "notify_stakeholders-1": ["file_incident_report-1"],
+    "file_incident_report-1": []
+  },
+  "story": "Two incidents reported simultaneously: INC-500 (malware, P2) and INC-600 (unauthorized access, P3). The agent must triage both, handle the higher-severity malware incident first by isolating the workstation, collecting evidence (memory dump and network logs), notifying stakeholders, and filing a consolidated report.",
+  "goal_details": [
+    {
+      "args": {"incident_id": "INC-500"},
+      "name": "triage_incident-1",
+      "type": "tool_call",
+      "tool_name": "triage_incident"
+    },
+    {
+      "args": {"incident_id": "INC-600"},
+      "name": "triage_incident-2",
+      "type": "tool_call",
+      "tool_name": "triage_incident"
+    },
+    {
+      "args": {"system_name": "workstation-WS-450", "isolation_level": "full"},
+      "name": "isolate_system-1",
+      "type": "tool_call",
+      "tool_name": "isolate_system"
+    },
+    {
+      "args": {"incident_id": "INC-500", "system_name": "workstation-WS-450", "evidence_type": "memory_dump"},
+      "name": "collect_evidence-1",
+      "type": "tool_call",
+      "tool_name": "collect_evidence"
+    },
+    {
+      "args": {"incident_id": "INC-500", "system_name": "workstation-WS-450", "evidence_type": "network_logs"},
+      "name": "collect_evidence-2",
+      "type": "tool_call",
+      "tool_name": "collect_evidence"
+    },
+    {
+      "args": {"incident_id": "INC-500", "severity": "high", "stakeholder_groups": ["security_team", "it_department"], "message": "Malware (trojan) on WS-450 with active C2 to 91.234.100.25. System isolated. Also tracking INC-600 brute force on admin portal."},
+      "name": "notify_stakeholders-1",
+      "type": "tool_call",
+      "tool_name": "notify_stakeholders"
+    },
+    {
+      "args": {"incident_id": "INC-500", "severity": "high", "type": "malware", "root_cause": "Trojan dropper (LockCrypt family) with C2 communication to 91.234.100.25", "remediation": "Workstation isolated, evidence collected. System to be wiped and reimaged. IOC scan across all endpoints pending.", "evidence_ids": ["EVD-7006", "EVD-7007"]},
+      "name": "file_incident_report-1",
+      "type": "tool_call",
+      "tool_name": "file_incident_report"
+    }
+  ],
+  "starting_sentence": "Two incidents: INC-500 (malware) and INC-600 (unauthorized access). Triage both, handle higher severity first"
+}
