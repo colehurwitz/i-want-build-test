@@ -9,44 +9,83 @@
   ],
   "agent": "leave_manager",
   "goals": {
-    "get_leave_balance-1": ["check_team_calendar-1"],
-    "check_team_calendar-1": ["request_leave-1"],
-    "request_leave-1": ["approve_leave-1"],
-    "approve_leave-1": ["get_leave_history-1"],
-    "get_leave_history-1": []
+    "get_leave_balance-1": [
+      "check_team_calendar-1"
+    ],
+    "check_team_calendar-1": [
+      "request_leave-1"
+    ],
+    "request_leave-1": [
+      "approve_leave-1"
+    ],
+    "approve_leave-1": [
+      "get_leave_history-1",
+      "check_team_calendar-2"
+    ],
+    "get_leave_history-1": [],
+    "check_team_calendar-2": []
   },
-  "story": "Full lifecycle test: check personal leave balance for E-101, verify Engineering team calendar, submit the request, approve it as manager M-100, and then view updated history. This tests the complete leave management workflow from request through approval. The agent must chain five sequential operations correctly.",
+  "story": "Full lifecycle: check balance, verify team calendar, submit leave request, approve it, then fan out to view history AND re-check team calendar to confirm the updated schedule.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-101", "leave_type": "personal"},
+      "args": {
+        "employee_id": "E-101",
+        "leave_type": "personal"
+      },
       "name": "get_leave_balance-1",
       "type": "tool_call",
       "tool_name": "get_leave_balance"
     },
     {
-      "args": {"department": "Engineering", "date_range": "2024-11-22 to 2024-11-25"},
+      "args": {
+        "department": "Engineering",
+        "date_range": "2024-11-22 to 2024-11-25"
+      },
       "name": "check_team_calendar-1",
       "type": "tool_call",
       "tool_name": "check_team_calendar"
     },
     {
-      "args": {"employee_id": "E-101", "leave_type": "personal", "start_date": "2024-11-22", "end_date": "2024-11-25", "reason": "personal matters"},
+      "args": {
+        "employee_id": "E-101",
+        "leave_type": "personal",
+        "start_date": "2024-11-22",
+        "end_date": "2024-11-25",
+        "reason": "personal matters"
+      },
       "name": "request_leave-1",
       "type": "tool_call",
       "tool_name": "request_leave"
     },
     {
-      "args": {"request_id": "LR-005", "manager_id": "M-100", "decision": "approved", "comments": "Approved - adequate team coverage"},
+      "args": {
+        "request_id": "LR-005",
+        "manager_id": "M-100",
+        "decision": "approved",
+        "comments": "Approved - adequate team coverage"
+      },
       "name": "approve_leave-1",
       "type": "tool_call",
       "tool_name": "approve_leave"
     },
     {
-      "args": {"employee_id": "E-101", "year": "2024"},
+      "args": {
+        "employee_id": "E-101",
+        "year": "2024"
+      },
       "name": "get_leave_history-1",
       "type": "tool_call",
       "tool_name": "get_leave_history"
+    },
+    {
+      "args": {
+        "department": "Engineering",
+        "date_range": "2024-11-22 to 2024-11-25"
+      },
+      "name": "check_team_calendar-2",
+      "type": "tool_call",
+      "tool_name": "check_team_calendar"
     }
   ],
-  "starting_sentence": "Employee E-101 in Engineering wants personal leave Nov 22-25 for personal matters. Check their personal leave balance, verify the team calendar, submit the request, approve it as manager M-100, and show their updated leave history for 2024"
+  "starting_sentence": "Employee E-101 wants personal leave Nov 22-25. Check balance, team calendar, submit, approve as M-100, then show history and updated calendar"
 }

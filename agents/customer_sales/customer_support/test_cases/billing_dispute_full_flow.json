@@ -9,33 +9,56 @@
   ],
   "agent": "customer_support",
   "goals": {
-    "get_customer_history-1": ["create_support_case-1"],
-    "create_support_case-1": ["search_knowledge_base-1"],
-    "search_knowledge_base-1": ["update_case-1"],
+    "get_customer_history-1": [
+      "search_knowledge_base-1",
+      "create_support_case-1"
+    ],
+    "search_knowledge_base-1": [
+      "update_case-1"
+    ],
+    "create_support_case-1": [
+      "update_case-1"
+    ],
     "update_case-1": []
   },
-  "story": "Customer C-200 has a billing dispute. The agent should check their history (they've had billing issues before), create a case with billing category, search the KB for dispute resolution procedures, and resolve the case. Without duplicate case detection logic, the agent won't notice the previous billing case CS-180.",
+  "story": "Customer disputes a billing charge. Pull history, then search for billing dispute procedures AND create a support case in parallel. Both converge on updating the case with the resolution.",
   "goal_details": [
     {
-      "args": {"customer_id": "C-200"},
+      "args": {
+        "customer_id": "C-200"
+      },
       "name": "get_customer_history-1",
       "type": "tool_call",
       "tool_name": "get_customer_history"
     },
     {
-      "args": {"customer_id": "C-200", "subject": "Billing dispute", "category": "billing", "priority": "normal", "description": "Customer is disputing a charge on their latest invoice"},
+      "args": {
+        "customer_id": "C-200",
+        "subject": "Billing dispute",
+        "category": "billing",
+        "priority": "normal",
+        "description": "Customer is disputing a charge on their latest invoice"
+      },
       "name": "create_support_case-1",
       "type": "tool_call",
       "tool_name": "create_support_case"
     },
     {
-      "args": {"query": "billing dispute", "category": "billing"},
+      "args": {
+        "query": "billing dispute",
+        "category": "billing"
+      },
       "name": "search_knowledge_base-1",
       "type": "tool_call",
       "tool_name": "search_knowledge_base"
     },
     {
-      "args": {"case_id": "CS-301", "status": "resolved", "resolution": "Applied billing dispute process from KB-201, credit memo issued", "internal_notes": "Recurring billing issues for this customer"},
+      "args": {
+        "case_id": "CS-301",
+        "status": "resolved",
+        "resolution": "Applied billing dispute process from KB-201, credit memo issued",
+        "internal_notes": "Recurring billing issues for this customer"
+      },
       "name": "update_case-1",
       "type": "tool_call",
       "tool_name": "update_case"

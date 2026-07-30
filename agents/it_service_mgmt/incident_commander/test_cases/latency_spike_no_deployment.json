@@ -9,37 +9,55 @@
   ],
   "agent": "incident_commander",
   "goals": {
-    "get_alert_details-1": ["check_service_health-1"],
-    "check_service_health-1": ["get_recent_deployments-1"],
-    "get_recent_deployments-1": ["create_incident_ticket-1"],
-    "create_incident_ticket-1": []
+    "get_alert_details-1": [
+      "check_service_health-1",
+      "get_recent_deployments-1"
+    ],
+    "check_service_health-1": [
+      "notify_oncall-1"
+    ],
+    "get_recent_deployments-1": [
+      "notify_oncall-1"
+    ],
+    "notify_oncall-1": []
   },
-  "story": "Auth service latency spike alert fires. The agent checks the alert, confirms the service is degraded, looks for recent deployments but finds none in the last 24 hours. Without a deployment to roll back, the agent should skip the rollback step and proceed to create an incident ticket. This tests whether the agent handles the absence of a deployment correlation correctly.",
+  "story": "Latency spike alert. Get alert details, then check service health AND recent deployments in parallel. Both feed into notifying on-call with complete context.",
   "goal_details": [
     {
-      "args": {"alert_id": "A-200"},
+      "args": {
+        "alert_id": "A-200"
+      },
       "name": "get_alert_details-1",
       "type": "tool_call",
       "tool_name": "get_alert_details"
     },
     {
-      "args": {"service_name": "auth"},
+      "args": {
+        "service_name": "auth"
+      },
       "name": "check_service_health-1",
       "type": "tool_call",
       "tool_name": "check_service_health"
     },
     {
-      "args": {"service_name": "auth", "hours": 24},
+      "args": {
+        "service_name": "auth",
+        "hours": 24
+      },
       "name": "get_recent_deployments-1",
       "type": "tool_call",
       "tool_name": "get_recent_deployments"
     },
     {
-      "args": {"service_name": "auth", "severity": "high", "title": "Auth service latency spike", "description": "Auth service p99 latency > 5000ms. No recent deployments found. Requires investigation."},
-      "name": "create_incident_ticket-1",
+      "args": {
+        "team": "auth",
+        "severity": "high",
+        "message": "Auth service latency spike — p99 > 5000ms. No recent deployments found. Requires investigation."
+      },
+      "name": "notify_oncall-1",
       "type": "tool_call",
-      "tool_name": "create_incident_ticket"
+      "tool_name": "notify_oncall"
     }
   ],
-  "starting_sentence": "Alert A-200 fired — auth service latency spike"
+  "starting_sentence": "Alert A-200 fired \u2014 auth service latency spike"
 }

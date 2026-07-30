@@ -9,23 +9,54 @@
   ],
   "agent": "audit_trail_reviewer",
   "goals": {
+    "search_anomalies-1": [
+      "generate_audit_report-1",
+      "generate_audit_report-2"
+    ],
     "generate_audit_report-1": [],
-    "generate_audit_report-2": []
+    "generate_audit_report-2": [],
+    "search_anomalies-2": []
   },
-  "story": "Generate quarterly audit reports for both the payment_system and hr_system. This tests multi-system reporting without investigation — a straightforward compliance reporting scenario.",
+  "story": "Generate quarterly audit reports for both payment_system and hr_system. First search for data exfiltration anomalies in the payment system, then generate reports for both systems in parallel. Also search for unauthorized access anomalies independently.",
   "goal_details": [
     {
-      "args": {"system": "payment_system", "period": "quarterly", "include_findings": true},
+      "args": {
+        "system": "payment_system",
+        "anomaly_type": "data_exfiltration"
+      },
+      "name": "search_anomalies-1",
+      "type": "tool_call",
+      "tool_name": "search_anomalies"
+    },
+    {
+      "args": {
+        "system": "payment_system",
+        "period": "quarterly",
+        "include_findings": true
+      },
       "name": "generate_audit_report-1",
       "type": "tool_call",
       "tool_name": "generate_audit_report"
     },
     {
-      "args": {"system": "hr_system", "period": "quarterly", "include_findings": true},
+      "args": {
+        "system": "hr_system",
+        "period": "quarterly",
+        "include_findings": true
+      },
       "name": "generate_audit_report-2",
       "type": "tool_call",
       "tool_name": "generate_audit_report"
+    },
+    {
+      "args": {
+        "system": "payment_system",
+        "anomaly_type": "unauthorized_access"
+      },
+      "name": "search_anomalies-2",
+      "type": "tool_call",
+      "tool_name": "search_anomalies"
     }
   ],
-  "starting_sentence": "Generate audit reports for both payment_system and hr_system for Q2"
+  "starting_sentence": "Search payment_system for data_exfiltration anomalies, generate quarterly reports for both payment_system and hr_system, and also search for unauthorized_access anomalies"
 }

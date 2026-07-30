@@ -9,23 +9,38 @@
   ],
   "agent": "employee_directory",
   "goals": {
-    "get_org_chart-1": [],
-    "lookup_employee-1": []
+    "get_org_chart-1": [
+      "get_department_roster-1"
+    ],
+    "lookup_employee-1": [],
+    "get_department_roster-1": []
   },
-  "story": "The user asks two independent questions: who reports to a specific manager, and what is a specific employee's contact info. Both pieces of information are directly available from the user's request (manager ID and employee name), so the agent can make both calls independently without chaining.",
+  "story": "Get the org chart for manager M-100, look up Jane Doe's contact info independently, and also get the Engineering department roster following the org chart lookup.",
   "goal_details": [
     {
-      "args": {"manager_id": "M-100"},
+      "args": {
+        "manager_id": "M-100"
+      },
       "name": "get_org_chart-1",
       "type": "tool_call",
       "tool_name": "get_org_chart"
     },
     {
-      "args": {"name_or_id": "Jane Doe"},
+      "args": {
+        "name_or_id": "Jane Doe"
+      },
       "name": "lookup_employee-1",
       "type": "tool_call",
       "tool_name": "lookup_employee"
+    },
+    {
+      "args": {
+        "department": "Engineering"
+      },
+      "name": "get_department_roster-1",
+      "type": "tool_call",
+      "tool_name": "get_department_roster"
     }
   ],
-  "starting_sentence": "Who reports to manager M-100? And what's Jane Doe's contact info?"
+  "starting_sentence": "Who reports to manager M-100? Get their department roster too. And what's Jane Doe's contact info?"
 }

@@ -9,44 +9,69 @@
   ],
   "agent": "inventory_tracker",
   "goals": {
-    "check_inventory-1": ["check_inventory-2"],
-    "check_inventory-2": ["check_inventory-3"],
-    "check_inventory-3": ["get_reorder_history-1"],
-    "get_reorder_history-1": ["transfer_stock-1"],
+    "check_inventory-1": [
+      "check_inventory-2",
+      "check_inventory-3"
+    ],
+    "check_inventory-2": [
+      "get_reorder_history-1"
+    ],
+    "check_inventory-3": [
+      "get_reorder_history-1"
+    ],
+    "get_reorder_history-1": [
+      "transfer_stock-1"
+    ],
     "transfer_stock-1": []
   },
-  "story": "Full audit of P-400: check inventory across all three warehouses (W-1, W-2, W-3), review reorder history to understand supply patterns, then transfer excess stock from overstocked W-1 to critically low W-3. This tests a longer chain with multiple sequential checks followed by a corrective action.",
+  "story": "Full audit of P-400: check W-1 first, then fan out to check W-2 and W-3 in parallel. Both converge on reviewing reorder history, then transfer excess from W-1 to W-3.",
   "goal_details": [
     {
-      "args": {"product_id": "P-400", "warehouse_id": "W-1"},
+      "args": {
+        "product_id": "P-400",
+        "warehouse_id": "W-1"
+      },
       "name": "check_inventory-1",
       "type": "tool_call",
       "tool_name": "check_inventory"
     },
     {
-      "args": {"product_id": "P-400", "warehouse_id": "W-2"},
+      "args": {
+        "product_id": "P-400",
+        "warehouse_id": "W-2"
+      },
       "name": "check_inventory-2",
       "type": "tool_call",
       "tool_name": "check_inventory"
     },
     {
-      "args": {"product_id": "P-400", "warehouse_id": "W-3"},
+      "args": {
+        "product_id": "P-400",
+        "warehouse_id": "W-3"
+      },
       "name": "check_inventory-3",
       "type": "tool_call",
       "tool_name": "check_inventory"
     },
     {
-      "args": {"product_id": "P-400"},
+      "args": {
+        "product_id": "P-400"
+      },
       "name": "get_reorder_history-1",
       "type": "tool_call",
       "tool_name": "get_reorder_history"
     },
     {
-      "args": {"product_id": "P-400", "from_warehouse": "W-1", "to_warehouse": "W-3", "quantity": 500},
+      "args": {
+        "product_id": "P-400",
+        "from_warehouse": "W-1",
+        "to_warehouse": "W-3",
+        "quantity": 500
+      },
       "name": "transfer_stock-1",
       "type": "tool_call",
       "tool_name": "transfer_stock"
     }
   ],
-  "starting_sentence": "Audit P-400: check all warehouses, review reorder history, then transfer excess from W-1 to W-3"
+  "starting_sentence": "Audit P-400: check W-1, then check W-2 and W-3 in parallel, review history, and transfer from W-1 to W-3"
 }

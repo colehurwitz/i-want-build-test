@@ -9,33 +9,62 @@
   ],
   "agent": "shipping_coordinator",
   "goals": {
-    "get_carrier_rates-1": ["create_shipment-1"],
-    "create_shipment-1": ["get_carrier_rates-2"],
-    "get_carrier_rates-2": ["create_shipment-2"],
+    "get_carrier_rates-1": [
+      "create_shipment-1"
+    ],
+    "get_carrier_rates-2": [
+      "create_shipment-2"
+    ],
+    "create_shipment-1": [],
     "create_shipment-2": []
   },
-  "story": "The user needs to ship two orders: ORD-400 to Boston via ground and ORD-500 to Miami overnight. The agent gets rates for each route and creates both shipments sequentially.",
+  "story": "Ship two independent orders: ORD-400 to Boston (ground) and ORD-500 to Miami (overnight). Rate lookups happen in parallel, each followed by shipment creation.",
   "goal_details": [
     {
-      "args": {"origin": "New York", "destination": "Boston", "weight_kg": 10.0, "service_level": "ground"},
+      "args": {
+        "origin": "New York",
+        "destination": "Boston",
+        "weight_kg": 10.0,
+        "service_level": "ground"
+      },
       "name": "get_carrier_rates-1",
       "type": "tool_call",
       "tool_name": "get_carrier_rates"
     },
     {
-      "args": {"order_id": "ORD-400", "items": ["Office Supplies", "Printer Paper"], "destination": "Boston", "priority": "ground"},
+      "args": {
+        "order_id": "ORD-400",
+        "items": [
+          "Office Supplies",
+          "Printer Paper"
+        ],
+        "destination": "Boston",
+        "priority": "ground"
+      },
       "name": "create_shipment-1",
       "type": "tool_call",
       "tool_name": "create_shipment"
     },
     {
-      "args": {"origin": "New York", "destination": "Miami", "weight_kg": 8.0, "service_level": "overnight"},
+      "args": {
+        "origin": "New York",
+        "destination": "Miami",
+        "weight_kg": 8.0,
+        "service_level": "overnight"
+      },
       "name": "get_carrier_rates-2",
       "type": "tool_call",
       "tool_name": "get_carrier_rates"
     },
     {
-      "args": {"order_id": "ORD-500", "items": ["Urgent Medical Supply"], "destination": "Miami", "priority": "overnight"},
+      "args": {
+        "order_id": "ORD-500",
+        "items": [
+          "Urgent Medical Supply"
+        ],
+        "destination": "Miami",
+        "priority": "overnight"
+      },
       "name": "create_shipment-2",
       "type": "tool_call",
       "tool_name": "create_shipment"

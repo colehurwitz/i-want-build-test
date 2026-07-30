@@ -9,33 +9,52 @@
   ],
   "agent": "service_desk_agent",
   "goals": {
-    "get_user_info-1": ["check_known_issues-1"],
-    "check_known_issues-1": ["run_diagnostic-1"],
-    "run_diagnostic-1": ["create_ticket-1"],
+    "get_user_info-1": [
+      "check_known_issues-1",
+      "run_diagnostic-1"
+    ],
+    "check_known_issues-1": [
+      "create_ticket-1"
+    ],
+    "run_diagnostic-1": [
+      "create_ticket-1"
+    ],
     "create_ticket-1": []
   },
-  "story": "A manager reports that several people on their team can't access the build system since the morning. The agent should identify the user, check known issues (finds the build system maintenance issue), run diagnostics, and create a ticket. Since multiple users are affected, the priority should be Critical per the classification rules. The known issue has a workaround (retry the build).",
+  "story": "Manager reports team-wide build system issue. After identifying the user, check known issues AND run diagnostics in parallel. Both feed into creating a critical-priority ticket.",
   "goal_details": [
     {
-      "args": {"email": "manager@company.com"},
+      "args": {
+        "email": "manager@company.com"
+      },
       "name": "get_user_info-1",
       "type": "tool_call",
       "tool_name": "get_user_info"
     },
     {
-      "args": {"system_name": "build_system"},
+      "args": {
+        "system_name": "build_system"
+      },
       "name": "check_known_issues-1",
       "type": "tool_call",
       "tool_name": "check_known_issues"
     },
     {
-      "args": {"system_name": "build_system", "test_type": "application"},
+      "args": {
+        "system_name": "build_system",
+        "test_type": "application"
+      },
       "name": "run_diagnostic-1",
       "type": "tool_call",
       "tool_name": "run_diagnostic"
     },
     {
-      "args": {"user_id": "USR-MGR-300", "category": "software", "priority": "critical", "description": "Multiple users affected. Build system intermittent failures since morning maintenance (KI-301). Diagnostics show 15 pending jobs in queue. Workaround: retry builds. Affects entire Engineering team."},
+      "args": {
+        "user_id": "USR-MGR-300",
+        "category": "software",
+        "priority": "critical",
+        "description": "Multiple users affected. Build system intermittent failures since morning maintenance (KI-301). Diagnostics show 15 pending jobs in queue. Workaround: retry builds. Affects entire Engineering team."
+      },
       "name": "create_ticket-1",
       "type": "tool_call",
       "tool_name": "create_ticket"

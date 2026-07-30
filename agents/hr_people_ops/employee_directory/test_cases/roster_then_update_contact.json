@@ -9,23 +9,42 @@
   ],
   "agent": "employee_directory",
   "goals": {
-    "get_department_roster-1": ["update_employee_contact-1"],
-    "update_employee_contact-1": []
+    "get_department_roster-1": [
+      "update_employee_contact-1"
+    ],
+    "update_employee_contact-1": [
+      "lookup_employee-1"
+    ],
+    "lookup_employee-1": []
   },
-  "story": "The user wants to see the Engineering department roster and then update the contact information for the first person listed. The agent must first retrieve the roster to identify the employees, then use the first employee's ID to perform the contact update. This tests chaining where the agent must extract a specific value from a list result.",
+  "story": "Get Engineering roster, update the first employee's phone, then look up their full profile to verify the change.",
   "goal_details": [
     {
-      "args": {"department": "Engineering"},
+      "args": {
+        "department": "Engineering"
+      },
       "name": "get_department_roster-1",
       "type": "tool_call",
       "tool_name": "get_department_roster"
     },
     {
-      "args": {"employee_id": "E-100", "field": "phone", "value": "555-0150"},
+      "args": {
+        "employee_id": "E-100",
+        "field": "phone",
+        "value": "555-0150"
+      },
       "name": "update_employee_contact-1",
       "type": "tool_call",
       "tool_name": "update_employee_contact"
+    },
+    {
+      "args": {
+        "name_or_id": "E-100"
+      },
+      "name": "lookup_employee-1",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
     }
   ],
-  "starting_sentence": "Find the Engineering department roster and update the phone for the first person listed to 555-0150"
+  "starting_sentence": "Find the Engineering roster, update E-100's phone to 555-0150, then show their full profile to confirm"
 }

@@ -9,37 +9,67 @@
   ],
   "agent": "vendor_manager",
   "goals": {
-    "get_vendor_performance-1": ["create_vendor_scorecard-1"],
-    "create_vendor_scorecard-1": ["get_vendor_performance-2"],
-    "get_vendor_performance-2": ["create_vendor_scorecard-2"],
+    "get_vendor_performance-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "get_vendor_performance-2": [
+      "create_vendor_scorecard-2"
+    ],
+    "create_vendor_scorecard-1": [],
     "create_vendor_scorecard-2": []
   },
-  "story": "Compare vendors V-100 (strategic, excellent) and V-400 (standard, good) for the same quarter. Pull Q2 2026 performance for each and create scorecards to compare side by side. V-100 should score 9.2 (Excellent) and V-400 should score 8.1 (Good).",
+  "story": "Compare V-100 and V-400. Both vendor performance lookups happen independently, each followed by scorecard creation. Two parallel chains for side-by-side comparison.",
   "goal_details": [
     {
-      "args": {"vendor_id": "V-100", "period": "Q2-2026"},
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026"
+      },
       "name": "get_vendor_performance-1",
       "type": "tool_call",
       "tool_name": "get_vendor_performance"
     },
     {
-      "args": {"vendor_id": "V-100", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
       "name": "create_vendor_scorecard-1",
       "type": "tool_call",
       "tool_name": "create_vendor_scorecard"
     },
     {
-      "args": {"vendor_id": "V-400", "period": "Q2-2026"},
+      "args": {
+        "vendor_id": "V-400",
+        "period": "Q2-2026"
+      },
       "name": "get_vendor_performance-2",
       "type": "tool_call",
       "tool_name": "get_vendor_performance"
     },
     {
-      "args": {"vendor_id": "V-400", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "args": {
+        "vendor_id": "V-400",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
       "name": "create_vendor_scorecard-2",
       "type": "tool_call",
       "tool_name": "create_vendor_scorecard"
     }
   ],
-  "starting_sentence": "Compare vendors V-100 and V-400 for Q2 2026 — create scorecards for both"
+  "starting_sentence": "Compare vendors V-100 and V-400 for Q2 2026 \u2014 create scorecards for both"
 }

@@ -9,23 +9,43 @@
   ],
   "agent": "incident_commander",
   "goals": {
-    "get_alert_details-1": ["check_service_health-1"],
-    "check_service_health-1": []
+    "get_alert_details-1": [
+      "check_service_health-1"
+    ],
+    "check_service_health-1": [
+      "create_incident_ticket-1"
+    ],
+    "create_incident_ticket-1": []
   },
-  "story": "An alert fires for the frontend service, but when the agent checks service health, the service is completely healthy. This is a false alarm. The agent should recognize the service is healthy and close the alert without taking unnecessary actions like creating tickets, notifying on-call, or triggering rollbacks. Without false-alarm handling instructions, agents often proceed with the full incident response anyway.",
+  "story": "Alert fires for frontend service, health check shows everything is healthy \u2014 false alarm. Agent documents the false alarm by creating a low-severity incident ticket for tracking.",
   "goal_details": [
     {
-      "args": {"alert_id": "A-300"},
+      "args": {
+        "alert_id": "A-300"
+      },
       "name": "get_alert_details-1",
       "type": "tool_call",
       "tool_name": "get_alert_details"
     },
     {
-      "args": {"service_name": "frontend"},
+      "args": {
+        "service_name": "frontend"
+      },
       "name": "check_service_health-1",
       "type": "tool_call",
       "tool_name": "check_service_health"
+    },
+    {
+      "args": {
+        "service_name": "frontend",
+        "severity": "low",
+        "title": "False alarm \u2014 frontend alert A-300",
+        "description": "Alert A-300 fired for frontend service but health check shows all metrics normal. Documenting as false alarm."
+      },
+      "name": "create_incident_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_incident_ticket"
     }
   ],
-  "starting_sentence": "Alert A-300 on frontend service"
+  "starting_sentence": "Alert A-300 on frontend service \u2014 check it and document findings"
 }

@@ -9,44 +9,79 @@
   ],
   "agent": "account_manager",
   "goals": {
-    "get_account_overview-1": ["get_usage_analytics-1"],
-    "get_usage_analytics-1": ["log_interaction-1"],
-    "get_account_overview-2": ["get_usage_analytics-2"],
-    "get_usage_analytics-2": ["log_interaction-1"],
+    "get_account_overview-1": [
+      "get_usage_analytics-1",
+      "get_competitive_intel-1"
+    ],
+    "get_usage_analytics-1": [
+      "log_interaction-1"
+    ],
+    "get_competitive_intel-1": [
+      "log_interaction-1"
+    ],
+    "get_account_overview-2": [
+      "get_usage_analytics-2"
+    ],
+    "get_usage_analytics-2": [
+      "log_interaction-1"
+    ],
     "log_interaction-1": []
   },
-  "story": "The user wants to compare two accounts' usage trends for Q2. The agent must review both A-400 (growing, health 91, +15% users) and A-100 (growing, health 82, +12% users) to compare their trajectories. This tests multi-entity analysis where the agent must gather data for both accounts and synthesize a comparison. Without guidance on multi-product account analysis, the agent may not compare feature adoption patterns.",
+  "story": "Compare two accounts. For A-400, get overview then fan out to usage analytics and competitive intel in parallel. For A-100, get overview and usage analytics. All results converge on a single logged interaction summarizing the comparison.",
   "goal_details": [
     {
-      "args": {"account_id": "A-400"},
+      "args": {
+        "account_id": "A-400"
+      },
       "name": "get_account_overview-1",
       "type": "tool_call",
       "tool_name": "get_account_overview"
     },
     {
-      "args": {"account_id": "A-400", "period": "Q2"},
+      "args": {
+        "account_id": "A-400",
+        "period": "Q2"
+      },
       "name": "get_usage_analytics-1",
       "type": "tool_call",
       "tool_name": "get_usage_analytics"
     },
     {
-      "args": {"account_id": "A-100"},
+      "args": {
+        "account_id": "A-400"
+      },
+      "name": "get_competitive_intel-1",
+      "type": "tool_call",
+      "tool_name": "get_competitive_intel"
+    },
+    {
+      "args": {
+        "account_id": "A-100"
+      },
       "name": "get_account_overview-2",
       "type": "tool_call",
       "tool_name": "get_account_overview"
     },
     {
-      "args": {"account_id": "A-100", "period": "Q2"},
+      "args": {
+        "account_id": "A-100",
+        "period": "Q2"
+      },
       "name": "get_usage_analytics-2",
       "type": "tool_call",
       "tool_name": "get_usage_analytics"
     },
     {
-      "args": {"account_id": "A-400", "interaction_type": "review", "summary": "Comparative review of A-400 and A-100 Q2 usage. A-400 leads with 15% user growth and higher feature adoption. A-100 growing steadily at 12%.", "follow_up_date": "2024-06-30"},
+      "args": {
+        "account_id": "A-400",
+        "interaction_type": "review",
+        "summary": "Comparative review of A-400 and A-100 Q2 usage. A-400 leads with 15% user growth. Competitive intel reviewed. A-100 growing at 12%.",
+        "follow_up_date": "2024-06-30"
+      },
       "name": "log_interaction-1",
       "type": "tool_call",
       "tool_name": "log_interaction"
     }
   ],
-  "starting_sentence": "Review accounts A-400 and A-100 — compare their usage trends for Q2"
+  "starting_sentence": "Review accounts A-400 and A-100 \u2014 compare their usage trends and check competitive intel for A-400"
 }

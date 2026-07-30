@@ -9,44 +9,69 @@
   ],
   "agent": "service_desk_agent",
   "goals": {
-    "get_user_info-1": ["check_known_issues-1"],
-    "check_known_issues-1": ["run_diagnostic-1"],
-    "run_diagnostic-1": ["create_ticket-1"],
-    "create_ticket-1": ["escalate_ticket-1"],
+    "get_user_info-1": [
+      "check_known_issues-1",
+      "run_diagnostic-1"
+    ],
+    "check_known_issues-1": [
+      "create_ticket-1"
+    ],
+    "run_diagnostic-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": [
+      "escalate_ticket-1"
+    ],
     "escalate_ticket-1": []
   },
-  "story": "A user reports their monitor isn't working. The agent checks known issues (none found for monitors), runs performance diagnostics (detects hardware failure — display adapter failing), creates a ticket categorized as hardware, and escalates immediately to the infrastructure team per the ticket rules. This tests the hardware failure detection and mandatory escalation flow.",
+  "story": "User reports monitor failure. After identifying user, check known issues AND run diagnostics in parallel. Both results feed into ticket creation, then escalate to infrastructure.",
   "goal_details": [
     {
-      "args": {"email": "user@company.com"},
+      "args": {
+        "email": "user@company.com"
+      },
       "name": "get_user_info-1",
       "type": "tool_call",
       "tool_name": "get_user_info"
     },
     {
-      "args": {"system_name": "monitor"},
+      "args": {
+        "system_name": "monitor"
+      },
       "name": "check_known_issues-1",
       "type": "tool_call",
       "tool_name": "check_known_issues"
     },
     {
-      "args": {"system_name": "monitor", "test_type": "performance"},
+      "args": {
+        "system_name": "monitor",
+        "test_type": "performance"
+      },
       "name": "run_diagnostic-1",
       "type": "tool_call",
       "tool_name": "run_diagnostic"
     },
     {
-      "args": {"user_id": "USR-STD-200", "category": "hardware", "priority": "medium", "description": "Monitor not receiving signal. Diagnostics indicate display adapter failure. Hardware replacement likely needed."},
+      "args": {
+        "user_id": "USR-STD-200",
+        "category": "hardware",
+        "priority": "medium",
+        "description": "Monitor not receiving signal. Diagnostics indicate display adapter failure. Hardware replacement likely needed."
+      },
       "name": "create_ticket-1",
       "type": "tool_call",
       "tool_name": "create_ticket"
     },
     {
-      "args": {"ticket_id": "TK-5003", "reason": "Hardware failure detected — display adapter failing. Requires physical hardware replacement.", "target_team": "infrastructure"},
+      "args": {
+        "ticket_id": "TK-5003",
+        "reason": "Hardware failure detected \u2014 display adapter failing. Requires physical hardware replacement.",
+        "target_team": "infrastructure"
+      },
       "name": "escalate_ticket-1",
       "type": "tool_call",
       "tool_name": "escalate_ticket"
     }
   ],
-  "starting_sentence": "user@company.com here — my monitor isn't working"
+  "starting_sentence": "user@company.com here \u2014 my monitor isn't working"
 }

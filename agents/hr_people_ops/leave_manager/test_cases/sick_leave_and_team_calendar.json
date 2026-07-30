@@ -9,30 +9,45 @@
   ],
   "agent": "leave_manager",
   "goals": {
-    "get_leave_balance-1": ["request_leave-1"],
-    "check_team_calendar-1": ["request_leave-1"],
+    "get_leave_balance-1": [
+      "check_team_calendar-1",
+      "request_leave-1"
+    ],
+    "check_team_calendar-1": [],
     "request_leave-1": []
   },
-  "story": "Employee E-102 needs sick leave for a single day and also wants to check the Sales team calendar. The agent should handle both the balance check and calendar check before submitting the request. These are parallel prerequisite checks that should both complete before the submission.",
+  "story": "Employee E-102 needs sick leave for Nov 12. Check sick leave balance, then fan out: check team calendar AND submit the request in parallel.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-102", "leave_type": "sick"},
+      "args": {
+        "employee_id": "E-102",
+        "leave_type": "sick"
+      },
       "name": "get_leave_balance-1",
       "type": "tool_call",
       "tool_name": "get_leave_balance"
     },
     {
-      "args": {"department": "Sales", "date_range": "2024-11-12 to 2024-11-12"},
+      "args": {
+        "department": "Sales",
+        "date_range": "2024-11-12 to 2024-11-12"
+      },
       "name": "check_team_calendar-1",
       "type": "tool_call",
       "tool_name": "check_team_calendar"
     },
     {
-      "args": {"employee_id": "E-102", "leave_type": "sick", "start_date": "2024-11-12", "end_date": "2024-11-12", "reason": "not feeling well"},
+      "args": {
+        "employee_id": "E-102",
+        "leave_type": "sick",
+        "start_date": "2024-11-12",
+        "end_date": "2024-11-12",
+        "reason": "not feeling well"
+      },
       "name": "request_leave-1",
       "type": "tool_call",
       "tool_name": "request_leave"
     }
   ],
-  "starting_sentence": "I'm E-102 in Sales. I need sick leave for Nov 12. Check my sick leave balance and the Sales team calendar for that day, then submit the request"
+  "starting_sentence": "I'm E-102 in Sales. Check my sick leave balance, check the Sales team calendar for Nov 12, and submit sick leave for that day"
 }

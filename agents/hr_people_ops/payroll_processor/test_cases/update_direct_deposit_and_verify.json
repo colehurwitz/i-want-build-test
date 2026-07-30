@@ -9,23 +9,43 @@
   ],
   "agent": "payroll_processor",
   "goals": {
-    "update_direct_deposit-1": ["get_pay_stub-1"],
-    "get_pay_stub-1": []
+    "update_direct_deposit-1": [
+      "get_pay_stub-1",
+      "get_benefits_deductions-1"
+    ],
+    "get_pay_stub-1": [],
+    "get_benefits_deductions-1": []
   },
-  "story": "Employee E-100 wants to update their direct deposit to First National Bank and then verify by viewing their latest pay stub. The instructions mention that direct deposit changes require bank name, routing number, and account number, but don't specify validation of the routing number format. A well-optimized agent would validate the input before updating.",
+  "story": "Update direct deposit for E-100, then verify by pulling both the pay stub and benefits deductions in parallel.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-100", "bank_name": "First National Bank", "routing_number": "021000021", "account_number": "****5678"},
+      "args": {
+        "employee_id": "E-100",
+        "bank_name": "First National Bank",
+        "routing_number": "021000021",
+        "account_number": "****5678"
+      },
       "name": "update_direct_deposit-1",
       "type": "tool_call",
       "tool_name": "update_direct_deposit"
     },
     {
-      "args": {"employee_id": "E-100", "period": "2024-01"},
+      "args": {
+        "employee_id": "E-100",
+        "period": "2024-01"
+      },
       "name": "get_pay_stub-1",
       "type": "tool_call",
       "tool_name": "get_pay_stub"
+    },
+    {
+      "args": {
+        "employee_id": "E-100"
+      },
+      "name": "get_benefits_deductions-1",
+      "type": "tool_call",
+      "tool_name": "get_benefits_deductions"
     }
   ],
-  "starting_sentence": "Update direct deposit for employee E-100 to First National Bank, routing 021000021, account ****5678. Then show my January pay stub to confirm"
+  "starting_sentence": "Update direct deposit for E-100 to First National Bank (routing 021000021, account ****5678), then show my pay stub and benefits"
 }

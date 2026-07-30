@@ -9,51 +9,81 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "get_regulation_details-1": ["assess_compliance_status-1"],
-    "assess_compliance_status-1": ["get_violation_history-1"],
-    "get_violation_history-1": ["get_remediation_steps-1"],
-    "get_remediation_steps-1": ["file_compliance_report-1"],
-    "file_compliance_report-1": ["notify_compliance_officer-1"],
+    "get_regulation_details-1": [
+      "assess_compliance_status-1"
+    ],
+    "assess_compliance_status-1": [
+      "get_violation_history-1",
+      "get_remediation_steps-1"
+    ],
+    "get_violation_history-1": [
+      "file_compliance_report-1"
+    ],
+    "get_remediation_steps-1": [
+      "file_compliance_report-1"
+    ],
+    "file_compliance_report-1": [
+      "notify_compliance_officer-1"
+    ],
     "notify_compliance_officer-1": []
   },
-  "story": "Full compliance assessment of Entity-A against REG-100 (Data Protection). The agent must get regulation details, assess compliance status (score 45% — non-compliant), check violation history (2 prior violations), get remediation steps for documentation gaps, file a compliance report, and notify the compliance officer with critical severity since the score is below 50%.",
+  "story": "Full compliance assessment of Entity-A against REG-100 (Data Protection). Get regulation details, assess compliance (score 45% \u2014 non-compliant), then in parallel check violation history and get remediation steps. Both feed into filing the compliance report, followed by notifying the compliance officer.",
   "goal_details": [
     {
-      "args": {"regulation_id": "REG-100"},
+      "args": {
+        "regulation_id": "REG-100"
+      },
       "name": "get_regulation_details-1",
       "type": "tool_call",
       "tool_name": "get_regulation_details"
     },
     {
-      "args": {"entity": "Entity-A", "regulation_id": "REG-100"},
+      "args": {
+        "entity": "Entity-A",
+        "regulation_id": "REG-100"
+      },
       "name": "assess_compliance_status-1",
       "type": "tool_call",
       "tool_name": "assess_compliance_status"
     },
     {
-      "args": {"entity": "Entity-A"},
+      "args": {
+        "entity": "Entity-A"
+      },
       "name": "get_violation_history-1",
       "type": "tool_call",
       "tool_name": "get_violation_history"
     },
     {
-      "args": {"violation_type": "documentation"},
+      "args": {
+        "violation_type": "documentation"
+      },
       "name": "get_remediation_steps-1",
       "type": "tool_call",
       "tool_name": "get_remediation_steps"
     },
     {
-      "args": {"entity": "Entity-A", "regulation_id": "REG-100", "status": "non_compliant", "findings": "Score 45%. Gaps: REQ-100-A (incomplete processing records), REQ-100-B (no breach notification), REQ-100-C (no DPIA in 18 months), REQ-100-E (DSAR over 30 days). 2 prior violations including unresolved VIO-102.", "remediation_plan": "Documentation audit and completion (15 weeks), breach notification process (6 weeks), schedule DPIA immediately."},
+      "args": {
+        "entity": "Entity-A",
+        "regulation_id": "REG-100",
+        "status": "non_compliant",
+        "findings": "Score 45%. Gaps: REQ-100-A (incomplete processing records), REQ-100-B (no breach notification), REQ-100-C (no DPIA in 18 months), REQ-100-E (DSAR over 30 days). 2 prior violations including unresolved VIO-102.",
+        "remediation_plan": "Documentation audit and completion (15 weeks), breach notification process (6 weeks), schedule DPIA immediately."
+      },
       "name": "file_compliance_report-1",
       "type": "tool_call",
       "tool_name": "file_compliance_report"
     },
     {
-      "args": {"entity": "Entity-A", "severity": "critical", "message": "Entity-A compliance score 45% for REG-100 (Data Protection). 3 failed requirements, 1 partial. 2 prior violations including unresolved VIO-102. Immediate remediation required."},
+      "args": {
+        "entity": "Entity-A",
+        "severity": "critical",
+        "message": "Entity-A compliance score 45% for REG-100 (Data Protection). 3 failed requirements, 1 partial. 2 prior violations including unresolved VIO-102. Immediate remediation required."
+      },
       "name": "notify_compliance_officer-1",
       "type": "tool_call",
       "tool_name": "notify_compliance_officer"
     }
   ],
-  "starting_sentence": "Assess Entity-A's compliance with REG-100 — full assessment, check history, remediate gaps, file report"
+  "starting_sentence": "Assess Entity-A's compliance with REG-100 \u2014 full assessment, check history, remediate gaps, file report"
 }

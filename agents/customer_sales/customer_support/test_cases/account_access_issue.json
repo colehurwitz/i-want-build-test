@@ -9,33 +9,56 @@
   ],
   "agent": "customer_support",
   "goals": {
-    "get_customer_history-1": ["create_support_case-1"],
-    "create_support_case-1": ["search_knowledge_base-1"],
-    "search_knowledge_base-1": ["update_case-1"],
+    "get_customer_history-1": [
+      "search_knowledge_base-1",
+      "create_support_case-1"
+    ],
+    "search_knowledge_base-1": [
+      "update_case-1"
+    ],
+    "create_support_case-1": [
+      "update_case-1"
+    ],
     "update_case-1": []
   },
-  "story": "An enterprise customer (C-100) can't access their account. The agent should check the customer's history for context (they've had login issues before), create a support case with appropriate priority (enterprise = high), search the knowledge base for account access solutions, and resolve the case with the KB solution. Without priority classification criteria, the agent may not set the right priority for an enterprise customer.",
+  "story": "Customer c-100 can't access their account. After pulling their history, search the knowledge base AND create a support case in parallel. Both converge on updating the case with resolution info.",
   "goal_details": [
     {
-      "args": {"customer_id": "C-100"},
+      "args": {
+        "customer_id": "C-100"
+      },
       "name": "get_customer_history-1",
       "type": "tool_call",
       "tool_name": "get_customer_history"
     },
     {
-      "args": {"customer_id": "C-100", "subject": "Account access issue", "category": "account", "priority": "high", "description": "Customer cannot access their account"},
+      "args": {
+        "customer_id": "C-100",
+        "subject": "Account access issue",
+        "category": "account",
+        "priority": "high",
+        "description": "Customer cannot access their account"
+      },
       "name": "create_support_case-1",
       "type": "tool_call",
       "tool_name": "create_support_case"
     },
     {
-      "args": {"query": "account access", "category": "account"},
+      "args": {
+        "query": "account access",
+        "category": "account"
+      },
       "name": "search_knowledge_base-1",
       "type": "tool_call",
       "tool_name": "search_knowledge_base"
     },
     {
-      "args": {"case_id": "CS-300", "status": "resolved", "resolution": "Provided account access troubleshooting steps from KB-101", "internal_notes": "Enterprise customer, recurring access issues"},
+      "args": {
+        "case_id": "CS-300",
+        "status": "resolved",
+        "resolution": "Provided account access troubleshooting steps from KB-101",
+        "internal_notes": "Enterprise customer, recurring access issues"
+      },
       "name": "update_case-1",
       "type": "tool_call",
       "tool_name": "update_case"

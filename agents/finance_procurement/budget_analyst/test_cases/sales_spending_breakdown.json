@@ -9,23 +9,41 @@
   ],
   "agent": "budget_analyst",
   "goals": {
-    "get_department_budget-1": ["get_spending_breakdown-1"],
-    "get_spending_breakdown-1": []
+    "get_department_budget-1": [
+      "get_spending_breakdown-1",
+      "forecast_spending-1"
+    ],
+    "get_spending_breakdown-1": [],
+    "forecast_spending-1": []
   },
-  "story": "A simple read-only query: check the Sales department budget and get a Q2 spending breakdown. Sales is at 50% utilization — well under budget. Tests basic two-step analysis without forecast or report generation.",
+  "story": "Check Sales department budget, then get both Q2 spending breakdown and 6-month forecast in parallel. Sales is at 50% utilization \u2014 well under budget.",
   "goal_details": [
     {
-      "args": {"department": "Sales"},
+      "args": {
+        "department": "Sales"
+      },
       "name": "get_department_budget-1",
       "type": "tool_call",
       "tool_name": "get_department_budget"
     },
     {
-      "args": {"department": "Sales", "period": "Q2"},
+      "args": {
+        "department": "Sales",
+        "period": "Q2"
+      },
       "name": "get_spending_breakdown-1",
       "type": "tool_call",
       "tool_name": "get_spending_breakdown"
+    },
+    {
+      "args": {
+        "department": "Sales",
+        "months_ahead": 6
+      },
+      "name": "forecast_spending-1",
+      "type": "tool_call",
+      "tool_name": "forecast_spending"
     }
   ],
-  "starting_sentence": "What's the spending breakdown for Sales this quarter?"
+  "starting_sentence": "What's the Sales budget status? Show spending breakdown for Q2 and forecast the next 6 months"
 }
