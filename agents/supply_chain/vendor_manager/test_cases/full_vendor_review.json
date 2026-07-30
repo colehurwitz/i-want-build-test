@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_vendor_profile-1": ["get_vendor_performance-1"],
+    "get_vendor_performance-1": ["get_contract_terms-1"],
+    "get_contract_terms-1": ["create_vendor_scorecard-1"],
+    "create_vendor_scorecard-1": ["manage_vendor_relationship-1"],
+    "manage_vendor_relationship-1": []
+  },
+  "story": "Full vendor review for V-100 (PrecisionParts Ltd): get profile to understand the vendor's tier and categories, pull Q2 2026 performance metrics, check contract terms for compliance, create a comprehensive scorecard, and schedule a quarterly review meeting. V-100 is a strategic vendor with excellent performance (9.2 score), so the outcome should be positive.",
+  "goal_details": [
+    {
+      "args": {"vendor_id": "V-100"},
+      "name": "get_vendor_profile-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_profile"
+    },
+    {
+      "args": {"vendor_id": "V-100", "period": "Q2-2026"},
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance"
+    },
+    {
+      "args": {"vendor_id": "V-100"},
+      "name": "get_contract_terms-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_terms"
+    },
+    {
+      "args": {"vendor_id": "V-100", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard"
+    },
+    {
+      "args": {"vendor_id": "V-100", "action": "quarterly_review", "details": {"reason": "Q2 performance review"}},
+      "name": "manage_vendor_relationship-1",
+      "type": "tool_call",
+      "tool_name": "manage_vendor_relationship"
+    }
+  ],
+  "starting_sentence": "Full vendor review for V-100 — profile, Q2 performance, contract, and scorecard"
+}

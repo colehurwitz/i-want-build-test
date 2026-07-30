@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "shipping_coordinator",
+  "goals": {
+    "get_carrier_rates-1": ["create_shipment-1"],
+    "create_shipment-1": ["get_delivery_estimate-1"],
+    "get_delivery_estimate-1": []
+  },
+  "story": "The user wants to ship order ORD-100 to New York. The agent should get carrier rates for the express route from Chicago, create the shipment with the best carrier, and provide a delivery estimate.",
+  "goal_details": [
+    {
+      "args": {"origin": "Chicago", "destination": "New York", "weight_kg": 15.0, "service_level": "express"},
+      "name": "get_carrier_rates-1",
+      "type": "tool_call",
+      "tool_name": "get_carrier_rates"
+    },
+    {
+      "args": {"order_id": "ORD-100", "items": ["Widget A", "Widget B", "Widget C"], "destination": "New York", "priority": "express"},
+      "name": "create_shipment-1",
+      "type": "tool_call",
+      "tool_name": "create_shipment"
+    },
+    {
+      "args": {"origin": "Chicago", "destination": "New York", "service_level": "express"},
+      "name": "get_delivery_estimate-1",
+      "type": "tool_call",
+      "tool_name": "get_delivery_estimate"
+    }
+  ],
+  "starting_sentence": "Ship order ORD-100 to New York, get the best rate, and create the shipment. We're shipping from Chicago, 15kg total, express service"
+}

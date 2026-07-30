@@ -1,0 +1,26 @@
+common:
+  spec_version: v1
+  kind: native
+  name: inventory_tracker
+  style: react_intrinsic
+  collaborators: []
+  tools:
+  - check_inventory
+  - update_stock
+  - get_reorder_history
+  - transfer_stock
+  context_access_enabled: true
+  description: An agent that helps manage inventory levels across warehouses.
+  instructions: >
+    Help manage inventory levels across warehouses. Use the tools to check and update stock.
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_contract_terms-1": ["get_vendor_performance-1"],
+    "get_vendor_performance-1": ["create_vendor_scorecard-1"],
+    "create_vendor_scorecard-1": ["negotiate_terms-1"],
+    "negotiate_terms-1": ["manage_vendor_relationship-1"],
+    "manage_vendor_relationship-1": []
+  },
+  "story": "V-300's contract is up for renewal at end of 2026. Review current terms (fixed pricing, no volume discounts), check Q2 performance (Good at 7.5), create a scorecard, and negotiate better pricing (CPI + 1.5% instead of fixed). Then initiate the contract renewal process.",
+  "goal_details": [
+    {
+      "args": {"vendor_id": "V-300"},
+      "name": "get_contract_terms-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_terms"
+    },
+    {
+      "args": {"vendor_id": "V-300", "period": "Q2-2026"},
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance"
+    },
+    {
+      "args": {"vendor_id": "V-300", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard"
+    },
+    {
+      "args": {"vendor_id": "V-300", "proposed_changes": {"term": "price_escalation", "value": "CPI + 1.5%"}},
+      "name": "negotiate_terms-1",
+      "type": "tool_call",
+      "tool_name": "negotiate_terms"
+    },
+    {
+      "args": {"vendor_id": "V-300", "action": "contract_renewal", "details": {"reason": "Contract expiring 2026-12-31"}},
+      "name": "manage_vendor_relationship-1",
+      "type": "tool_call",
+      "tool_name": "manage_vendor_relationship"
+    }
+  ],
+  "starting_sentence": "V-300's contract is up for renewal. Review terms, check performance, and negotiate better pricing"
+}

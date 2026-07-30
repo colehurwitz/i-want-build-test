@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_vendor_profile-1": ["get_vendor_performance-1"],
+    "get_vendor_performance-1": ["get_contract_terms-1"],
+    "get_contract_terms-1": ["create_vendor_scorecard-1"],
+    "create_vendor_scorecard-1": ["manage_vendor_relationship-1"],
+    "manage_vendor_relationship-1": []
+  },
+  "story": "Vendor V-500 (BudgetParts Warehouse) quality has dropped significantly. Get their profile (probationary tier), check Q2 performance (2.8 overall — Unacceptable), review contract terms, create a scorecard documenting the failures, and initiate the offboarding process to transition away from this vendor.",
+  "goal_details": [
+    {
+      "args": {"vendor_id": "V-500"},
+      "name": "get_vendor_profile-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_profile"
+    },
+    {
+      "args": {"vendor_id": "V-500", "period": "Q2-2026"},
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance"
+    },
+    {
+      "args": {"vendor_id": "V-500"},
+      "name": "get_contract_terms-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_terms"
+    },
+    {
+      "args": {"vendor_id": "V-500", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard"
+    },
+    {
+      "args": {"vendor_id": "V-500", "action": "vendor_offboarding", "details": {"reason": "Consistently unacceptable performance"}},
+      "name": "manage_vendor_relationship-1",
+      "type": "tool_call",
+      "tool_name": "manage_vendor_relationship"
+    }
+  ],
+  "starting_sentence": "Vendor V-500 quality has dropped significantly. Get their profile, check performance, and start the offboarding process"
+}
