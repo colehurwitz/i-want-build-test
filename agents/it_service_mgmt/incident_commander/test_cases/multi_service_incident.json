@@ -1,0 +1,73 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:multi_entity",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "incident_commander",
+  "goals": {
+    "get_alert_details-1": ["check_service_health-1"],
+    "get_alert_details-2": ["check_service_health-2"],
+    "check_service_health-1": ["get_recent_deployments-1"],
+    "check_service_health-2": ["get_recent_deployments-2"],
+    "get_recent_deployments-1": ["notify_oncall-1"],
+    "get_recent_deployments-2": ["notify_oncall-1"],
+    "notify_oncall-1": ["create_incident_ticket-1"],
+    "create_incident_ticket-1": []
+  },
+  "story": "Two alerts fire simultaneously for both payments and auth services. The agent must investigate both alerts, check both services' health, look at recent deployments for both, and create a coordinated response. This tests multi-service incident handling where the agent must track two parallel investigation chains and potentially correlate the incidents.",
+  "goal_details": [
+    {
+      "args": {"alert_id": "A-400"},
+      "name": "get_alert_details-1",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {"alert_id": "A-401"},
+      "name": "get_alert_details-2",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {"service_name": "payments"},
+      "name": "check_service_health-1",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    },
+    {
+      "args": {"service_name": "auth"},
+      "name": "check_service_health-2",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    },
+    {
+      "args": {"service_name": "payments", "hours": 24},
+      "name": "get_recent_deployments-1",
+      "type": "tool_call",
+      "tool_name": "get_recent_deployments"
+    },
+    {
+      "args": {"service_name": "auth", "hours": 24},
+      "name": "get_recent_deployments-2",
+      "type": "tool_call",
+      "tool_name": "get_recent_deployments"
+    },
+    {
+      "args": {"team": "payments", "severity": "critical", "message": "Multiple service incident: payments and auth both alerting. Payments elevated errors, auth completely unresponsive."},
+      "name": "notify_oncall-1",
+      "type": "tool_call",
+      "tool_name": "notify_oncall"
+    },
+    {
+      "args": {"service_name": "payments", "severity": "critical", "title": "Multi-service incident - payments and auth", "description": "Simultaneous alerts for payments (elevated errors) and auth (unresponsive). Investigating correlation."},
+      "name": "create_incident_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_incident_ticket"
+    }
+  ],
+  "starting_sentence": "Both payments and auth services are alerting — A-400 and A-401"
+}

@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:error_recovery",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "incident_commander",
+  "goals": {
+    "get_alert_details-1": ["check_service_health-1"],
+    "check_service_health-1": []
+  },
+  "story": "An alert fires for the frontend service, but when the agent checks service health, the service is completely healthy. This is a false alarm. The agent should recognize the service is healthy and close the alert without taking unnecessary actions like creating tickets, notifying on-call, or triggering rollbacks. Without false-alarm handling instructions, agents often proceed with the full incident response anyway.",
+  "goal_details": [
+    {
+      "args": {"alert_id": "A-300"},
+      "name": "get_alert_details-1",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {"service_name": "frontend"},
+      "name": "check_service_health-1",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    }
+  ],
+  "starting_sentence": "Alert A-300 on frontend service"
+}

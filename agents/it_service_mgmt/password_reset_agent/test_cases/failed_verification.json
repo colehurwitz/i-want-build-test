@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:error_recovery",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "password_reset_agent",
+  "goals": {
+    "verify_user_identity-1": ["reset_password-1"],
+    "reset_password-1": ["send_notification-1"],
+    "send_notification-1": []
+  },
+  "story": "A user provides the wrong security answer. Verification returns verified=false. The agent should refuse to proceed with the reset but often proceeds anyway without checking the verify result. This tests whether the agent respects the verification outcome. Without instructions on handling failed verification, agents blindly continue to reset_password.",
+  "goal_details": [
+    {
+      "args": {"email": "john@company.com", "security_answer": "blue"},
+      "name": "verify_user_identity-1",
+      "type": "tool_call",
+      "tool_name": "verify_user_identity"
+    },
+    {
+      "args": {"user_id": "U-200", "temp_password": "TempPass!2024b"},
+      "name": "reset_password-1",
+      "type": "tool_call",
+      "tool_name": "reset_password"
+    },
+    {
+      "args": {"user_id": "U-200", "channel": "email", "message": "Your password has been reset."},
+      "name": "send_notification-1",
+      "type": "tool_call",
+      "tool_name": "send_notification"
+    }
+  ],
+  "starting_sentence": "Reset password for john@company.com, security answer is 'blue'"
+}

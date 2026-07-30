@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "incident_commander",
+  "goals": {
+    "get_alert_details-1": ["check_service_health-1"],
+    "check_service_health-1": ["get_runbook-1"],
+    "get_runbook-1": ["notify_oncall-1"],
+    "notify_oncall-1": ["create_incident_ticket-1"],
+    "create_incident_ticket-1": []
+  },
+  "story": "A critical alert fires for the payments service with a 45% error rate. The agent must classify this as critical based on the severity, check health, follow the runbook, notify the on-call team, and create an incident ticket. This tests severity judgment — the agent must recognize 45% error rate is critical and respond accordingly.",
+  "goal_details": [
+    {
+      "args": {"alert_id": "A-500"},
+      "name": "get_alert_details-1",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {"service_name": "payments"},
+      "name": "check_service_health-1",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    },
+    {
+      "args": {"service_name": "payments"},
+      "name": "get_runbook-1",
+      "type": "tool_call",
+      "tool_name": "get_runbook"
+    },
+    {
+      "args": {"team": "payments", "severity": "critical", "message": "Payment service error rate at 45%. Following runbook. Critical severity."},
+      "name": "notify_oncall-1",
+      "type": "tool_call",
+      "tool_name": "notify_oncall"
+    },
+    {
+      "args": {"service_name": "payments", "severity": "critical", "title": "Payments critical error rate - 45%", "description": "Payment service error rate at 45%. Service status is down. Following runbook procedures."},
+      "name": "create_incident_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_incident_ticket"
+    }
+  ],
+  "starting_sentence": "Alert A-500: payments service error rate is 45%. This seems critical — handle it"
+}

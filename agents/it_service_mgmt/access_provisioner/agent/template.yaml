@@ -1,0 +1,27 @@
+common:
+  spec_version: v1
+  kind: native
+  name: access_provisioner
+  style: default
+  collaborators: []
+  tools:
+  - get_user_role
+  - check_permission
+  - grant_access
+  - revoke_access
+  - list_user_permissions
+  context_access_enabled: true
+  description: An agent that manages user access to systems and resources.
+  instructions: >
+    Manage user access to systems.
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

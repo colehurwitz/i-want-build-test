@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "access_provisioner",
+  "goals": {
+    "get_user_role-1": ["get_user_role-2"],
+    "get_user_role-2": ["grant_access-1"],
+    "grant_access-1": ["list_user_permissions-1"],
+    "list_user_permissions-1": []
+  },
+  "story": "An admin wants to grant read access to database_prod for another user and then list their updated permissions. The agent must verify BOTH the requester (admin) and target user roles before granting. Most agents skip the role check entirely without proper instructions and go straight to granting.",
+  "goal_details": [
+    {
+      "args": {"email": "admin@company.com"},
+      "name": "get_user_role-1",
+      "type": "tool_call",
+      "tool_name": "get_user_role"
+    },
+    {
+      "args": {"email": "bob@company.com"},
+      "name": "get_user_role-2",
+      "type": "tool_call",
+      "tool_name": "get_user_role"
+    },
+    {
+      "args": {"admin_user_id": "ADM-001", "target_user_id": "USR-200", "resource": "database_prod", "access_level": "read"},
+      "name": "grant_access-1",
+      "type": "tool_call",
+      "tool_name": "grant_access"
+    },
+    {
+      "args": {"user_id": "USR-200"},
+      "name": "list_user_permissions-1",
+      "type": "tool_call",
+      "tool_name": "list_user_permissions"
+    }
+  ],
+  "starting_sentence": "I'm admin@company.com. Grant user bob@company.com read access to database_prod and list all of bob's current permissions after"
+}

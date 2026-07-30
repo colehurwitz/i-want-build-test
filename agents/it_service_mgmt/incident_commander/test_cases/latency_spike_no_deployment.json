@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:context_tracking",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "incident_commander",
+  "goals": {
+    "get_alert_details-1": ["check_service_health-1"],
+    "check_service_health-1": ["get_recent_deployments-1"],
+    "get_recent_deployments-1": ["create_incident_ticket-1"],
+    "create_incident_ticket-1": []
+  },
+  "story": "Auth service latency spike alert fires. The agent checks the alert, confirms the service is degraded, looks for recent deployments but finds none in the last 24 hours. Without a deployment to roll back, the agent should skip the rollback step and proceed to create an incident ticket. This tests whether the agent handles the absence of a deployment correlation correctly.",
+  "goal_details": [
+    {
+      "args": {"alert_id": "A-200"},
+      "name": "get_alert_details-1",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {"service_name": "auth"},
+      "name": "check_service_health-1",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    },
+    {
+      "args": {"service_name": "auth", "hours": 24},
+      "name": "get_recent_deployments-1",
+      "type": "tool_call",
+      "tool_name": "get_recent_deployments"
+    },
+    {
+      "args": {"service_name": "auth", "severity": "high", "title": "Auth service latency spike", "description": "Auth service p99 latency > 5000ms. No recent deployments found. Requires investigation."},
+      "name": "create_incident_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_incident_ticket"
+    }
+  ],
+  "starting_sentence": "Alert A-200 fired — auth service latency spike"
+}
