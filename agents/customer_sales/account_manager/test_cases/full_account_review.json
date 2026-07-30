@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "account_manager",
+  "goals": {
+    "get_account_overview-1": ["get_usage_analytics-1"],
+    "get_usage_analytics-1": ["get_contract_details-1"],
+    "get_contract_details-1": ["get_competitive_intel-1"],
+    "get_competitive_intel-1": ["log_interaction-1"],
+    "log_interaction-1": []
+  },
+  "story": "The user requests a comprehensive account review for A-100. The agent should follow the full review process: check the overview (healthy account, health score 82), analyze usage analytics (growing 12%), review contract details (auto-renew active, expires 2025), check competitive intel (no threats), and log the review interaction. This tests the complete account review workflow with all information-gathering tools.",
+  "goal_details": [
+    {
+      "args": {"account_id": "A-100"},
+      "name": "get_account_overview-1",
+      "type": "tool_call",
+      "tool_name": "get_account_overview"
+    },
+    {
+      "args": {"account_id": "A-100", "period": "Q2"},
+      "name": "get_usage_analytics-1",
+      "type": "tool_call",
+      "tool_name": "get_usage_analytics"
+    },
+    {
+      "args": {"account_id": "A-100"},
+      "name": "get_contract_details-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_details"
+    },
+    {
+      "args": {"account_id": "A-100"},
+      "name": "get_competitive_intel-1",
+      "type": "tool_call",
+      "tool_name": "get_competitive_intel"
+    },
+    {
+      "args": {"account_id": "A-100", "interaction_type": "review", "summary": "Full account review completed. Account healthy with growing usage. No competitive threats. Contract auto-renews Jan 2025.", "follow_up_date": "2024-06-15"},
+      "name": "log_interaction-1",
+      "type": "tool_call",
+      "tool_name": "log_interaction"
+    }
+  ],
+  "starting_sentence": "Full account review for A-100 — overview, usage, contract, and competitive intel"
+}

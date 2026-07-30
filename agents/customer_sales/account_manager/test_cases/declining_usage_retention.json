@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:context_tracking",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "account_manager",
+  "goals": {
+    "get_usage_analytics-1": ["get_competitive_intel-1"],
+    "get_competitive_intel-1": ["get_account_overview-1"],
+    "get_account_overview-1": ["create_renewal_proposal-1"],
+    "create_renewal_proposal-1": ["log_interaction-1"],
+    "log_interaction-1": []
+  },
+  "story": "Account A-300 has declining usage. The agent should check usage analytics first (22% decline), then competitive intel (RivalCo detected in demo stage), then the account overview (mid-market, health 58). With competitive activity detected, the agent should create a retention proposal and escalate per the competitive intelligence rules. Without guidance on what to do when a specific competitor is detected, the agent may not tailor the retention strategy appropriately.",
+  "goal_details": [
+    {
+      "args": {"account_id": "A-300", "period": "Q2"},
+      "name": "get_usage_analytics-1",
+      "type": "tool_call",
+      "tool_name": "get_usage_analytics"
+    },
+    {
+      "args": {"account_id": "A-300"},
+      "name": "get_competitive_intel-1",
+      "type": "tool_call",
+      "tool_name": "get_competitive_intel"
+    },
+    {
+      "args": {"account_id": "A-300"},
+      "name": "get_account_overview-1",
+      "type": "tool_call",
+      "tool_name": "get_account_overview"
+    },
+    {
+      "args": {"account_id": "A-300", "proposal_type": "retention", "adjustments": {"discount_pct": 10, "competitive_response": true}},
+      "name": "create_renewal_proposal-1",
+      "type": "tool_call",
+      "tool_name": "create_renewal_proposal"
+    },
+    {
+      "args": {"account_id": "A-300", "interaction_type": "review", "summary": "Usage declining 22%, competitor RivalCo detected at demo stage. Created retention proposal with competitive response pricing.", "follow_up_date": "2024-03-25"},
+      "name": "log_interaction-1",
+      "type": "tool_call",
+      "tool_name": "log_interaction"
+    }
+  ],
+  "starting_sentence": "Account A-300 usage is declining. Check competitive intel and create a retention proposal"
+}

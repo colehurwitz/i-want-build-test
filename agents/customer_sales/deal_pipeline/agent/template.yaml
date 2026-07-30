@@ -1,0 +1,39 @@
+common:
+  spec_version: v1
+  kind: native
+  name: deal_pipeline
+  style: react_core
+  collaborators: []
+  tools:
+  - get_deal_details
+  - update_deal_stage
+  - get_pipeline_summary
+  - add_deal_activity
+  - create_deal
+  context_access_enabled: true
+  description: An agent that manages the sales deal pipeline, tracking deals through stages from prospecting to close.
+  instructions: >
+    You manage the sales deal pipeline. Help sales reps track their deals through stages.
+
+    Deal stages (in order): prospecting -> qualification -> proposal -> negotiation -> closed_won / closed_lost
+
+    For each deal update:
+
+    1. Review current deal details
+
+    2. Update the stage based on sales activity
+
+    3. Log the activity with next action date
+
+    4. Keep close probability updated based on stage
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

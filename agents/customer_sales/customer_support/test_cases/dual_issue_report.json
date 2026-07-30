@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "customer_support",
+  "goals": {
+    "get_customer_history-1": ["create_support_case-1", "create_support_case-2"],
+    "create_support_case-1": ["search_knowledge_base-1"],
+    "search_knowledge_base-1": ["update_case-1"],
+    "create_support_case-2": ["search_knowledge_base-2"],
+    "search_knowledge_base-2": ["update_case-1"],
+    "update_case-1": []
+  },
+  "story": "Customer C-300 reports two separate issues: a technical problem (app crashes) and a billing question. The agent must check their history once, then create TWO separate support cases with different categories and priorities, search the KB for each issue, and resolve. This tests the agent's ability to handle multiple issues from a single customer in one interaction.",
+  "goal_details": [
+    {
+      "args": {"customer_id": "C-300"},
+      "name": "get_customer_history-1",
+      "type": "tool_call",
+      "tool_name": "get_customer_history"
+    },
+    {
+      "args": {"customer_id": "C-300", "subject": "Technical issue - app crashes", "category": "technical", "priority": "normal", "description": "Customer reports application crashes when loading dashboard"},
+      "name": "create_support_case-1",
+      "type": "tool_call",
+      "tool_name": "create_support_case"
+    },
+    {
+      "args": {"query": "app crashes", "category": "technical"},
+      "name": "search_knowledge_base-1",
+      "type": "tool_call",
+      "tool_name": "search_knowledge_base"
+    },
+    {
+      "args": {"customer_id": "C-300", "subject": "Billing question", "category": "billing", "priority": "low", "description": "Customer has questions about upcoming invoice charges"},
+      "name": "create_support_case-2",
+      "type": "tool_call",
+      "tool_name": "create_support_case"
+    },
+    {
+      "args": {"query": "billing question", "category": "billing"},
+      "name": "search_knowledge_base-2",
+      "type": "tool_call",
+      "tool_name": "search_knowledge_base"
+    },
+    {
+      "args": {"case_id": "CS-302", "status": "resolved", "resolution": "Provided crash troubleshooting from KB-301 and billing FAQ from KB-202", "internal_notes": "Two separate issues handled in one interaction"},
+      "name": "update_case-1",
+      "type": "tool_call",
+      "tool_name": "update_case"
+    }
+  ],
+  "starting_sentence": "Customer C-300 reports both a technical issue AND a billing question. Handle both"
+}

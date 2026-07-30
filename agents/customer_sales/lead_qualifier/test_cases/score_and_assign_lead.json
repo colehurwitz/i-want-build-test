@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "lead_qualifier",
+  "goals": {
+    "get_lead_info-1": ["score_lead-1"],
+    "score_lead-1": ["assign_lead-1"],
+    "assign_lead-1": []
+  },
+  "story": "The user wants to score a lead and assign it to the right sales rep. The agent must first retrieve lead info to get engagement data, then score the lead using that data, and finally assign it to a rep. Without scoring criteria or assignment rules in the instructions, the agent must infer the appropriate rep and territory.",
+  "goal_details": [
+    {
+      "args": {"lead_id": "L-100"},
+      "name": "get_lead_info-1",
+      "type": "tool_call",
+      "tool_name": "get_lead_info"
+    },
+    {
+      "args": {"lead_id": "L-100", "engagement_data": {"page_visits": 12, "emails_opened": 8, "content_downloaded": 3}},
+      "name": "score_lead-1",
+      "type": "tool_call",
+      "tool_name": "score_lead"
+    },
+    {
+      "args": {"lead_id": "L-100", "sales_rep_id": "SR-100", "territory": "west"},
+      "name": "assign_lead-1",
+      "type": "tool_call",
+      "tool_name": "assign_lead"
+    }
+  ],
+  "starting_sentence": "Score lead L-100 and assign it to the right sales rep"
+}

@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "lead_qualifier",
+  "goals": {
+    "update_lead_status-1": ["get_lead_info-1"],
+    "get_lead_info-1": ["score_lead-1"],
+    "score_lead-1": []
+  },
+  "story": "The user wants to update one lead's status to qualified and then score a different lead. The agent must first update L-200's status, then retrieve L-300's info and score it. This tests the agent's ability to handle sequential operations across different entities.",
+  "goal_details": [
+    {
+      "args": {"lead_id": "L-200", "status": "qualified", "notes": "Lead has been contacted and shows interest"},
+      "name": "update_lead_status-1",
+      "type": "tool_call",
+      "tool_name": "update_lead_status"
+    },
+    {
+      "args": {"lead_id": "L-300"},
+      "name": "get_lead_info-1",
+      "type": "tool_call",
+      "tool_name": "get_lead_info"
+    },
+    {
+      "args": {"lead_id": "L-300", "engagement_data": {"page_visits": 6, "emails_opened": 4, "content_downloaded": 1}},
+      "name": "score_lead-1",
+      "type": "tool_call",
+      "tool_name": "score_lead"
+    }
+  ],
+  "starting_sentence": "Update lead L-200 to 'qualified' and then score lead L-300"
+}

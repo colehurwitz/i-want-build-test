@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "account_manager",
+  "goals": {
+    "get_account_overview-1": ["get_usage_analytics-1"],
+    "get_usage_analytics-1": ["get_contract_details-1"],
+    "get_contract_details-1": ["create_renewal_proposal-1"],
+    "create_renewal_proposal-1": ["log_interaction-1"],
+    "log_interaction-1": []
+  },
+  "story": "Account A-500 is growing and wants to add more seats. The agent should review the account (enterprise, health 76, growing), check usage analytics (stable/growing trend, +8% users), review the contract (auto-renew, expires Sept 2024), and create an expansion proposal with additional seats. Per the renewal strategy, growing accounts should get expansion proposals with volume discounts. Without guidance on combining upsell with renewal proposals, the agent may create a standalone expansion without considering the renewal timeline.",
+  "goal_details": [
+    {
+      "args": {"account_id": "A-500"},
+      "name": "get_account_overview-1",
+      "type": "tool_call",
+      "tool_name": "get_account_overview"
+    },
+    {
+      "args": {"account_id": "A-500", "period": "Q2"},
+      "name": "get_usage_analytics-1",
+      "type": "tool_call",
+      "tool_name": "get_usage_analytics"
+    },
+    {
+      "args": {"account_id": "A-500"},
+      "name": "get_contract_details-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_details"
+    },
+    {
+      "args": {"account_id": "A-500", "proposal_type": "expansion", "adjustments": {"additional_seats": 50, "add_automation_suite": true}},
+      "name": "create_renewal_proposal-1",
+      "type": "tool_call",
+      "tool_name": "create_renewal_proposal"
+    },
+    {
+      "args": {"account_id": "A-500", "interaction_type": "review", "summary": "Expansion review for growing account. Usage up 8%, customer wants more seats. Created expansion proposal with volume discount.", "follow_up_date": "2024-04-15"},
+      "name": "log_interaction-1",
+      "type": "tool_call",
+      "tool_name": "log_interaction"
+    }
+  ],
+  "starting_sentence": "Create an expansion proposal for account A-500 — they've been growing and want to add more seats"
+}

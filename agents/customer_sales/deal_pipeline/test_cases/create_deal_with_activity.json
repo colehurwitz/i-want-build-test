@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "deal_pipeline",
+  "goals": {
+    "create_deal-1": ["add_deal_activity-1"],
+    "add_deal_activity-1": []
+  },
+  "story": "The user wants to create a new $100k deal for account A-300 at the prospecting stage and schedule a discovery call. The agent should create the deal first, then log the discovery call activity with a follow-up date. This tests the agent's ability to chain deal creation with activity logging.",
+  "goal_details": [
+    {
+      "args": {"account_id": "A-300", "title": "A-300 Platform Expansion", "value": 100000.0, "stage": "prospecting", "owner_id": "SR-200"},
+      "name": "create_deal-1",
+      "type": "tool_call",
+      "tool_name": "create_deal"
+    },
+    {
+      "args": {"deal_id": "D-700", "activity_type": "discovery_call", "description": "Initial discovery call to discuss platform expansion needs", "next_action_date": "2024-04-03"},
+      "name": "add_deal_activity-1",
+      "type": "tool_call",
+      "tool_name": "add_deal_activity"
+    }
+  ],
+  "starting_sentence": "Create a new $100k deal for account A-300, set it to prospecting, and schedule a discovery call"
+}

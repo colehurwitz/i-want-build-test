@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_entity",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "deal_pipeline",
+  "goals": {
+    "get_deal_details-1": ["update_deal_stage-1"],
+    "update_deal_stage-1": ["add_deal_activity-1"],
+    "add_deal_activity-1": ["get_deal_details-2"],
+    "get_deal_details-2": ["update_deal_stage-2"],
+    "update_deal_stage-2": ["add_deal_activity-2"],
+    "add_deal_activity-2": []
+  },
+  "story": "The user wants to review and update two deals. D-300 should be moved from prospecting to qualification, and D-400 from proposal to negotiation. The agent must handle each deal sequentially: review details, update stage with correct probability, and log activity for each. This tests multi-entity processing and correct probability assignment per stage.",
+  "goal_details": [
+    {
+      "args": {"deal_id": "D-300"},
+      "name": "get_deal_details-1",
+      "type": "tool_call",
+      "tool_name": "get_deal_details"
+    },
+    {
+      "args": {"deal_id": "D-300", "new_stage": "qualification", "close_probability": 0.25, "notes": "Initial contact made, moving to qualification"},
+      "name": "update_deal_stage-1",
+      "type": "tool_call",
+      "tool_name": "update_deal_stage"
+    },
+    {
+      "args": {"deal_id": "D-300", "activity_type": "discovery_call", "description": "Discovery call completed, prospect is interested", "next_action_date": "2024-04-10"},
+      "name": "add_deal_activity-1",
+      "type": "tool_call",
+      "tool_name": "add_deal_activity"
+    },
+    {
+      "args": {"deal_id": "D-400"},
+      "name": "get_deal_details-2",
+      "type": "tool_call",
+      "tool_name": "get_deal_details"
+    },
+    {
+      "args": {"deal_id": "D-400", "new_stage": "negotiation", "close_probability": 0.75, "notes": "Proposal accepted, entering negotiation phase"},
+      "name": "update_deal_stage-2",
+      "type": "tool_call",
+      "tool_name": "update_deal_stage"
+    },
+    {
+      "args": {"deal_id": "D-400", "activity_type": "follow_up", "description": "Proposal feedback received, terms discussion scheduled", "next_action_date": "2024-04-08"},
+      "name": "add_deal_activity-2",
+      "type": "tool_call",
+      "tool_name": "add_deal_activity"
+    }
+  ],
+  "starting_sentence": "Review deals D-300 and D-400, update both stages based on latest activity"
+}

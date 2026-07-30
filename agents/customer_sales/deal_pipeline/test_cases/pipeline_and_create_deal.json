@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "deal_pipeline",
+  "goals": {
+    "get_pipeline_summary-1": ["create_deal-1"],
+    "create_deal-1": ["add_deal_activity-1"],
+    "add_deal_activity-1": []
+  },
+  "story": "The user wants to see their Q3 pipeline and then create a new $50k deal for account A-200. The agent should first retrieve the pipeline summary, then create the deal, and log an initial activity. This tests the agent's ability to handle read-then-write operations across different tool domains.",
+  "goal_details": [
+    {
+      "args": {"owner_id": "SR-100", "quarter": "Q3"},
+      "name": "get_pipeline_summary-1",
+      "type": "tool_call",
+      "tool_name": "get_pipeline_summary"
+    },
+    {
+      "args": {"account_id": "A-200", "title": "New Enterprise Deal", "value": 50000.0, "stage": "prospecting", "owner_id": "SR-100"},
+      "name": "create_deal-1",
+      "type": "tool_call",
+      "tool_name": "create_deal"
+    },
+    {
+      "args": {"deal_id": "D-600", "activity_type": "discovery_call", "description": "Initial discovery call scheduled", "next_action_date": "2024-04-05"},
+      "name": "add_deal_activity-1",
+      "type": "tool_call",
+      "tool_name": "add_deal_activity"
+    }
+  ],
+  "starting_sentence": "Show me rep SR-100's Q3 pipeline and create a new $50k deal for account A-200"
+}

@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "deal_pipeline",
+  "goals": {
+    "get_deal_details-1": ["update_deal_stage-1"],
+    "update_deal_stage-1": ["add_deal_activity-1"],
+    "add_deal_activity-1": []
+  },
+  "story": "The user announces that deal D-200 is closing and wants to update it to closed_won status with the final negotiation logged. The agent should review the deal to confirm it's in negotiation, then update to closed_won with probability 1.0, and log the final negotiation activity. Without win/loss reason tracking guidance, the agent may not capture the close details properly.",
+  "goal_details": [
+    {
+      "args": {"deal_id": "D-200"},
+      "name": "get_deal_details-1",
+      "type": "tool_call",
+      "tool_name": "get_deal_details"
+    },
+    {
+      "args": {"deal_id": "D-200", "new_stage": "closed_won", "close_probability": 1.0, "notes": "Deal closed successfully"},
+      "name": "update_deal_stage-1",
+      "type": "tool_call",
+      "tool_name": "update_deal_stage"
+    },
+    {
+      "args": {"deal_id": "D-200", "activity_type": "negotiation", "description": "Final contract signed, deal closed won", "next_action_date": "2024-04-15"},
+      "name": "add_deal_activity-1",
+      "type": "tool_call",
+      "tool_name": "add_deal_activity"
+    }
+  ],
+  "starting_sentence": "Deal D-200 is closing! Update it to closed_won and log the final negotiation"
+}
