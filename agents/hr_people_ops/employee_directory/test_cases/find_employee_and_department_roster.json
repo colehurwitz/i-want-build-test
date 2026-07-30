@@ -1,0 +1,47 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "employee_directory",
+  "goals": {
+    "lookup_employee-1": [
+      "get_department_roster-1",
+      "get_org_chart-1"
+    ],
+    "get_department_roster-1": [],
+    "get_org_chart-1": []
+  },
+  "story": "Find John Smith, then in parallel get his department's full roster and his manager's org chart to see the team structure.",
+  "goal_details": [
+    {
+      "args": {
+        "name_or_id": "John Smith"
+      },
+      "name": "lookup_employee-1",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    },
+    {
+      "args": {
+        "department": "Engineering"
+      },
+      "name": "get_department_roster-1",
+      "type": "tool_call",
+      "tool_name": "get_department_roster"
+    },
+    {
+      "args": {
+        "manager_id": "M-100"
+      },
+      "name": "get_org_chart-1",
+      "type": "tool_call",
+      "tool_name": "get_org_chart"
+    }
+  ],
+  "starting_sentence": "Find John Smith, show his department roster and the org chart for his manager"
+}

@@ -1,0 +1,78 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "service_desk_agent",
+  "goals": {
+    "get_user_info-1": [
+      "check_known_issues-1"
+    ],
+    "check_known_issues-1": [
+      "run_diagnostic-1"
+    ],
+    "run_diagnostic-1": [
+      "get_resolution_steps-1"
+    ],
+    "get_resolution_steps-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": []
+  },
+  "story": "A VIP executive reports their email client keeps crashing. The agent must identify the user (noting VIP status for priority bump), check for known issues (finds a known issue about large attachments), run application diagnostics, get resolution steps, and create a ticket with at least High priority due to VIP status. This tests the full troubleshooting flow with VIP priority handling.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "vip.exec@company.com"
+      },
+      "name": "get_user_info-1",
+      "type": "tool_call",
+      "tool_name": "get_user_info"
+    },
+    {
+      "args": {
+        "system_name": "email_client"
+      },
+      "name": "check_known_issues-1",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "system_name": "email_client",
+        "test_type": "application"
+      },
+      "name": "run_diagnostic-1",
+      "type": "tool_call",
+      "tool_name": "run_diagnostic"
+    },
+    {
+      "args": {
+        "category": "software",
+        "diagnostic_result": "fail"
+      },
+      "name": "get_resolution_steps-1",
+      "type": "tool_call",
+      "tool_name": "get_resolution_steps"
+    },
+    {
+      "args": {
+        "user_id": "USR-VIP-001",
+        "category": "software",
+        "priority": "high",
+        "description": "VIP user reporting email client crashes. Known issue KI-101 (large attachments). Diagnostic: memory leak in attachment renderer. Applied workaround and resolution steps."
+      },
+      "name": "create_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "I'm vip.exec@company.com, my email client keeps crashing \u2014 I can't send any messages"
+}

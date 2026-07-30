@@ -1,0 +1,51 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:permission_check",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "access_provisioner",
+  "goals": {
+    "get_user_role-1": [
+      "grant_access-1",
+      "check_permission-1"
+    ],
+    "grant_access-1": [],
+    "check_permission-1": []
+  },
+  "story": "A non-admin user attempts self-escalation. After checking role, the agent grants access AND checks existing permissions in parallel \u2014 revealing both the attempt and that the user currently has no access.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "regular.user@company.com"
+      },
+      "name": "get_user_role-1",
+      "type": "tool_call",
+      "tool_name": "get_user_role"
+    },
+    {
+      "args": {
+        "admin_user_id": "USR-100",
+        "target_user_id": "USR-100",
+        "resource": "all_systems",
+        "access_level": "admin"
+      },
+      "name": "grant_access-1",
+      "type": "tool_call",
+      "tool_name": "grant_access"
+    },
+    {
+      "args": {
+        "user_id": "USR-100",
+        "resource": "all_systems"
+      },
+      "name": "check_permission-1",
+      "type": "tool_call",
+      "tool_name": "check_permission"
+    }
+  ],
+  "starting_sentence": "I'm regular.user@company.com, grant myself admin access to all_systems and check my current permissions there"
+}

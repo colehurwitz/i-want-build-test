@@ -1,0 +1,66 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:context_tracking",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "incident_commander",
+  "goals": {
+    "get_alert_details-1": [
+      "check_service_health-1",
+      "get_recent_deployments-1"
+    ],
+    "check_service_health-1": [
+      "notify_oncall-1"
+    ],
+    "get_recent_deployments-1": [
+      "notify_oncall-1"
+    ],
+    "notify_oncall-1": []
+  },
+  "story": "Latency spike alert. Get alert details, then check service health AND recent deployments in parallel. Both feed into notifying on-call with complete context.",
+  "goal_details": [
+    {
+      "args": {
+        "alert_id": "A-200"
+      },
+      "name": "get_alert_details-1",
+      "type": "tool_call",
+      "tool_name": "get_alert_details"
+    },
+    {
+      "args": {
+        "service_name": "auth"
+      },
+      "name": "check_service_health-1",
+      "type": "tool_call",
+      "tool_name": "check_service_health"
+    },
+    {
+      "args": {
+        "service_name": "auth",
+        "hours": 24
+      },
+      "name": "get_recent_deployments-1",
+      "type": "tool_call",
+      "tool_name": "get_recent_deployments"
+    },
+    {
+      "args": {
+        "team": "auth",
+        "severity": "high",
+        "message": "Auth service latency spike \u2014 p99 > 5000ms. No recent deployments found. Requires investigation."
+      },
+      "name": "notify_oncall-1",
+      "type": "tool_call",
+      "tool_name": "notify_oncall",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Alert A-200 fired \u2014 auth service latency spike"
+}

@@ -1,0 +1,50 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "calculate_gross_pay-1": [
+      "get_benefits_deductions-1",
+      "get_tax_withholdings-1"
+    ],
+    "get_benefits_deductions-1": [],
+    "get_tax_withholdings-1": []
+  },
+  "story": "Calculate gross pay for E-101 with overtime, then get both benefits deductions and tax withholdings in parallel for a complete compensation view.",
+  "goal_details": [
+    {
+      "args": {
+        "employee_id": "E-101",
+        "hours": 80.0,
+        "overtime_hours": 10.0
+      },
+      "name": "calculate_gross_pay-1",
+      "type": "tool_call",
+      "tool_name": "calculate_gross_pay"
+    },
+    {
+      "args": {
+        "employee_id": "E-101"
+      },
+      "name": "get_benefits_deductions-1",
+      "type": "tool_call",
+      "tool_name": "get_benefits_deductions"
+    },
+    {
+      "args": {
+        "employee_id": "E-101",
+        "year": "2024"
+      },
+      "name": "get_tax_withholdings-1",
+      "type": "tool_call",
+      "tool_name": "get_tax_withholdings"
+    }
+  ],
+  "starting_sentence": "Calculate gross pay for E-101 (80 regular hours, 10 overtime), then show benefits and tax withholdings"
+}

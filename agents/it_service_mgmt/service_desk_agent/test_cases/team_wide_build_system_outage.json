@@ -1,0 +1,67 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:context_tracking",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "service_desk_agent",
+  "goals": {
+    "get_user_info-1": [
+      "check_known_issues-1",
+      "run_diagnostic-1"
+    ],
+    "check_known_issues-1": [
+      "create_ticket-1"
+    ],
+    "run_diagnostic-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": []
+  },
+  "story": "Manager reports team-wide build system issue. After identifying the user, check known issues AND run diagnostics in parallel. Both feed into creating a critical-priority ticket.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "manager@company.com"
+      },
+      "name": "get_user_info-1",
+      "type": "tool_call",
+      "tool_name": "get_user_info"
+    },
+    {
+      "args": {
+        "system_name": "build_system"
+      },
+      "name": "check_known_issues-1",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "system_name": "build_system",
+        "test_type": "application"
+      },
+      "name": "run_diagnostic-1",
+      "type": "tool_call",
+      "tool_name": "run_diagnostic"
+    },
+    {
+      "args": {
+        "user_id": "USR-MGR-300",
+        "category": "software",
+        "priority": "critical",
+        "description": "Multiple users affected. Build system intermittent failures since morning maintenance (KI-301). Diagnostics show 15 pending jobs in queue. Workaround: retry builds. Affects entire Engineering team."
+      },
+      "name": "create_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "I'm manager@company.com, several people on my team can't access the build system since this morning"
+}

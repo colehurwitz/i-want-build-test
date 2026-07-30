@@ -1,0 +1,91 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "order_fulfillment",
+  "goals": {
+    "get_order_details-1": [
+      "check_item_availability-1"
+    ],
+    "get_order_details-2": [
+      "check_item_availability-1"
+    ],
+    "check_item_availability-1": [
+      "reserve_inventory-1"
+    ],
+    "reserve_inventory-1": [
+      "process_payment-1"
+    ],
+    "process_payment-1": [
+      "create_fulfillment-1"
+    ],
+    "create_fulfillment-1": []
+  },
+  "story": "Check status of ORD-400 and ORD-500, then process whichever is ready. ORD-400 has 50 Industrial Bearings (available), while ORD-500 needs 1000 Steel Fasteners (only 800 available in W-3). The agent should process ORD-400 since its items are in stock.",
+  "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-400"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
+    {
+      "args": {
+        "order_id": "ORD-500"
+      },
+      "name": "get_order_details-2",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
+    {
+      "args": {
+        "product_id": "P-100",
+        "quantity": 50
+      },
+      "name": "check_item_availability-1",
+      "type": "tool_call",
+      "tool_name": "check_item_availability"
+    },
+    {
+      "args": {
+        "order_id": "ORD-400",
+        "items": [
+          "P-100"
+        ]
+      },
+      "name": "reserve_inventory-1",
+      "type": "tool_call",
+      "tool_name": "reserve_inventory",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "order_id": "ORD-400",
+        "payment_method": "wire_transfer"
+      },
+      "name": "process_payment-1",
+      "type": "tool_call",
+      "tool_name": "process_payment"
+    },
+    {
+      "args": {
+        "order_id": "ORD-400",
+        "warehouse_id": "W-1",
+        "shipping_priority": "standard"
+      },
+      "name": "create_fulfillment-1",
+      "type": "tool_call",
+      "tool_name": "create_fulfillment"
+    }
+  ],
+  "starting_sentence": "Check status of ORD-400 and ORD-500, then process whichever is ready"
+}

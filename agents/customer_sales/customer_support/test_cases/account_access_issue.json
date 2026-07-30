@@ -1,0 +1,79 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "customer_support",
+  "goals": {
+    "get_customer_history-1": [
+      "search_knowledge_base-1",
+      "create_support_case-1"
+    ],
+    "search_knowledge_base-1": [
+      "update_case-1"
+    ],
+    "create_support_case-1": [
+      "update_case-1"
+    ],
+    "update_case-1": []
+  },
+  "story": "Customer c-100 can't access their account. After pulling their history, search the knowledge base AND create a support case in parallel. Both converge on updating the case with resolution info.",
+  "goal_details": [
+    {
+      "args": {
+        "customer_id": "C-100"
+      },
+      "name": "get_customer_history-1",
+      "type": "tool_call",
+      "tool_name": "get_customer_history"
+    },
+    {
+      "args": {
+        "customer_id": "C-100",
+        "subject": "Account access issue",
+        "category": "account",
+        "priority": "high",
+        "description": "Customer cannot access their account"
+      },
+      "name": "create_support_case-1",
+      "type": "tool_call",
+      "tool_name": "create_support_case",
+      "arg_matching": {
+        "subject": "fuzzy",
+        "description": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "query": "account access",
+        "category": "account"
+      },
+      "name": "search_knowledge_base-1",
+      "type": "tool_call",
+      "tool_name": "search_knowledge_base",
+      "arg_matching": {
+        "query": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "case_id": "CS-300",
+        "status": "resolved",
+        "resolution": "Provided account access troubleshooting steps from KB-101",
+        "internal_notes": "Enterprise customer, recurring access issues"
+      },
+      "name": "update_case-1",
+      "type": "tool_call",
+      "tool_name": "update_case",
+      "arg_matching": {
+        "resolution": "fuzzy",
+        "internal_notes": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Customer C-100 can't access their account. Check history, create a case, and find a solution"
+}

@@ -1,0 +1,88 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:customer_sales",
+    "test_type:multi_entity",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "lead_qualifier",
+  "goals": {
+    "get_lead_info-1": [
+      "score_lead-1"
+    ],
+    "score_lead-1": [
+      "assign_lead-1"
+    ],
+    "get_lead_info-2": [
+      "score_lead-2"
+    ],
+    "score_lead-2": [
+      "assign_lead-1"
+    ],
+    "assign_lead-1": []
+  },
+  "story": "The user wants to score two leads and assign the higher-scoring one first. The agent must retrieve info and score both L-400 and L-500, compare their scores (L-400=75 vs L-500=55), and assign L-400 first. This tests multi-entity comparison and conditional assignment logic.",
+  "goal_details": [
+    {
+      "args": {
+        "lead_id": "L-400"
+      },
+      "name": "get_lead_info-1",
+      "type": "tool_call",
+      "tool_name": "get_lead_info"
+    },
+    {
+      "args": {
+        "lead_id": "L-400",
+        "engagement_data": {
+          "page_visits": 15,
+          "emails_opened": 10,
+          "content_downloaded": 4
+        }
+      },
+      "name": "score_lead-1",
+      "type": "tool_call",
+      "tool_name": "score_lead",
+      "arg_matching": {
+        "engagement_data": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "lead_id": "L-500"
+      },
+      "name": "get_lead_info-2",
+      "type": "tool_call",
+      "tool_name": "get_lead_info"
+    },
+    {
+      "args": {
+        "lead_id": "L-500",
+        "engagement_data": {
+          "page_visits": 5,
+          "emails_opened": 3,
+          "content_downloaded": 1
+        }
+      },
+      "name": "score_lead-2",
+      "type": "tool_call",
+      "tool_name": "score_lead",
+      "arg_matching": {
+        "engagement_data": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "lead_id": "L-400",
+        "sales_rep_id": "SR-100",
+        "territory": "east"
+      },
+      "name": "assign_lead-1",
+      "type": "tool_call",
+      "tool_name": "assign_lead"
+    }
+  ],
+  "starting_sentence": "Score leads L-400 and L-500, assign the higher-scoring one to the best available rep in the East territory"
+}

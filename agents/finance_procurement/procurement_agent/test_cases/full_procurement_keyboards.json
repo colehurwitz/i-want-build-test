@@ -1,0 +1,114 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "procurement_agent",
+  "goals": {
+    "create_requisition-1": [
+      "search_vendors-1"
+    ],
+    "search_vendors-1": [
+      "request_quote-1",
+      "request_quote-2",
+      "request_quote-3"
+    ],
+    "request_quote-1": [
+      "compare_quotes-1"
+    ],
+    "request_quote-2": [
+      "compare_quotes-1"
+    ],
+    "request_quote-3": [
+      "compare_quotes-1"
+    ],
+    "compare_quotes-1": [
+      "issue_purchase_order-1"
+    ],
+    "issue_purchase_order-1": []
+  },
+  "story": "Full procurement lifecycle: purchase 50 ergonomic keyboards for Engineering. The estimated cost is $7,500 which is under $10K but the agent should still get 3 quotes as best practice. After creating the requisition, search for keyboard vendors, get quotes from all 3, compare them, and issue a PO to the recommended vendor (ErgoSupply Co at $6,750). This is the most complete test of the 7-step procurement workflow.",
+  "goal_details": [
+    {
+      "args": {
+        "requester_id": "ENG-MGR-001",
+        "item_description": "ergonomic keyboards",
+        "quantity": 50,
+        "estimated_cost": 7500.0,
+        "urgency": "standard"
+      },
+      "name": "create_requisition-1",
+      "type": "tool_call",
+      "tool_name": "create_requisition"
+    },
+    {
+      "args": {
+        "item_category": "keyboards",
+        "min_rating": 3.5
+      },
+      "name": "search_vendors-1",
+      "type": "tool_call",
+      "tool_name": "search_vendors"
+    },
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "req_id": "REQ-6001",
+        "quantity": 50
+      },
+      "name": "request_quote-1",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {
+        "vendor_id": "V-101",
+        "req_id": "REQ-6001",
+        "quantity": 50
+      },
+      "name": "request_quote-2",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {
+        "vendor_id": "V-102",
+        "req_id": "REQ-6001",
+        "quantity": 50
+      },
+      "name": "request_quote-3",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {
+        "quote_ids": [
+          "Q-7001",
+          "Q-7002",
+          "Q-7003"
+        ]
+      },
+      "name": "compare_quotes-1",
+      "type": "tool_call",
+      "tool_name": "compare_quotes",
+      "arg_matching": {
+        "quote_ids": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "quote_id": "Q-7002",
+        "req_id": "REQ-6001",
+        "approver_id": "MGR-ENG-001"
+      },
+      "name": "issue_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "issue_purchase_order"
+    }
+  ],
+  "starting_sentence": "I need to purchase 50 ergonomic keyboards for the Engineering team, estimated budget of $7,500. I'm eng.manager@company.com. Get approval from Engineering Manager, ID MGR-ENG-001"
+}

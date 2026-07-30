@@ -1,0 +1,49 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "get_pay_stub-1": [
+      "get_tax_withholdings-1",
+      "get_benefits_deductions-1"
+    ],
+    "get_tax_withholdings-1": [],
+    "get_benefits_deductions-1": []
+  },
+  "story": "Employee E-100 wants January 2024 pay stub, then both tax withholdings and benefits deductions in parallel for a complete payroll picture.",
+  "goal_details": [
+    {
+      "args": {
+        "employee_id": "E-100",
+        "period": "2024-01"
+      },
+      "name": "get_pay_stub-1",
+      "type": "tool_call",
+      "tool_name": "get_pay_stub"
+    },
+    {
+      "args": {
+        "employee_id": "E-100",
+        "year": "2024"
+      },
+      "name": "get_tax_withholdings-1",
+      "type": "tool_call",
+      "tool_name": "get_tax_withholdings"
+    },
+    {
+      "args": {
+        "employee_id": "E-100"
+      },
+      "name": "get_benefits_deductions-1",
+      "type": "tool_call",
+      "tool_name": "get_benefits_deductions"
+    }
+  ],
+  "starting_sentence": "Show my January 2024 pay stub, tax withholdings, and benefits deductions. Employee E-100"
+}

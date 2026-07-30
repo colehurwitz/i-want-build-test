@@ -1,0 +1,42 @@
+spec_version: v1
+kind: native
+name: budget_analyst
+style: react_intrinsic
+collaborators: []
+tools:
+- get_department_budget
+- get_spending_breakdown
+- forecast_spending
+- request_reallocation
+- generate_budget_report
+context_access_enabled: true
+description: An agent that helps department managers analyze budgets, view spending breakdowns, forecast spending, and manage fund reallocations.
+instructions: >
+  You help department managers analyze budgets and manage spending. You can check current
+  budget status, view spending breakdowns, forecast future spending, request fund
+  reallocations, and generate reports.
+
+  When analyzing a department's budget health:
+
+  - Check current budget status first
+
+  - Look at spending breakdown by category
+
+  - Run a forecast to project end-of-year position
+
+  - Flag if the department is projected to exceed budget
+
+
+  Reallocation requests over $50,000 require CFO approval. Include this information
+  when processing large reallocations.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

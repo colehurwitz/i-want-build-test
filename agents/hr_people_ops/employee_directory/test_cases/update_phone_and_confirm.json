@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "employee_directory",
+  "goals": {
+    "lookup_employee-1": ["update_employee_contact-1"],
+    "update_employee_contact-1": ["lookup_employee-2"],
+    "lookup_employee-2": []
+  },
+  "story": "The user wants to update an employee's phone number and then confirm the change was applied. The agent must first look up the employee to verify they exist, then perform the update, and finally look up the employee again to confirm the new contact information. This tests a three-step chain with a verification step.",
+  "goal_details": [
+    {
+      "args": {"name_or_id": "E-200"},
+      "name": "lookup_employee-1",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    },
+    {
+      "args": {"employee_id": "E-200", "field": "phone", "value": "555-0199"},
+      "name": "update_employee_contact-1",
+      "type": "tool_call",
+      "tool_name": "update_employee_contact"
+    },
+    {
+      "args": {"name_or_id": "E-200"},
+      "name": "lookup_employee-2",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    }
+  ],
+  "starting_sentence": "Update employee E-200's phone to 555-0199, then confirm the change"
+}

@@ -1,0 +1,83 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "service_desk_agent",
+  "goals": {
+    "get_user_info-1": [
+      "check_known_issues-1",
+      "run_diagnostic-1"
+    ],
+    "check_known_issues-1": [
+      "create_ticket-1"
+    ],
+    "run_diagnostic-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": [
+      "escalate_ticket-1"
+    ],
+    "escalate_ticket-1": []
+  },
+  "story": "User reports monitor failure. After identifying user, check known issues AND run diagnostics in parallel. Both results feed into ticket creation, then escalate to infrastructure.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "user@company.com"
+      },
+      "name": "get_user_info-1",
+      "type": "tool_call",
+      "tool_name": "get_user_info"
+    },
+    {
+      "args": {
+        "system_name": "monitor"
+      },
+      "name": "check_known_issues-1",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "system_name": "monitor",
+        "test_type": "performance"
+      },
+      "name": "run_diagnostic-1",
+      "type": "tool_call",
+      "tool_name": "run_diagnostic"
+    },
+    {
+      "args": {
+        "user_id": "USR-STD-200",
+        "category": "hardware",
+        "priority": "medium",
+        "description": "Monitor not receiving signal. Diagnostics indicate display adapter failure. Hardware replacement likely needed."
+      },
+      "name": "create_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "ticket_id": "TK-5003",
+        "reason": "Hardware failure detected \u2014 display adapter failing. Requires physical hardware replacement.",
+        "target_team": "infrastructure"
+      },
+      "name": "escalate_ticket-1",
+      "type": "tool_call",
+      "tool_name": "escalate_ticket",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "user@company.com here \u2014 my monitor isn't working"
+}

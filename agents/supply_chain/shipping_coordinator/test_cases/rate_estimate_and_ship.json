@@ -1,0 +1,64 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "shipping_coordinator",
+  "goals": {
+    "get_carrier_rates-1": [
+      "get_delivery_estimate-1"
+    ],
+    "get_delivery_estimate-1": [
+      "create_shipment-1"
+    ],
+    "create_shipment-1": []
+  },
+  "story": "The user wants to ship a 25kg package from Chicago to LA via express for order ORD-300. The agent gets rates first, then a delivery estimate, and finally creates the shipment.",
+  "goal_details": [
+    {
+      "args": {
+        "origin": "Chicago",
+        "destination": "Los Angeles",
+        "weight_kg": 25.0,
+        "service_level": "express"
+      },
+      "name": "get_carrier_rates-1",
+      "type": "tool_call",
+      "tool_name": "get_carrier_rates",
+      "arg_matching": {
+        "weight_kg": "ignore"
+      }
+    },
+    {
+      "args": {
+        "origin": "Chicago",
+        "destination": "Los Angeles",
+        "service_level": "express"
+      },
+      "name": "get_delivery_estimate-1",
+      "type": "tool_call",
+      "tool_name": "get_delivery_estimate"
+    },
+    {
+      "args": {
+        "order_id": "ORD-300",
+        "items": [
+          "Heavy Equipment Part"
+        ],
+        "destination": "Los Angeles",
+        "priority": "express"
+      },
+      "name": "create_shipment-1",
+      "type": "tool_call",
+      "tool_name": "create_shipment",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Get rates for a 25kg package from Chicago to LA, then create an express shipment for order ORD-300"
+}

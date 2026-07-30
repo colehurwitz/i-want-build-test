@@ -1,0 +1,78 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:multi_entity",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "service_desk_agent",
+  "goals": {
+    "get_user_info-1": [
+      "check_known_issues-1",
+      "check_known_issues-2"
+    ],
+    "check_known_issues-1": [
+      "run_diagnostic-1"
+    ],
+    "check_known_issues-2": [
+      "run_diagnostic-1"
+    ],
+    "run_diagnostic-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": []
+  },
+  "story": "A developer reports two issues: VPN won't connect and can't reach the internal wiki. The agent should check known issues for both systems (finding the same root cause \u2014 VPN disconnects affect wiki access), run VPN connectivity diagnostics (wiki depends on VPN), and create a single network ticket. This tests multi-system issue diagnosis where VPN is the root cause.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "dev@company.com"
+      },
+      "name": "get_user_info-1",
+      "type": "tool_call",
+      "tool_name": "get_user_info"
+    },
+    {
+      "args": {
+        "system_name": "vpn"
+      },
+      "name": "check_known_issues-1",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "system_name": "internal_wiki"
+      },
+      "name": "check_known_issues-2",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "system_name": "vpn",
+        "test_type": "connectivity"
+      },
+      "name": "run_diagnostic-1",
+      "type": "tool_call",
+      "tool_name": "run_diagnostic"
+    },
+    {
+      "args": {
+        "user_id": "USR-DEV-100",
+        "category": "network",
+        "priority": "medium",
+        "description": "VPN connectivity issues causing both VPN disconnect and wiki inaccessibility. Known issue KI-201. VPN diagnostics show DNS resolution failures."
+      },
+      "name": "create_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Hi, I'm dev@company.com. My VPN won't connect and I also can't reach the internal wiki"
+}

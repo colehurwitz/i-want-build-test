@@ -1,0 +1,99 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_contract_terms-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "get_vendor_performance-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "create_vendor_scorecard-1": [
+      "negotiate_terms-1"
+    ],
+    "negotiate_terms-1": [
+      "manage_vendor_relationship-1"
+    ],
+    "manage_vendor_relationship-1": []
+  },
+  "story": "V-300 contract renewal. Get contract terms and performance metrics in parallel, both feed into creating the scorecard. Then negotiate better pricing and initiate renewal.",
+  "goal_details": [
+    {
+      "args": {
+        "vendor_id": "V-300"
+      },
+      "name": "get_contract_terms-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_terms"
+    },
+    {
+      "args": {
+        "vendor_id": "V-300",
+        "period": "Q2-2026"
+      },
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance",
+      "arg_matching": {
+        "period": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-300",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-300",
+        "proposed_changes": {
+          "term": "price_escalation",
+          "value": "CPI + 1.5%"
+        }
+      },
+      "name": "negotiate_terms-1",
+      "type": "tool_call",
+      "tool_name": "negotiate_terms",
+      "arg_matching": {
+        "proposed_changes": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-300",
+        "action": "contract_renewal",
+        "details": {
+          "reason": "Contract expiring 2026-12-31"
+        }
+      },
+      "name": "manage_vendor_relationship-1",
+      "type": "tool_call",
+      "tool_name": "manage_vendor_relationship",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "V-300's contract is up for renewal. Review terms, check performance, and negotiate better pricing"
+}

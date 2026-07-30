@@ -1,0 +1,76 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_entity",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "budget_analyst",
+  "goals": {
+    "get_department_budget-1": [
+      "forecast_spending-1",
+      "get_spending_breakdown-1"
+    ],
+    "get_department_budget-2": [
+      "forecast_spending-2"
+    ],
+    "forecast_spending-1": [],
+    "forecast_spending-2": [],
+    "get_spending_breakdown-1": []
+  },
+  "story": "Compare budgets for Engineering and Sales. For Engineering, fan out to get both forecast and spending breakdown. For Sales, get the forecast. Compare which department will exceed budget first.",
+  "goal_details": [
+    {
+      "args": {
+        "department": "Engineering"
+      },
+      "name": "get_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {
+        "department": "Sales"
+      },
+      "name": "get_department_budget-2",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {
+        "department": "Engineering",
+        "months_ahead": 6
+      },
+      "name": "forecast_spending-1",
+      "type": "tool_call",
+      "tool_name": "forecast_spending",
+      "arg_matching": {
+        "months_ahead": "ignore"
+      }
+    },
+    {
+      "args": {
+        "department": "Sales",
+        "months_ahead": 6
+      },
+      "name": "forecast_spending-2",
+      "type": "tool_call",
+      "tool_name": "forecast_spending",
+      "arg_matching": {
+        "months_ahead": "ignore"
+      }
+    },
+    {
+      "args": {
+        "department": "Engineering",
+        "period": "Q2"
+      },
+      "name": "get_spending_breakdown-1",
+      "type": "tool_call",
+      "tool_name": "get_spending_breakdown"
+    }
+  ],
+  "starting_sentence": "Compare Engineering and Sales budgets \u2014 forecast both, and get Engineering's spending breakdown"
+}

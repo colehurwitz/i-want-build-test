@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:context_tracking",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "access_provisioner",
+  "goals": {
+    "get_user_role-1": ["check_permission-1"],
+    "check_permission-1": ["revoke_access-1"],
+    "revoke_access-1": []
+  },
+  "story": "An admin wants to check if a user has access to a resource and revoke it if they do. This tests conditional flow — the agent must check permissions first and only revoke if has_access is true. The agent must reason about the check_permission result before proceeding.",
+  "goal_details": [
+    {
+      "args": {"email": "admin@company.com"},
+      "name": "get_user_role-1",
+      "type": "tool_call",
+      "tool_name": "get_user_role"
+    },
+    {
+      "args": {"user_id": "USR-200", "resource": "database_prod"},
+      "name": "check_permission-1",
+      "type": "tool_call",
+      "tool_name": "check_permission"
+    },
+    {
+      "args": {"admin_user_id": "ADM-001", "target_user_id": "USR-200", "resource": "database_prod"},
+      "name": "revoke_access-1",
+      "type": "tool_call",
+      "tool_name": "revoke_access"
+    }
+  ],
+  "starting_sentence": "I'm admin@company.com. Check if bob@company.com has access to database_prod, and if so, revoke it"
+}

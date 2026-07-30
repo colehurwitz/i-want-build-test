@@ -1,0 +1,67 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "order_fulfillment",
+  "goals": {
+    "get_order_details-1": [
+      "process_payment-1"
+    ],
+    "process_payment-1": [
+      "create_fulfillment-1"
+    ],
+    "create_fulfillment-1": [
+      "update_order_status-1"
+    ],
+    "update_order_status-1": []
+  },
+  "story": "Process payment for ORD-300 (already confirmed) and create the fulfillment record. The order is for Rubber Gaskets shipping standard from W-1. After fulfillment is created, update the order status.",
+  "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-300"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
+    {
+      "args": {
+        "order_id": "ORD-300",
+        "payment_method": "credit_card"
+      },
+      "name": "process_payment-1",
+      "type": "tool_call",
+      "tool_name": "process_payment"
+    },
+    {
+      "args": {
+        "order_id": "ORD-300",
+        "warehouse_id": "W-1",
+        "shipping_priority": "standard"
+      },
+      "name": "create_fulfillment-1",
+      "type": "tool_call",
+      "tool_name": "create_fulfillment"
+    },
+    {
+      "args": {
+        "order_id": "ORD-300",
+        "status": "processing",
+        "notes": "Payment processed, fulfillment created"
+      },
+      "name": "update_order_status-1",
+      "type": "tool_call",
+      "tool_name": "update_order_status",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Process payment for ORD-300 and create the fulfillment"
+}

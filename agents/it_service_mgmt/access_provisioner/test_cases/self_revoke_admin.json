@@ -1,0 +1,49 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:permission_check",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "access_provisioner",
+  "goals": {
+    "get_user_role-1": [
+      "revoke_access-1",
+      "list_user_permissions-1"
+    ],
+    "revoke_access-1": [],
+    "list_user_permissions-1": []
+  },
+  "story": "An admin requests to revoke their own control panel access and see their full permission list. After verifying role, revoke and list happen in parallel.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "admin@company.com"
+      },
+      "name": "get_user_role-1",
+      "type": "tool_call",
+      "tool_name": "get_user_role"
+    },
+    {
+      "args": {
+        "admin_user_id": "ADM-001",
+        "target_user_id": "ADM-001",
+        "resource": "control_panel"
+      },
+      "name": "revoke_access-1",
+      "type": "tool_call",
+      "tool_name": "revoke_access"
+    },
+    {
+      "args": {
+        "user_id": "ADM-001"
+      },
+      "name": "list_user_permissions-1",
+      "type": "tool_call",
+      "tool_name": "list_user_permissions"
+    }
+  ],
+  "starting_sentence": "I'm admin@company.com, revoke my control_panel access and show all my current permissions"
+}

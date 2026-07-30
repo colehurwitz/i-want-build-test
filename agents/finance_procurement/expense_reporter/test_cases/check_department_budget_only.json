@@ -1,0 +1,47 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:context_tracking",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": [
+      "check_department_budget-1",
+      "get_expense_policy-1"
+    ],
+    "check_department_budget-1": [],
+    "get_expense_policy-1": []
+  },
+  "story": "The user wants to check their department budget and the equipment expense policy before making a purchase. After identifying the employee, check budget status AND get policy in parallel.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "dev@company.com"
+      },
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {
+        "department": "Engineering"
+      },
+      "name": "check_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "check_department_budget"
+    },
+    {
+      "args": {
+        "category": "equipment"
+      },
+      "name": "get_expense_policy-1",
+      "type": "tool_call",
+      "tool_name": "get_expense_policy"
+    }
+  ],
+  "starting_sentence": "I'm dev@company.com in Engineering. Check our department budget and the equipment expense policy"
+}

@@ -1,0 +1,107 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_entity",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": [
+      "get_expense_policy-1",
+      "get_expense_policy-2"
+    ],
+    "get_expense_policy-1": [
+      "create_expense_report-1"
+    ],
+    "get_expense_policy-2": [
+      "create_expense_report-2"
+    ],
+    "create_expense_report-1": [
+      "submit_for_approval-1"
+    ],
+    "create_expense_report-2": [
+      "submit_for_approval-2"
+    ],
+    "submit_for_approval-1": [],
+    "submit_for_approval-2": []
+  },
+  "story": "The user wants to submit two expenses with different categories: $200 office supplies without a receipt and $1500 conference registration with a receipt. The $200 office supplies without receipt may violate the receipt policy (requires receipt above $50). The $1500 training expense likely needs preapproval (threshold is $500). An agent with no policy awareness will submit both blindly.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "bob@company.com"
+      },
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {
+        "category": "office_supplies"
+      },
+      "name": "get_expense_policy-1",
+      "type": "tool_call",
+      "tool_name": "get_expense_policy"
+    },
+    {
+      "args": {
+        "category": "training"
+      },
+      "name": "get_expense_policy-2",
+      "type": "tool_call",
+      "tool_name": "get_expense_policy"
+    },
+    {
+      "args": {
+        "employee_id": "EMP-102",
+        "title": "Office supplies",
+        "amount": 200.0,
+        "category": "office_supplies",
+        "receipt_attached": false
+      },
+      "name": "create_expense_report-1",
+      "type": "tool_call",
+      "tool_name": "create_expense_report",
+      "arg_matching": {
+        "title": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "employee_id": "EMP-102",
+        "title": "Conference registration",
+        "amount": 1500.0,
+        "category": "training",
+        "receipt_attached": true
+      },
+      "name": "create_expense_report-2",
+      "type": "tool_call",
+      "tool_name": "create_expense_report",
+      "arg_matching": {
+        "title": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "report_id": "EXP-1003",
+        "approver_id": "EMP-502"
+      },
+      "name": "submit_for_approval-1",
+      "type": "tool_call",
+      "tool_name": "submit_for_approval"
+    },
+    {
+      "args": {
+        "report_id": "EXP-1004",
+        "approver_id": "EMP-502"
+      },
+      "name": "submit_for_approval-2",
+      "type": "tool_call",
+      "tool_name": "submit_for_approval"
+    }
+  ],
+  "starting_sentence": "I'm bob@company.com, submit two expenses: $200 office supplies (no receipt) and $1500 conference registration (receipt attached)"
+}

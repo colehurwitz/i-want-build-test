@@ -1,0 +1,54 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:easy",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "shipping_coordinator",
+  "goals": {
+    "track_shipment-1": [
+      "update_shipment-1",
+      "get_delivery_estimate-1"
+    ],
+    "update_shipment-1": [],
+    "get_delivery_estimate-1": []
+  },
+  "story": "Track shipment TRK-200-EXP, then update its status and get a delivery estimate in parallel.",
+  "goal_details": [
+    {
+      "args": {
+        "tracking_number": "TRK-200-EXP"
+      },
+      "name": "track_shipment-1",
+      "type": "tool_call",
+      "tool_name": "track_shipment"
+    },
+    {
+      "args": {
+        "shipment_id": "SHP-200",
+        "status": "in_transit",
+        "notes": "Confirmed in transit at Denver hub"
+      },
+      "name": "update_shipment-1",
+      "type": "tool_call",
+      "tool_name": "update_shipment",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "origin": "Chicago",
+        "destination": "New York",
+        "service_level": "express"
+      },
+      "name": "get_delivery_estimate-1",
+      "type": "tool_call",
+      "tool_name": "get_delivery_estimate"
+    }
+  ],
+  "starting_sentence": "Track TRK-200-EXP, update its status, and get a delivery estimate"
+}

@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "inventory_tracker",
+  "goals": {
+    "check_inventory-1": ["transfer_stock-1"],
+    "transfer_stock-1": ["check_inventory-2"],
+    "check_inventory-2": []
+  },
+  "story": "The user wants to transfer 50 units of P-200 from W-1 to W-3 and verify the new levels. The agent should first check current inventory to confirm availability, then perform the transfer, and finally verify the resulting stock level at the destination.",
+  "goal_details": [
+    {
+      "args": {"product_id": "P-200", "warehouse_id": "W-1"},
+      "name": "check_inventory-1",
+      "type": "tool_call",
+      "tool_name": "check_inventory"
+    },
+    {
+      "args": {"product_id": "P-200", "from_warehouse": "W-1", "to_warehouse": "W-3", "quantity": 50},
+      "name": "transfer_stock-1",
+      "type": "tool_call",
+      "tool_name": "transfer_stock"
+    },
+    {
+      "args": {"product_id": "P-200", "warehouse_id": "W-3"},
+      "name": "check_inventory-2",
+      "type": "tool_call",
+      "tool_name": "check_inventory"
+    }
+  ],
+  "starting_sentence": "Transfer 50 units of P-200 from W-1 to W-3 and verify the new levels"
+}

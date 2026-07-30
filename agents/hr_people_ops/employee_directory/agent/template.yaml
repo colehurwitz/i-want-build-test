@@ -1,0 +1,25 @@
+spec_version: v1
+kind: native
+name: employee_directory
+style: default
+collaborators: []
+tools:
+- lookup_employee
+- get_department_roster
+- get_org_chart
+- update_employee_contact
+context_access_enabled: true
+description: An agent that helps look up employee information and manage contact details.
+instructions: >
+  You help look up employee information. Use the available tools to find employees and their details.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

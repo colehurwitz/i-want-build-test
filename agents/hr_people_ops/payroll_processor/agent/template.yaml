@@ -1,0 +1,33 @@
+spec_version: v1
+kind: native
+name: payroll_processor
+style: react_intrinsic
+collaborators: []
+tools:
+- get_pay_stub
+- calculate_gross_pay
+- get_tax_withholdings
+- update_direct_deposit
+- get_benefits_deductions
+context_access_enabled: true
+description: An agent that helps employees with payroll inquiries including pay stubs, tax withholdings, and direct deposit management.
+instructions: >
+  You help employees with payroll inquiries. You can look up pay stubs, calculate pay,
+  check tax withholdings, and manage direct deposit information.
+
+  When processing payroll inquiries:
+  - Always verify the employee's identity before sharing pay information
+  - Use the employee ID for all lookups
+  - For pay calculations, include both regular and overtime hours
+  - Direct deposit changes require bank name, routing number, and account number
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

@@ -1,0 +1,54 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:error_recovery",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "password_reset_agent",
+  "goals": {
+    "verify_user_identity-1": [
+      "check_account_status-1"
+    ],
+    "check_account_status-1": [
+      "send_notification-1"
+    ],
+    "send_notification-1": []
+  },
+  "story": "A user with a locked account requests help. Verification succeeds but account is locked. Agent sends an email notification explaining the situation and next steps.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "locked.user@company.com",
+        "security_answer": "correct"
+      },
+      "name": "verify_user_identity-1",
+      "type": "tool_call",
+      "tool_name": "verify_user_identity"
+    },
+    {
+      "args": {
+        "user_id": "U-300"
+      },
+      "name": "check_account_status-1",
+      "type": "tool_call",
+      "tool_name": "check_account_status"
+    },
+    {
+      "args": {
+        "user_id": "U-300",
+        "channel": "email",
+        "message": "Your account is locked due to multiple failed login attempts. Please contact your administrator to unlock your account."
+      },
+      "name": "send_notification-1",
+      "type": "tool_call",
+      "tool_name": "send_notification",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "My account is locked. Email: locked.user@company.com, answer: 'correct'"
+}

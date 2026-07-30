@@ -1,0 +1,66 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "data_privacy_officer",
+  "goals": {
+    "lookup_data_subject-1": [
+      "check_consent_status-1",
+      "process_data_request-1"
+    ],
+    "check_consent_status-1": [
+      "generate_privacy_report-1"
+    ],
+    "process_data_request-1": [
+      "generate_privacy_report-1"
+    ],
+    "generate_privacy_report-1": []
+  },
+  "story": "A data subject from the EU requests access to all their data and wants a compliance report. The agent looks up the subject by email, then in parallel verifies consent status and processes the access request. Both must complete before generating the final data inventory report.",
+  "goal_details": [
+    {
+      "args": {
+        "identifier": "user@eu-company.com",
+        "identifier_type": "email"
+      },
+      "name": "lookup_data_subject-1",
+      "type": "tool_call",
+      "tool_name": "lookup_data_subject"
+    },
+    {
+      "args": {
+        "subject_id": "DS-101",
+        "purpose": "essential_services"
+      },
+      "name": "check_consent_status-1",
+      "type": "tool_call",
+      "tool_name": "check_consent_status"
+    },
+    {
+      "args": {
+        "subject_id": "DS-101",
+        "request_type": "access",
+        "scope": "full"
+      },
+      "name": "process_data_request-1",
+      "type": "tool_call",
+      "tool_name": "process_data_request"
+    },
+    {
+      "args": {
+        "subject_id": "DS-101",
+        "report_type": "data_inventory",
+        "include_processing_activities": true
+      },
+      "name": "generate_privacy_report-1",
+      "type": "tool_call",
+      "tool_name": "generate_privacy_report"
+    }
+  ],
+  "starting_sentence": "Process a data access request for user@eu-company.com \u2014 show all their data and generate a report"
+}

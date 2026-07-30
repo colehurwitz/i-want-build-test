@@ -1,0 +1,51 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "leave_manager",
+  "goals": {
+    "get_leave_history-1": [
+      "check_team_calendar-1"
+    ],
+    "get_leave_balance-1": [
+      "check_team_calendar-1"
+    ],
+    "check_team_calendar-1": []
+  },
+  "story": "Employee E-103 wants leave history, annual balance, and team calendar for the holiday week. History and balance checks are independent and both converge before the team calendar check.",
+  "goal_details": [
+    {
+      "args": {
+        "employee_id": "E-103",
+        "year": "2024"
+      },
+      "name": "get_leave_history-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_history"
+    },
+    {
+      "args": {
+        "employee_id": "E-103",
+        "leave_type": "annual"
+      },
+      "name": "get_leave_balance-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_balance"
+    },
+    {
+      "args": {
+        "department": "Engineering",
+        "date_range": "2024-12-23 to 2024-12-27"
+      },
+      "name": "check_team_calendar-1",
+      "type": "tool_call",
+      "tool_name": "check_team_calendar"
+    }
+  ],
+  "starting_sentence": "Show 2024 leave history and annual balance for E-103, and check team coverage for December 23-27, 2024"
+}

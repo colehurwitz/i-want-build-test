@@ -1,0 +1,50 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "employee_directory",
+  "goals": {
+    "get_department_roster-1": [
+      "update_employee_contact-1"
+    ],
+    "update_employee_contact-1": [
+      "lookup_employee-1"
+    ],
+    "lookup_employee-1": []
+  },
+  "story": "Get Engineering roster, update the first employee's phone, then look up their full profile to verify the change.",
+  "goal_details": [
+    {
+      "args": {
+        "department": "Engineering"
+      },
+      "name": "get_department_roster-1",
+      "type": "tool_call",
+      "tool_name": "get_department_roster"
+    },
+    {
+      "args": {
+        "employee_id": "E-100",
+        "field": "phone",
+        "value": "555-0150"
+      },
+      "name": "update_employee_contact-1",
+      "type": "tool_call",
+      "tool_name": "update_employee_contact"
+    },
+    {
+      "args": {
+        "name_or_id": "E-100"
+      },
+      "name": "lookup_employee-1",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    }
+  ],
+  "starting_sentence": "Find the Engineering roster, update E-100's phone to 555-0150, then show their full profile to confirm"
+}

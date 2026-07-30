@@ -1,0 +1,93 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_vendor_profile-1": [
+      "get_vendor_performance-1",
+      "get_contract_terms-1"
+    ],
+    "get_vendor_performance-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "get_contract_terms-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "create_vendor_scorecard-1": [
+      "manage_vendor_relationship-1"
+    ],
+    "manage_vendor_relationship-1": []
+  },
+  "story": "Full vendor review for V-100. Get profile, then fan out to performance metrics and contract terms in parallel. Both converge on creating the scorecard, followed by scheduling a review meeting.",
+  "goal_details": [
+    {
+      "args": {
+        "vendor_id": "V-100"
+      },
+      "name": "get_vendor_profile-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_profile"
+    },
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026"
+      },
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance",
+      "arg_matching": {
+        "period": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-100"
+      },
+      "name": "get_contract_terms-1",
+      "type": "tool_call",
+      "tool_name": "get_contract_terms"
+    },
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "action": "quarterly_review",
+        "details": {
+          "reason": "Q2 performance review"
+        }
+      },
+      "name": "manage_vendor_relationship-1",
+      "type": "tool_call",
+      "tool_name": "manage_vendor_relationship",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Full vendor review for V-100 \u2014 profile, Q2 performance, contract, and scorecard"
+}

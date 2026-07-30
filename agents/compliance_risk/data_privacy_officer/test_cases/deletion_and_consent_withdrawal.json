@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "data_privacy_officer",
+  "goals": {
+    "lookup_data_subject-1": ["process_data_request-1"],
+    "process_data_request-1": ["update_consent-1"],
+    "update_consent-1": ["generate_privacy_report-1"],
+    "generate_privacy_report-1": []
+  },
+  "story": "A user wants all their data deleted and marketing consent withdrawn. The agent must look up the subject, process the deletion request, withdraw marketing consent, and generate a consent audit report confirming the changes.",
+  "goal_details": [
+    {
+      "args": {"identifier": "gdpr@company.eu", "identifier_type": "email"},
+      "name": "lookup_data_subject-1",
+      "type": "tool_call",
+      "tool_name": "lookup_data_subject"
+    },
+    {
+      "args": {"subject_id": "DS-102", "request_type": "deletion", "scope": "full"},
+      "name": "process_data_request-1",
+      "type": "tool_call",
+      "tool_name": "process_data_request"
+    },
+    {
+      "args": {"subject_id": "DS-102", "purpose": "marketing", "consent_given": false},
+      "name": "update_consent-1",
+      "type": "tool_call",
+      "tool_name": "update_consent"
+    },
+    {
+      "args": {"subject_id": "DS-102", "report_type": "consent_audit", "include_processing_activities": true},
+      "name": "generate_privacy_report-1",
+      "type": "tool_call",
+      "tool_name": "generate_privacy_report"
+    }
+  ],
+  "starting_sentence": "User gdpr@company.eu wants all their data deleted and consent withdrawn for marketing"
+}

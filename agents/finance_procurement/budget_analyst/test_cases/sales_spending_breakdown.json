@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "budget_analyst",
+  "goals": {
+    "get_department_budget-1": [
+      "get_spending_breakdown-1",
+      "forecast_spending-1"
+    ],
+    "get_spending_breakdown-1": [],
+    "forecast_spending-1": []
+  },
+  "story": "Check Sales department budget, then get both Q2 spending breakdown and 6-month forecast in parallel. Sales is at 50% utilization \u2014 well under budget.",
+  "goal_details": [
+    {
+      "args": {
+        "department": "Sales"
+      },
+      "name": "get_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {
+        "department": "Sales",
+        "period": "Q2"
+      },
+      "name": "get_spending_breakdown-1",
+      "type": "tool_call",
+      "tool_name": "get_spending_breakdown"
+    },
+    {
+      "args": {
+        "department": "Sales",
+        "months_ahead": 6
+      },
+      "name": "forecast_spending-1",
+      "type": "tool_call",
+      "tool_name": "forecast_spending",
+      "arg_matching": {
+        "months_ahead": "ignore"
+      }
+    }
+  ],
+  "starting_sentence": "What's the Sales budget status? Show spending breakdown for Q2 and forecast the next 6 months"
+}

@@ -1,0 +1,79 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "procurement_agent",
+  "goals": {
+    "create_requisition-1": [
+      "search_vendors-1"
+    ],
+    "search_vendors-1": [
+      "request_quote-1"
+    ],
+    "request_quote-1": [
+      "issue_purchase_order-1"
+    ],
+    "issue_purchase_order-1": [
+      "track_delivery-1"
+    ],
+    "track_delivery-1": []
+  },
+  "story": "Emergency purchase of 5 replacement servers. The urgency is 'emergency' which allows skipping the multi-quote requirement \u2014 a single quote is acceptable. After creating the emergency requisition, search vendors, get one quote from the fastest vendor (ServerMax with 7-day lead time), issue the PO, and track delivery. The total ($47,500) exceeds $25K so VP approval is needed.",
+  "goal_details": [
+    {
+      "args": {
+        "requester_id": "OPS-LEAD-001",
+        "item_description": "replacement servers",
+        "quantity": 5,
+        "estimated_cost": 50000.0,
+        "urgency": "emergency"
+      },
+      "name": "create_requisition-1",
+      "type": "tool_call",
+      "tool_name": "create_requisition"
+    },
+    {
+      "args": {
+        "item_category": "servers",
+        "min_rating": 3.5
+      },
+      "name": "search_vendors-1",
+      "type": "tool_call",
+      "tool_name": "search_vendors"
+    },
+    {
+      "args": {
+        "vendor_id": "V-200",
+        "req_id": "REQ-6002",
+        "quantity": 5
+      },
+      "name": "request_quote-1",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {
+        "quote_id": "Q-7004",
+        "req_id": "REQ-6002",
+        "approver_id": "DIR-OPS-001"
+      },
+      "name": "issue_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "issue_purchase_order"
+    },
+    {
+      "args": {
+        "po_id": "PO-8002"
+      },
+      "name": "track_delivery-1",
+      "type": "tool_call",
+      "tool_name": "track_delivery"
+    }
+  ],
+  "starting_sentence": "URGENT: We need 5 replacement servers immediately, estimated cost $50,000. I'm ops.lead@company.com, this is critical. Get approval from Director of Operations, ID DIR-OPS-001"
+}

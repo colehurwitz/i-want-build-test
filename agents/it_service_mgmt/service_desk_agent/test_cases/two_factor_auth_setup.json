@@ -1,0 +1,66 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:it_service_mgmt",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "service_desk_agent",
+  "goals": {
+    "get_user_info-1": [
+      "check_known_issues-1"
+    ],
+    "check_known_issues-1": [
+      "get_resolution_steps-1"
+    ],
+    "get_resolution_steps-1": [
+      "create_ticket-1"
+    ],
+    "create_ticket-1": []
+  },
+  "story": "A new user asks how to set up two-factor authentication. This is not really an incident \u2014 it's a how-to question. The agent should identify the user, check known issues (none for 2FA), get resolution steps for the access category (the steps guide through 2FA setup), and create a Low priority ticket for tracking. This tests whether the agent correctly classifies non-incident requests.",
+  "goal_details": [
+    {
+      "args": {
+        "email": "newuser@company.com"
+      },
+      "name": "get_user_info-1",
+      "type": "tool_call",
+      "tool_name": "get_user_info"
+    },
+    {
+      "args": {
+        "system_name": "two_factor_auth"
+      },
+      "name": "check_known_issues-1",
+      "type": "tool_call",
+      "tool_name": "check_known_issues"
+    },
+    {
+      "args": {
+        "category": "access",
+        "diagnostic_result": "pass"
+      },
+      "name": "get_resolution_steps-1",
+      "type": "tool_call",
+      "tool_name": "get_resolution_steps"
+    },
+    {
+      "args": {
+        "user_id": "USR-NEW-400",
+        "category": "access",
+        "priority": "low",
+        "description": "New user requesting guidance on setting up two-factor authentication. Provided step-by-step instructions. No system issues detected."
+      },
+      "name": "create_ticket-1",
+      "type": "tool_call",
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "I'm newuser@company.com, how do I set up two-factor authentication?"
+}

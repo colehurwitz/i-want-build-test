@@ -1,0 +1,54 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "inventory_tracker",
+  "goals": {
+    "check_inventory-1": [
+      "get_reorder_history-1",
+      "update_stock-1"
+    ],
+    "get_reorder_history-1": [],
+    "update_stock-1": []
+  },
+  "story": "Product P-300 is low in W-2. Check current levels, then fan out to review reorder history AND restock with 200 units in parallel.",
+  "goal_details": [
+    {
+      "args": {
+        "product_id": "P-300",
+        "warehouse_id": "W-2"
+      },
+      "name": "check_inventory-1",
+      "type": "tool_call",
+      "tool_name": "check_inventory"
+    },
+    {
+      "args": {
+        "product_id": "P-300"
+      },
+      "name": "get_reorder_history-1",
+      "type": "tool_call",
+      "tool_name": "get_reorder_history"
+    },
+    {
+      "args": {
+        "product_id": "P-300",
+        "warehouse_id": "W-2",
+        "quantity_change": 200,
+        "reason": "restock"
+      },
+      "name": "update_stock-1",
+      "type": "tool_call",
+      "tool_name": "update_stock",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Product P-300 is low in W-2. Check history and restock with 200 units"
+}

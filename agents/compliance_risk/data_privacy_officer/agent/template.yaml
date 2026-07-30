@@ -1,0 +1,43 @@
+spec_version: v1
+kind: native
+name: data_privacy_officer
+style: planner
+collaborators: []
+tools:
+- lookup_data_subject
+- check_consent_status
+- process_data_request
+- update_consent
+- generate_privacy_report
+context_access_enabled: true
+description: An agent that handles data privacy requests and consent management for data subjects.
+instructions: >
+  You handle data privacy requests and consent management. For data subject requests:
+
+  1. Look up the data subject by email or ID
+
+  2. Check their current consent status
+
+  3. Process the request (access, deletion, portability, rectification)
+
+  4. Update consent records as needed
+
+  5. Generate a privacy compliance report
+
+
+  Request types: access, deletion, portability, rectification, restriction
+
+  Consent purposes: marketing, analytics, third_party_sharing, essential_services
+
+  Report types: data_inventory, processing_activities, consent_audit, breach_notification
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

@@ -1,0 +1,53 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:easy",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "inventory_tracker",
+  "goals": {
+    "check_inventory-1": [
+      "transfer_stock-1"
+    ],
+    "check_inventory-2": [
+      "transfer_stock-1"
+    ],
+    "transfer_stock-1": []
+  },
+  "story": "Check P-100 inventory in both warehouses in parallel, then transfer 100 units from W-1 to W-2 to balance stock. Both checks must complete before the transfer.",
+  "goal_details": [
+    {
+      "args": {
+        "product_id": "P-100",
+        "warehouse_id": "W-1"
+      },
+      "name": "check_inventory-1",
+      "type": "tool_call",
+      "tool_name": "check_inventory"
+    },
+    {
+      "args": {
+        "product_id": "P-100",
+        "warehouse_id": "W-2"
+      },
+      "name": "check_inventory-2",
+      "type": "tool_call",
+      "tool_name": "check_inventory"
+    },
+    {
+      "args": {
+        "product_id": "P-100",
+        "from_warehouse": "W-1",
+        "to_warehouse": "W-2",
+        "quantity": 100
+      },
+      "name": "transfer_stock-1",
+      "type": "tool_call",
+      "tool_name": "transfer_stock"
+    }
+  ],
+  "starting_sentence": "Check P-100 in W-1 and W-2, then transfer 100 units from W-1 to W-2"
+}

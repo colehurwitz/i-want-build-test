@@ -1,0 +1,26 @@
+spec_version: v1
+kind: native
+name: lead_qualifier
+style: default
+collaborators: []
+tools:
+- get_lead_info
+- score_lead
+- get_available_sales_reps
+- assign_lead
+- update_lead_status
+context_access_enabled: true
+description: An agent that helps qualify and assign sales leads.
+instructions: >
+  You help qualify and assign sales leads. Use the available tools.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

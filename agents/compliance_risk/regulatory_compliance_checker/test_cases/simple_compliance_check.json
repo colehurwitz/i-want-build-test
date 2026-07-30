@@ -1,0 +1,57 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:compliance_risk",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "regulatory_compliance_checker",
+  "goals": {
+    "get_regulation_details-1": [
+      "assess_compliance_status-1"
+    ],
+    "assess_compliance_status-1": [
+      "file_compliance_report-1"
+    ],
+    "file_compliance_report-1": []
+  },
+  "story": "Simple compliance check for Entity-D against REG-100. Entity-D is fully compliant (score 90%), so the agent gets regulation details, assesses compliance, and files a clean report. No remediation or escalation needed.",
+  "goal_details": [
+    {
+      "args": {
+        "regulation_id": "REG-100"
+      },
+      "name": "get_regulation_details-1",
+      "type": "tool_call",
+      "tool_name": "get_regulation_details"
+    },
+    {
+      "args": {
+        "entity": "Entity-D",
+        "regulation_id": "REG-100"
+      },
+      "name": "assess_compliance_status-1",
+      "type": "tool_call",
+      "tool_name": "assess_compliance_status"
+    },
+    {
+      "args": {
+        "entity": "Entity-D",
+        "regulation_id": "REG-100",
+        "status": "compliant",
+        "findings": "Score 90%. All requirements pass. No gaps identified.",
+        "remediation_plan": "No remediation required. Continue current compliance practices."
+      },
+      "name": "file_compliance_report-1",
+      "type": "tool_call",
+      "tool_name": "file_compliance_report",
+      "arg_matching": {
+        "findings": "fuzzy",
+        "remediation_plan": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Check if Entity-D is compliant with REG-100 and generate the report"
+}

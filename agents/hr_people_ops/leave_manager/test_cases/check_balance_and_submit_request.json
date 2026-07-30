@@ -1,0 +1,57 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "leave_manager",
+  "goals": {
+    "get_leave_balance-1": [
+      "check_team_calendar-1"
+    ],
+    "check_team_calendar-1": [
+      "request_leave-1"
+    ],
+    "request_leave-1": []
+  },
+  "story": "Employee E-101 checks annual leave balance, then checks the team calendar for coverage during the requested dates, then submits the leave request.",
+  "goal_details": [
+    {
+      "args": {
+        "employee_id": "E-101",
+        "leave_type": "annual"
+      },
+      "name": "get_leave_balance-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_balance"
+    },
+    {
+      "args": {
+        "department": "Engineering",
+        "date_range": "2024-11-18 to 2024-11-20"
+      },
+      "name": "check_team_calendar-1",
+      "type": "tool_call",
+      "tool_name": "check_team_calendar"
+    },
+    {
+      "args": {
+        "employee_id": "E-101",
+        "leave_type": "annual",
+        "start_date": "2024-11-18",
+        "end_date": "2024-11-20",
+        "reason": "personal time off"
+      },
+      "name": "request_leave-1",
+      "type": "tool_call",
+      "tool_name": "request_leave",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "I'm E-101. Check my annual leave balance, check if the team has coverage November 18-20, 2024, and submit 3 days off"
+}

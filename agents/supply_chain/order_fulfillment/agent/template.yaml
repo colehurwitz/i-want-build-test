@@ -1,0 +1,46 @@
+spec_version: v1
+kind: native
+name: order_fulfillment
+style: react_core
+collaborators: []
+tools:
+- get_order_details
+- check_item_availability
+- reserve_inventory
+- process_payment
+- create_fulfillment
+- update_order_status
+context_access_enabled: true
+description: An agent that manages order fulfillment from receipt through shipping, including inventory checks, payment processing, and status tracking.
+instructions: >
+  You manage order fulfillment from receipt through shipping. Your workflow:
+
+  1. Review order details
+
+  2. Check item availability for all items in the order
+
+  3. Reserve inventory for confirmed orders
+
+  4. Process payment
+
+  5. Create fulfillment record and trigger shipping
+
+  6. Update order status throughout the process
+
+
+  Order statuses: received → confirmed → processing → shipped → delivered → completed
+
+  Payment methods: credit_card, wire_transfer, purchase_order, net_30
+
+  Shipping priorities: standard, express, next_day
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
+model_overrides:
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

@@ -1,0 +1,87 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "vendor_manager",
+  "goals": {
+    "get_vendor_performance-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "get_vendor_performance-2": [
+      "create_vendor_scorecard-2"
+    ],
+    "create_vendor_scorecard-1": [],
+    "create_vendor_scorecard-2": []
+  },
+  "story": "Compare V-100 and V-400. Both vendor performance lookups happen independently, each followed by scorecard creation. Two parallel chains for side-by-side comparison.",
+  "goal_details": [
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026"
+      },
+      "name": "get_vendor_performance-1",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance",
+      "arg_matching": {
+        "period": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-100",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
+      "name": "create_vendor_scorecard-1",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-400",
+        "period": "Q2-2026"
+      },
+      "name": "get_vendor_performance-2",
+      "type": "tool_call",
+      "tool_name": "get_vendor_performance",
+      "arg_matching": {
+        "period": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "vendor_id": "V-400",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
+      "name": "create_vendor_scorecard-2",
+      "type": "tool_call",
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Compare vendors V-100 and V-400 for Q2 2026 \u2014 create scorecards for both"
+}

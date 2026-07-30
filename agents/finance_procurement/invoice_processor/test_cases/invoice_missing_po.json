@@ -1,0 +1,53 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:error_recovery",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "invoice_processor",
+  "goals": {
+    "lookup_invoice-1": [
+      "match_purchase_order-1"
+    ],
+    "match_purchase_order-1": [
+      "flag_discrepancy-1"
+    ],
+    "flag_discrepancy-1": []
+  },
+  "story": "Process invoice INV-1006 which has no purchase order number. The agent looks up the invoice, attempts to match a PO (fails), then flags the discrepancy.",
+  "goal_details": [
+    {
+      "args": {
+        "invoice_id": "INV-1006"
+      },
+      "name": "lookup_invoice-1",
+      "type": "tool_call",
+      "tool_name": "lookup_invoice"
+    },
+    {
+      "args": {
+        "po_number": "PO-NONE"
+      },
+      "name": "match_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "match_purchase_order"
+    },
+    {
+      "args": {
+        "invoice_id": "INV-1006",
+        "discrepancy_type": "missing_po",
+        "details": "Invoice INV-1006 from Metro Utilities has no associated purchase order number"
+      },
+      "name": "flag_discrepancy-1",
+      "type": "tool_call",
+      "tool_name": "flag_discrepancy",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Invoice INV-1006 has no PO number. Process it"
+}

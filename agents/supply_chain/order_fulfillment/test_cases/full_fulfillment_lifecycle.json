@@ -1,0 +1,97 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:supply_chain",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "order_fulfillment",
+  "goals": {
+    "get_order_details-1": [
+      "check_item_availability-1"
+    ],
+    "check_item_availability-1": [
+      "reserve_inventory-1"
+    ],
+    "reserve_inventory-1": [
+      "process_payment-1"
+    ],
+    "process_payment-1": [
+      "create_fulfillment-1"
+    ],
+    "create_fulfillment-1": [
+      "update_order_status-1"
+    ],
+    "update_order_status-1": []
+  },
+  "story": "Full fulfillment lifecycle for ORD-100: get order details, check availability of all items (bearings and fasteners), reserve inventory, process credit card payment, create the fulfillment record for standard shipping from W-1, and update the order status to processing. This tests the complete 6-step workflow.",
+  "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-100"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
+    {
+      "args": {
+        "product_id": "P-100",
+        "quantity": 100
+      },
+      "name": "check_item_availability-1",
+      "type": "tool_call",
+      "tool_name": "check_item_availability"
+    },
+    {
+      "args": {
+        "order_id": "ORD-100",
+        "items": [
+          "P-100",
+          "P-200"
+        ]
+      },
+      "name": "reserve_inventory-1",
+      "type": "tool_call",
+      "tool_name": "reserve_inventory",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "order_id": "ORD-100",
+        "payment_method": "credit_card"
+      },
+      "name": "process_payment-1",
+      "type": "tool_call",
+      "tool_name": "process_payment"
+    },
+    {
+      "args": {
+        "order_id": "ORD-100",
+        "warehouse_id": "W-1",
+        "shipping_priority": "standard"
+      },
+      "name": "create_fulfillment-1",
+      "type": "tool_call",
+      "tool_name": "create_fulfillment"
+    },
+    {
+      "args": {
+        "order_id": "ORD-100",
+        "status": "processing",
+        "notes": "Order confirmed and being processed"
+      },
+      "name": "update_order_status-1",
+      "type": "tool_call",
+      "tool_name": "update_order_status",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
+    }
+  ],
+  "starting_sentence": "Fulfill order ORD-100 \u2014 check availability, reserve, process payment, and ship"
+}
