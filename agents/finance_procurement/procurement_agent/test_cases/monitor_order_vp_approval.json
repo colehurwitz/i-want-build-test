@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "procurement_agent",
+  "goals": {
+    "create_requisition-1": ["search_vendors-1"],
+    "search_vendors-1": ["request_quote-1", "request_quote-2"],
+    "request_quote-1": ["compare_quotes-1"],
+    "request_quote-2": ["compare_quotes-1"],
+    "compare_quotes-1": ["issue_purchase_order-1"],
+    "issue_purchase_order-1": []
+  },
+  "story": "Order 100 monitors with an estimated cost of $45,000. This exceeds the $25K VP-level approval threshold and exceeds $10K requiring 3+ quotes. Only 2 vendors provide quotes here. After comparing, the cheaper vendor (ScreenPro Global at $38K) is recommended. The agent must use VP-level approval for the PO.",
+  "goal_details": [
+    {
+      "args": {"requester_id": "ADMIN-001", "item_description": "monitors", "quantity": 100, "estimated_cost": 45000.0, "urgency": "standard"},
+      "name": "create_requisition-1",
+      "type": "tool_call",
+      "tool_name": "create_requisition"
+    },
+    {
+      "args": {"item_category": "monitors", "min_rating": 3.5},
+      "name": "search_vendors-1",
+      "type": "tool_call",
+      "tool_name": "search_vendors"
+    },
+    {
+      "args": {"vendor_id": "V-300", "req_id": "REQ-6003", "quantity": 100},
+      "name": "request_quote-1",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {"vendor_id": "V-301", "req_id": "REQ-6003", "quantity": 100},
+      "name": "request_quote-2",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {"quote_ids": ["Q-7006", "Q-7007"]},
+      "name": "compare_quotes-1",
+      "type": "tool_call",
+      "tool_name": "compare_quotes"
+    },
+    {
+      "args": {"quote_id": "Q-7007", "req_id": "REQ-6003", "approver_id": "VP-IT-001"},
+      "name": "issue_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "issue_purchase_order"
+    }
+  ],
+  "starting_sentence": "Order 100 monitors, requester: admin@company.com. Get quotes, compare, and issue PO to the cheapest vendor"
+}

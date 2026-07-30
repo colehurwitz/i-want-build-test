@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": ["get_expense_policy-1", "check_department_budget-1"],
+    "get_expense_policy-1": ["create_expense_report-1"],
+    "check_department_budget-1": ["create_expense_report-1"],
+    "create_expense_report-1": ["submit_for_approval-1"],
+    "submit_for_approval-1": []
+  },
+  "story": "The user wants to submit a $450 travel expense with a receipt for a business trip. The ideal agent would first look up the employee, then check the travel expense policy and department budget before creating the report and submitting for approval. An agent with poor instructions will skip policy and budget checks and go straight to creating the report.",
+  "goal_details": [
+    {
+      "args": {"email": "john@company.com"},
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {"category": "travel"},
+      "name": "get_expense_policy-1",
+      "type": "tool_call",
+      "tool_name": "get_expense_policy"
+    },
+    {
+      "args": {"department": "Engineering"},
+      "name": "check_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "check_department_budget"
+    },
+    {
+      "args": {"employee_id": "EMP-100", "title": "Business trip travel expenses", "amount": 450.0, "category": "travel", "receipt_attached": true},
+      "name": "create_expense_report-1",
+      "type": "tool_call",
+      "tool_name": "create_expense_report"
+    },
+    {
+      "args": {"report_id": "EXP-1001", "approver_id": "EMP-500"},
+      "name": "submit_for_approval-1",
+      "type": "tool_call",
+      "tool_name": "submit_for_approval"
+    }
+  ],
+  "starting_sentence": "I'm john@company.com, submit a $450 travel expense with receipt for my last business trip, and submit it for approval"
+}

@@ -1,0 +1,40 @@
+common:
+  spec_version: v1
+  kind: native
+  name: invoice_processor
+  style: default
+  collaborators: []
+  tools:
+  - lookup_invoice
+  - match_purchase_order
+  - verify_line_items
+  - approve_payment
+  - flag_discrepancy
+  context_access_enabled: true
+  description: An agent that processes vendor invoices by matching them against purchase orders and approving payments.
+  instructions: >
+    You process vendor invoices. For each invoice:
+
+    1. Look up the invoice details
+
+    2. Match it against the corresponding purchase order
+
+    3. Verify line items match between invoice and PO
+
+    4. If everything matches, approve the payment
+
+    5. If discrepancies exist, flag them for review
+
+
+    Ensure invoices are processed before their due dates.
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

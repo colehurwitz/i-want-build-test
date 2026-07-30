@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:context_tracking",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": ["check_department_budget-1"],
+    "check_department_budget-1": []
+  },
+  "story": "The user just wants to check if their department has budget remaining. The employee is in Engineering. This is a read-only query with no expense submission. The department is approaching its budget warning threshold — agent should report the budget status clearly.",
+  "goal_details": [
+    {
+      "args": {"email": "dev@company.com"},
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {"department": "Engineering"},
+      "name": "check_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "check_department_budget"
+    }
+  ],
+  "starting_sentence": "Check if my department has budget remaining. I'm in Engineering. Email: dev@company.com"
+}

@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "budget_analyst",
+  "goals": {
+    "get_department_budget-1": ["get_spending_breakdown-1"],
+    "get_spending_breakdown-1": ["forecast_spending-1"],
+    "forecast_spending-1": ["generate_budget_report-1"],
+    "generate_budget_report-1": []
+  },
+  "story": "The user wants a complete budget health analysis for Engineering: current budget status, spending breakdown for Q2, a 6-month forecast, and a full report with forecast included. This tests the complete analysis pipeline. Engineering is at 60% utilization — healthy but worth monitoring.",
+  "goal_details": [
+    {
+      "args": {"department": "Engineering"},
+      "name": "get_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {"department": "Engineering", "period": "Q2"},
+      "name": "get_spending_breakdown-1",
+      "type": "tool_call",
+      "tool_name": "get_spending_breakdown"
+    },
+    {
+      "args": {"department": "Engineering", "months_ahead": 6},
+      "name": "forecast_spending-1",
+      "type": "tool_call",
+      "tool_name": "forecast_spending"
+    },
+    {
+      "args": {"department": "Engineering", "include_forecast": true},
+      "name": "generate_budget_report-1",
+      "type": "tool_call",
+      "tool_name": "generate_budget_report"
+    }
+  ],
+  "starting_sentence": "Analyze Engineering's budget health — spending breakdown, forecast, and generate a full report"
+}

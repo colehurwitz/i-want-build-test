@@ -1,0 +1,27 @@
+common:
+  spec_version: v1
+  kind: native
+  name: expense_reporter
+  style: react_core
+  collaborators: []
+  tools:
+  - get_employee_id
+  - create_expense_report
+  - submit_for_approval
+  - check_department_budget
+  - get_expense_policy
+  context_access_enabled: true
+  description: An agent that helps employees submit expense reports.
+  instructions: >
+    Help employees submit expense reports.
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

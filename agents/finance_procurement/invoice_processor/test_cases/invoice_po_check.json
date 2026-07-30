@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "invoice_processor",
+  "goals": {
+    "lookup_invoice-1": ["match_purchase_order-1"],
+    "match_purchase_order-1": ["verify_line_items-1"],
+    "verify_line_items-1": []
+  },
+  "story": "Look up invoice INV-1003 and verify its line items against the purchase order. This is a read-only verification without taking action (no approval or flagging). The invoice perfectly matches its PO for cloud hosting services.",
+  "goal_details": [
+    {
+      "args": {"invoice_id": "INV-1003"},
+      "name": "lookup_invoice-1",
+      "type": "tool_call",
+      "tool_name": "lookup_invoice"
+    },
+    {
+      "args": {"po_number": "PO-2003"},
+      "name": "match_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "match_purchase_order"
+    },
+    {
+      "args": {"invoice_id": "INV-1003", "po_number": "PO-2003"},
+      "name": "verify_line_items-1",
+      "type": "tool_call",
+      "tool_name": "verify_line_items"
+    }
+  ],
+  "starting_sentence": "Look up invoice INV-1003 and check its PO match"
+}

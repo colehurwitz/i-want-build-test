@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:error_recovery",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "procurement_agent",
+  "goals": {
+    "track_delivery-1": ["confirm_receipt-1"],
+    "confirm_receipt-1": []
+  },
+  "story": "Track delivery for PO-5001 and confirm receipt of a partial shipment — 8 of 10 items received in good condition. The track_delivery response shows 'partially_delivered' status with only 8 items delivered. The confirm_receipt should flag the discrepancy (discrepancy_flag: true). The agent should report that 2 items are still pending. This tests handling of partial receipts, which the instructions mention but don't fully specify.",
+  "goal_details": [
+    {
+      "args": {"po_id": "PO-5001"},
+      "name": "track_delivery-1",
+      "type": "tool_call",
+      "tool_name": "track_delivery"
+    },
+    {
+      "args": {"po_id": "PO-5001", "received_quantity": 8, "condition": "good"},
+      "name": "confirm_receipt-1",
+      "type": "tool_call",
+      "tool_name": "confirm_receipt"
+    }
+  ],
+  "starting_sentence": "Track PO PO-5001 and confirm goods receipt — we received 8 out of 10 items in good condition"
+}

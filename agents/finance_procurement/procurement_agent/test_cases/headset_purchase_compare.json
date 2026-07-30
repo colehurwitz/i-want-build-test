@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "procurement_agent",
+  "goals": {
+    "create_requisition-1": ["search_vendors-1"],
+    "search_vendors-1": ["request_quote-1", "request_quote-2"],
+    "request_quote-1": ["compare_quotes-1"],
+    "request_quote-2": ["compare_quotes-1"],
+    "compare_quotes-1": ["issue_purchase_order-1"],
+    "issue_purchase_order-1": []
+  },
+  "story": "Purchase 20 headsets with a higher minimum vendor rating (4.0+). The user wants quotes from the top 2 vendors, compared side-by-side, then order from the recommended winner. SoundGear Inc wins on price ($1,500 vs $1,780). This is under $10K so 2 quotes are sufficient. Tests the agent's ability to follow the comparison-based selection workflow.",
+  "goal_details": [
+    {
+      "args": {"requester_id": "PM-001", "item_description": "headsets", "quantity": 20, "estimated_cost": 3000.0, "urgency": "standard"},
+      "name": "create_requisition-1",
+      "type": "tool_call",
+      "tool_name": "create_requisition"
+    },
+    {
+      "args": {"item_category": "headsets", "min_rating": 4.0},
+      "name": "search_vendors-1",
+      "type": "tool_call",
+      "tool_name": "search_vendors"
+    },
+    {
+      "args": {"vendor_id": "V-400", "req_id": "REQ-6004", "quantity": 20},
+      "name": "request_quote-1",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {"vendor_id": "V-401", "req_id": "REQ-6004", "quantity": 20},
+      "name": "request_quote-2",
+      "type": "tool_call",
+      "tool_name": "request_quote"
+    },
+    {
+      "args": {"quote_ids": ["Q-7008", "Q-7009"]},
+      "name": "compare_quotes-1",
+      "type": "tool_call",
+      "tool_name": "compare_quotes"
+    },
+    {
+      "args": {"quote_id": "Q-7009", "req_id": "REQ-6004", "approver_id": "MGR-PM-001"},
+      "name": "issue_purchase_order-1",
+      "type": "tool_call",
+      "tool_name": "issue_purchase_order"
+    }
+  ],
+  "starting_sentence": "Purchase 20 headsets. I'm pm@company.com. Find vendors rated 4.0+, get quotes from top 2, compare, and order from the winner"
+}

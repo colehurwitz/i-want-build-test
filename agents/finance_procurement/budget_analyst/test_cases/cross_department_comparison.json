@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_entity",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "budget_analyst",
+  "goals": {
+    "get_department_budget-1": ["forecast_spending-1"],
+    "get_department_budget-2": ["forecast_spending-2"],
+    "forecast_spending-1": [],
+    "forecast_spending-2": []
+  },
+  "story": "Compare budgets for both Engineering and Sales — who's spending more, and which department will exceed budget first? The agent must fetch budgets for both departments and run 6-month forecasts for each. Engineering will barely make it ($50K remaining), while Sales has plenty of runway ($450K). Marketing would exceed budget but isn't asked about here.",
+  "goal_details": [
+    {
+      "args": {"department": "Engineering"},
+      "name": "get_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {"department": "Sales"},
+      "name": "get_department_budget-2",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {"department": "Engineering", "months_ahead": 6},
+      "name": "forecast_spending-1",
+      "type": "tool_call",
+      "tool_name": "forecast_spending"
+    },
+    {
+      "args": {"department": "Sales", "months_ahead": 6},
+      "name": "forecast_spending-2",
+      "type": "tool_call",
+      "tool_name": "forecast_spending"
+    }
+  ],
+  "starting_sentence": "Compare Engineering and Sales budgets — who's spending more, and which department will exceed budget first?"
+}

@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:prerequisite_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": ["get_expense_policy-1"],
+    "get_expense_policy-1": ["create_expense_report-1"],
+    "create_expense_report-1": ["submit_for_approval-1"],
+    "submit_for_approval-1": []
+  },
+  "story": "A manager submits a $3000 equipment expense with a receipt. The equipment policy requires preapproval above $1500 — the agent should flag this. The manager's approver is EMP-900 (VP-level). An agent without policy awareness will just submit without flagging the preapproval requirement.",
+  "goal_details": [
+    {
+      "args": {"email": "manager@company.com"},
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {"category": "equipment"},
+      "name": "get_expense_policy-1",
+      "type": "tool_call",
+      "tool_name": "get_expense_policy"
+    },
+    {
+      "args": {"employee_id": "EMP-500", "title": "New monitor for team lead", "amount": 3000.0, "category": "equipment", "receipt_attached": true},
+      "name": "create_expense_report-1",
+      "type": "tool_call",
+      "tool_name": "create_expense_report"
+    },
+    {
+      "args": {"report_id": "EXP-1005", "approver_id": "EMP-900"},
+      "name": "submit_for_approval-1",
+      "type": "tool_call",
+      "tool_name": "submit_for_approval"
+    }
+  ],
+  "starting_sentence": "I'm manager@company.com, submit a $3000 equipment expense with receipt and route it for approval"
+}

@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "expense_reporter",
+  "goals": {
+    "get_employee_id-1": ["create_expense_report-1"],
+    "create_expense_report-1": ["submit_for_approval-1"],
+    "submit_for_approval-1": []
+  },
+  "story": "The user wants to expense a small $25 lunch. This is a simple flow — look up the employee, create the report, and submit. No receipt needed for this amount, but the agent has no instructions about receipt thresholds so it cannot know without checking the policy.",
+  "goal_details": [
+    {
+      "args": {"email": "alice@company.com"},
+      "name": "get_employee_id-1",
+      "type": "tool_call",
+      "tool_name": "get_employee_id"
+    },
+    {
+      "args": {"employee_id": "EMP-101", "title": "Team lunch", "amount": 25.0, "category": "meals", "receipt_attached": false},
+      "name": "create_expense_report-1",
+      "type": "tool_call",
+      "tool_name": "create_expense_report"
+    },
+    {
+      "args": {"report_id": "EXP-1002", "approver_id": "EMP-501"},
+      "name": "submit_for_approval-1",
+      "type": "tool_call",
+      "tool_name": "submit_for_approval"
+    }
+  ],
+  "starting_sentence": "I'm alice@company.com, I need to expense a $25 lunch"
+}

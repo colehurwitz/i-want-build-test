@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:finance_procurement",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "budget_analyst",
+  "goals": {
+    "get_department_budget-1": ["get_spending_breakdown-1"],
+    "get_spending_breakdown-1": []
+  },
+  "story": "A simple read-only query: check the Sales department budget and get a Q2 spending breakdown. Sales is at 50% utilization — well under budget. Tests basic two-step analysis without forecast or report generation.",
+  "goal_details": [
+    {
+      "args": {"department": "Sales"},
+      "name": "get_department_budget-1",
+      "type": "tool_call",
+      "tool_name": "get_department_budget"
+    },
+    {
+      "args": {"department": "Sales", "period": "Q2"},
+      "name": "get_spending_breakdown-1",
+      "type": "tool_call",
+      "tool_name": "get_spending_breakdown"
+    }
+  ],
+  "starting_sentence": "What's the spending breakdown for Sales this quarter?"
+}
