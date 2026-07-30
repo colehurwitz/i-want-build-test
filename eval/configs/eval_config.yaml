@@ -1,0 +1,13 @@
+provider_config:
+  model_id: groq/openai/gpt-oss-120b
+
+llm_user_config:
+  model_id: groq/openai/gpt-oss-120b
+  provider_config:
+    model_id: groq/openai/gpt-oss-120b
+
+evaluation_config:
+  provider_config:
+    model_id: groq/openai/gpt-oss-120b
+
+max_user_turns: 20

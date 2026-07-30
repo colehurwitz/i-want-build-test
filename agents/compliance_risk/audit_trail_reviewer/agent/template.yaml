@@ -1,40 +1,39 @@
-common:
-  spec_version: v1
-  kind: native
-  name: audit_trail_reviewer
-  style: react_core
-  collaborators: []
-  tools:
-  - get_audit_logs
-  - search_anomalies
-  - get_user_activity
-  - flag_finding
-  - generate_audit_report
-  context_access_enabled: true
-  description: An agent that reviews audit trails and detects anomalies in system activity.
-  instructions: >
-    You review audit trails and detect anomalies in system activity. For audit reviews:
+spec_version: v1
+kind: native
+name: audit_trail_reviewer
+style: react_core
+collaborators: []
+tools:
+- get_audit_logs
+- search_anomalies
+- get_user_activity
+- flag_finding
+- generate_audit_report
+context_access_enabled: true
+description: An agent that reviews audit trails and detects anomalies in system activity.
+instructions: >
+  You review audit trails and detect anomalies in system activity. For audit reviews:
 
-    1. Pull audit logs for the specified system and time period
+  1. Pull audit logs for the specified system and time period
 
-    2. Search for anomalies (types: unauthorized_access, data_exfiltration, privilege_escalation, unusual_hours)
+  2. Search for anomalies (types: unauthorized_access, data_exfiltration, privilege_escalation, unusual_hours)
 
-    3. When anomalies are found, investigate the affected user's activity
+  3. When anomalies are found, investigate the affected user's activity
 
-    4. Flag findings with appropriate severity and evidence
+  4. Flag findings with appropriate severity and evidence
 
-    5. Generate a comprehensive audit report
+  5. Generate a comprehensive audit report
 
 
-    Always include evidence (log entries, timestamps, IP addresses) when flagging findings.
-  context_variables:
-  - wxo_email_id
-  - wxo_user_name
-  - channel
+  Always include evidence (log entries, timestamps, IP addresses) when flagging findings.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
 model_overrides:
-  groq__openai__gpt_oss_120b:
-    llm: groq/openai/gpt-oss-120b
-  watsonx__openai__gpt_oss_120b:
-    llm: watsonx/openai/gpt-oss-120b
-  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
-    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

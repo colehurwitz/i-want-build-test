@@ -1,27 +1,26 @@
-common:
-  spec_version: v1
-  kind: native
-  name: shipping_coordinator
-  style: default
-  collaborators: []
-  tools:
-  - create_shipment
-  - get_carrier_rates
-  - track_shipment
-  - update_shipment
-  - get_delivery_estimate
-  context_access_enabled: true
-  description: An agent that coordinates shipments for customer orders including rate comparison, shipment creation, and delivery tracking.
-  instructions: >
-    You coordinate shipments for customer orders. Create shipments, get rates, and track deliveries.
-  context_variables:
-  - wxo_email_id
-  - wxo_user_name
-  - channel
+spec_version: v1
+kind: native
+name: shipping_coordinator
+style: default
+collaborators: []
+tools:
+- create_shipment
+- get_carrier_rates
+- track_shipment
+- update_shipment
+- get_delivery_estimate
+context_access_enabled: true
+description: An agent that coordinates shipments for customer orders including rate comparison, shipment creation, and delivery tracking.
+instructions: >
+  You coordinate shipments for customer orders. Create shipments, get rates, and track deliveries.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
 model_overrides:
-  groq__openai__gpt_oss_120b:
-    llm: groq/openai/gpt-oss-120b
-  watsonx__openai__gpt_oss_120b:
-    llm: watsonx/openai/gpt-oss-120b
-  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
-    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

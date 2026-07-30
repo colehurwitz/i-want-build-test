@@ -1,44 +1,43 @@
-common:
-  spec_version: v1
-  kind: native
-  name: incident_commander
-  style: react_core
-  collaborators: []
-  tools:
-  - get_alert_details
-  - check_service_health
-  - get_recent_deployments
-  - get_runbook
-  - rollback_deployment
-  - notify_oncall
-  - create_incident_ticket
-  context_access_enabled: true
-  description: An agent that handles production incident response including alert triage, service health checks, and incident management.
-  instructions: >
-    You handle production incident response. When an alert fires:
+spec_version: v1
+kind: native
+name: incident_commander
+style: react_core
+collaborators: []
+tools:
+- get_alert_details
+- check_service_health
+- get_recent_deployments
+- get_runbook
+- rollback_deployment
+- notify_oncall
+- create_incident_ticket
+context_access_enabled: true
+description: An agent that handles production incident response including alert triage, service health checks, and incident management.
+instructions: >
+  You handle production incident response. When an alert fires:
 
-    1. Get alert details to understand the issue
+  1. Get alert details to understand the issue
 
-    2. Check the affected service's health
+  2. Check the affected service's health
 
-    3. Look for recent deployments that might have caused the issue
+  3. Look for recent deployments that might have caused the issue
 
-    4. If a recent deployment correlates with the incident, consider rollback
+  4. If a recent deployment correlates with the incident, consider rollback
 
-    5. Notify the on-call team with incident details
+  5. Notify the on-call team with incident details
 
-    6. Create an incident ticket to track resolution
+  6. Create an incident ticket to track resolution
 
 
-    Always follow the service's runbook when available.
-  context_variables:
-  - wxo_email_id
-  - wxo_user_name
-  - channel
+  Always follow the service's runbook when available.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
 model_overrides:
-  groq__openai__gpt_oss_120b:
-    llm: groq/openai/gpt-oss-120b
-  watsonx__openai__gpt_oss_120b:
-    llm: watsonx/openai/gpt-oss-120b
-  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
-    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

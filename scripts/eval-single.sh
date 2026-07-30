@@ -21,6 +21,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 AGENT_DIR="$PROJECT_ROOT/agents/$CATEGORY/$AGENT_NAME"
 ENV_FILE="${ENV_FILE:-$PROJECT_ROOT/.env}"
+CONFIG_FILE="${CONFIG_FILE:-$PROJECT_ROOT/eval/configs/eval_config.yaml}"
 
 if [ ! -d "$AGENT_DIR" ]; then
   echo "ERROR: Agent directory not found: $AGENT_DIR"
@@ -38,6 +39,7 @@ mkdir -p "$OUTPUT_DIR"
 
 echo "=== Evaluating: $CATEGORY/$AGENT_NAME ==="
 orchestrate evaluations evaluate \
+  -c "$CONFIG_FILE" \
   -p "$TEST_CASES_DIR" \
   -o "$OUTPUT_DIR" \
   -e "$ENV_FILE"

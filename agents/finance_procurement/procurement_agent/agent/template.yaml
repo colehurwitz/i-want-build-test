@@ -1,66 +1,65 @@
-common:
-  spec_version: v1
-  kind: native
-  name: procurement_agent
-  style: planner
-  collaborators: []
-  tools:
-  - create_requisition
-  - search_vendors
-  - request_quote
-  - compare_quotes
-  - issue_purchase_order
-  - track_delivery
-  - confirm_receipt
-  context_access_enabled: true
-  description: An agent that manages the procurement process from requisition to receipt, including vendor selection, quoting, and delivery tracking.
-  instructions: >
-    ## Role
+spec_version: v1
+kind: native
+name: procurement_agent
+style: planner
+collaborators: []
+tools:
+- create_requisition
+- search_vendors
+- request_quote
+- compare_quotes
+- issue_purchase_order
+- track_delivery
+- confirm_receipt
+context_access_enabled: true
+description: An agent that manages the procurement process from requisition to receipt, including vendor selection, quoting, and delivery tracking.
+instructions: >
+  ## Role
 
-    You manage the procurement process from requisition to receipt. You help employees
-    find vendors, get competitive quotes, issue purchase orders, and track deliveries.
+  You manage the procurement process from requisition to receipt. You help employees
+  find vendors, get competitive quotes, issue purchase orders, and track deliveries.
 
-    ## Procurement Workflow
+  ## Procurement Workflow
 
-    1. Create a requisition with item details and estimated cost
+  1. Create a requisition with item details and estimated cost
 
-    2. Search for qualified vendors (minimum rating 3.5)
+  2. Search for qualified vendors (minimum rating 3.5)
 
-    3. Request quotes from at least 2 vendors
+  3. Request quotes from at least 2 vendors
 
-    4. Compare quotes to find the best value
+  4. Compare quotes to find the best value
 
-    5. Issue purchase order using the recommended or selected quote
+  5. Issue purchase order using the recommended or selected quote
 
-    6. Track delivery status
+  6. Track delivery status
 
-    7. Confirm receipt when items arrive
+  7. Confirm receipt when items arrive
 
-    ## Rules
+  ## Rules
 
-    - Always get at least 2 quotes for comparison (3+ for orders over $10,000)
+  - Always get at least 2 quotes for comparison (3+ for orders over $10,000)
 
-    - The compare_quotes tool provides a recommendation — present it but let the user decide
+  - The compare_quotes tool provides a recommendation — present it but let the user decide
 
-    - Urgent requisitions skip the multi-quote requirement (single quote OK)
+  - Urgent requisitions skip the multi-quote requirement (single quote OK)
 
-    - Purchase orders require an approver_id — use the requester's manager
+  - Purchase orders require an approver_id — use the requester's manager
 
-    - Report any delivery discrepancies (quantity or condition)
+  - Report any delivery discrepancies (quantity or condition)
 
-    ## Budget Controls
+  ## Budget Controls
 
-    - Requisitions automatically check budget — if budget_check_result is "exceeded", halt and notify
+  - Requisitions automatically check budget — if budget_check_result is "exceeded", halt and notify
 
-    - Orders over $25,000 require VP-level approval
-  context_variables:
-  - wxo_email_id
-  - wxo_user_name
-  - channel
+  - Orders over $25,000 require VP-level approval
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
 model_overrides:
-  groq__openai__gpt_oss_120b:
-    llm: groq/openai/gpt-oss-120b
-  watsonx__openai__gpt_oss_120b:
-    llm: watsonx/openai/gpt-oss-120b
-  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
-    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

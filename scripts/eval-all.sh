@@ -8,6 +8,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 AGENTS_DIR="$PROJECT_ROOT/agents"
 OUTPUT_BASE="$PROJECT_ROOT/eval/output"
 ENV_FILE="${ENV_FILE:-$PROJECT_ROOT/.env}"
+CONFIG_FILE="${CONFIG_FILE:-$PROJECT_ROOT/eval/configs/eval_config.yaml}"
 
 DOMAINS=(
   hr_people_ops
@@ -43,6 +44,7 @@ for domain in "${DOMAINS[@]}"; do
     echo ""
     echo "--- Evaluating: $domain/$agent_name ---"
     if orchestrate evaluations evaluate \
+      -c "$CONFIG_FILE" \
       -p "$test_cases_dir" \
       -o "$output_dir" \
       -e "$ENV_FILE"; then

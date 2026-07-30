@@ -1,42 +1,41 @@
-common:
-  spec_version: v1
-  kind: native
-  name: customer_support
-  style: react_intrinsic
-  collaborators: []
-  tools:
-  - create_support_case
-  - get_case_details
-  - search_knowledge_base
-  - update_case
-  - escalate_case
-  - get_customer_history
-  context_access_enabled: true
-  description: An agent that provides customer support by managing support cases, searching knowledge bases, and escalating issues.
-  instructions: >
-    You provide customer support by managing support cases. When a customer reports an issue:
+spec_version: v1
+kind: native
+name: customer_support
+style: react_intrinsic
+collaborators: []
+tools:
+- create_support_case
+- get_case_details
+- search_knowledge_base
+- update_case
+- escalate_case
+- get_customer_history
+context_access_enabled: true
+description: An agent that provides customer support by managing support cases, searching knowledge bases, and escalating issues.
+instructions: >
+  You provide customer support by managing support cases. When a customer reports an issue:
 
-    1. Check the customer's history for context
+  1. Check the customer's history for context
 
-    2. Create a support case with appropriate category and priority
+  2. Create a support case with appropriate category and priority
 
-    3. Search the knowledge base for known solutions
+  3. Search the knowledge base for known solutions
 
-    4. Resolve the case or escalate if needed
+  4. Resolve the case or escalate if needed
 
-    Categories: billing, technical, account, product, general
+  Categories: billing, technical, account, product, general
 
-    Priority: urgent, high, normal, low
+  Priority: urgent, high, normal, low
 
-    Always be empathetic and professional in your responses.
-  context_variables:
-  - wxo_email_id
-  - wxo_user_name
-  - channel
+  Always be empathetic and professional in your responses.
+context_variables:
+- wxo_email_id
+- wxo_user_name
+- channel
 model_overrides:
-  groq__openai__gpt_oss_120b:
-    llm: groq/openai/gpt-oss-120b
-  watsonx__openai__gpt_oss_120b:
-    llm: watsonx/openai/gpt-oss-120b
-  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
-    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
+groq__openai__gpt_oss_120b:
+  llm: groq/openai/gpt-oss-120b
+watsonx__openai__gpt_oss_120b:
+  llm: watsonx/openai/gpt-oss-120b
+virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+  llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0
