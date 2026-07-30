@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "get_pay_stub-1": ["get_tax_withholdings-1"],
+    "get_tax_withholdings-1": []
+  },
+  "story": "Employee E-100 wants to see their January 2024 pay stub and current tax withholdings. The agent should retrieve the pay stub first to confirm the employee, then get the tax withholding details. The instructions say to verify identity but don't specify how — a well-optimized agent would establish a verification process.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-100", "period": "2024-01"},
+      "name": "get_pay_stub-1",
+      "type": "tool_call",
+      "tool_name": "get_pay_stub"
+    },
+    {
+      "args": {"employee_id": "E-100", "year": "2024"},
+      "name": "get_tax_withholdings-1",
+      "type": "tool_call",
+      "tool_name": "get_tax_withholdings"
+    }
+  ],
+  "starting_sentence": "I'm employee E-100. Show me my January 2024 pay stub and my tax withholdings for 2024"
+}

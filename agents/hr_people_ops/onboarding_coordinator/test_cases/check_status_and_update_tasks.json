@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:context_tracking",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "onboarding_coordinator",
+  "goals": {
+    "get_onboarding_status-1": ["update_onboarding_task-1", "update_onboarding_task-2"],
+    "update_onboarding_task-1": ["get_onboarding_status-2"],
+    "update_onboarding_task-2": ["get_onboarding_status-2"],
+    "get_onboarding_status-2": []
+  },
+  "story": "The onboarding coordinator checks the current status for E-500 (40% complete), then updates two pending tasks (Buddy Assignment and Orientation Scheduling) to completed, and finally checks the status again to confirm progress. This tests the agent's ability to track task IDs from the status response and use them in updates, plus verify the changes afterward.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-500"},
+      "name": "get_onboarding_status-1",
+      "type": "tool_call",
+      "tool_name": "get_onboarding_status"
+    },
+    {
+      "args": {"employee_id": "E-500", "task_id": "T-003", "status": "completed", "notes": "Buddy Sarah Kim assigned successfully"},
+      "name": "update_onboarding_task-1",
+      "type": "tool_call",
+      "tool_name": "update_onboarding_task"
+    },
+    {
+      "args": {"employee_id": "E-500", "task_id": "T-004", "status": "completed", "notes": "All orientation sessions scheduled for Aug 1-5"},
+      "name": "update_onboarding_task-2",
+      "type": "tool_call",
+      "tool_name": "update_onboarding_task"
+    },
+    {
+      "args": {"employee_id": "E-500"},
+      "name": "get_onboarding_status-2",
+      "type": "tool_call",
+      "tool_name": "get_onboarding_status"
+    }
+  ],
+  "starting_sentence": "Check the onboarding status for E-500. Then update the Buddy Assignment task (T-003) and Orientation Scheduling task (T-004) to completed, and show me the updated status"
+}

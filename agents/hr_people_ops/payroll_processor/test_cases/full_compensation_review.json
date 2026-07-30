@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "get_pay_stub-1": ["get_benefits_deductions-1", "get_tax_withholdings-1"],
+    "get_benefits_deductions-1": [],
+    "get_tax_withholdings-1": []
+  },
+  "story": "Employee E-102 requests a complete compensation review showing their January 2024 pay stub, benefits deductions, and tax withholdings all together. The pay stub lookup confirms the employee, then benefits and tax withholdings can be retrieved in parallel. This tests the agent's ability to provide a comprehensive view from multiple data sources.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-102", "period": "2024-01"},
+      "name": "get_pay_stub-1",
+      "type": "tool_call",
+      "tool_name": "get_pay_stub"
+    },
+    {
+      "args": {"employee_id": "E-102"},
+      "name": "get_benefits_deductions-1",
+      "type": "tool_call",
+      "tool_name": "get_benefits_deductions"
+    },
+    {
+      "args": {"employee_id": "E-102", "year": "2024"},
+      "name": "get_tax_withholdings-1",
+      "type": "tool_call",
+      "tool_name": "get_tax_withholdings"
+    }
+  ],
+  "starting_sentence": "I'm employee E-102. Show me my January 2024 pay stub, benefits deductions, and tax withholdings. I need a complete compensation review"
+}

@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "get_pay_stub-1": ["calculate_gross_pay-1", "get_tax_withholdings-1"],
+    "calculate_gross_pay-1": [],
+    "get_tax_withholdings-1": []
+  },
+  "story": "Employee E-100 wants a comprehensive payroll review: their January pay stub, a gross pay calculation for 80 regular and 5 overtime hours, and their current tax withholdings. The pay stub provides baseline data, then the calculation and withholdings can be fetched in parallel. This tests fan-out from a single initial lookup to multiple downstream queries.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-100", "period": "2024-01"},
+      "name": "get_pay_stub-1",
+      "type": "tool_call",
+      "tool_name": "get_pay_stub"
+    },
+    {
+      "args": {"employee_id": "E-100", "hours": 80.0, "overtime_hours": 5.0},
+      "name": "calculate_gross_pay-1",
+      "type": "tool_call",
+      "tool_name": "calculate_gross_pay"
+    },
+    {
+      "args": {"employee_id": "E-100", "year": "2024"},
+      "name": "get_tax_withholdings-1",
+      "type": "tool_call",
+      "tool_name": "get_tax_withholdings"
+    }
+  ],
+  "starting_sentence": "I'm E-100. Show my January 2024 pay stub, calculate my gross for 80 regular hours and 5 overtime hours, and show my 2024 tax withholdings"
+}

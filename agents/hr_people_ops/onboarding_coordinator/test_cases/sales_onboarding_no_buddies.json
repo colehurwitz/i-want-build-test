@@ -1,0 +1,52 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:error_recovery",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "onboarding_coordinator",
+  "goals": {
+    "create_onboarding_checklist-1": ["provision_accounts-1", "get_department_buddies-1"],
+    "provision_accounts-1": ["schedule_orientation-1"],
+    "get_department_buddies-1": ["assign_buddy-1"],
+    "assign_buddy-1": ["schedule_orientation-1"],
+    "schedule_orientation-1": []
+  },
+  "story": "Onboarding for a Sales Representative where the buddy pool has no eligible candidates (only one person with 4 months tenure, below the 6-month minimum). The agent should detect this from the buddy pool check and handle it gracefully, noting the escalation needed. Additionally, the Zoom Pro provisioning will fail due to license limits. This tests the agent's ability to handle two failure conditions in one workflow.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-501", "start_date": "2024-09-01", "department": "Sales", "role": "Sales Representative"},
+      "name": "create_onboarding_checklist-1",
+      "type": "tool_call",
+      "tool_name": "create_onboarding_checklist"
+    },
+    {
+      "args": {"employee_id": "E-501", "account_types": ["email", "vpn", "slack", "salesforce", "zoom_pro"]},
+      "name": "provision_accounts-1",
+      "type": "tool_call",
+      "tool_name": "provision_accounts"
+    },
+    {
+      "args": {"department": "Sales"},
+      "name": "get_department_buddies-1",
+      "type": "tool_call",
+      "tool_name": "get_department_buddies"
+    },
+    {
+      "args": {"employee_id": "E-501", "department": "Sales"},
+      "name": "assign_buddy-1",
+      "type": "tool_call",
+      "tool_name": "assign_buddy"
+    },
+    {
+      "args": {"employee_id": "E-501", "start_date": "2024-09-01", "sessions": ["Company Overview", "IT Setup", "Security Training", "Department Introduction", "Team Meet", "Sales Methodology Training"]},
+      "name": "schedule_orientation-1",
+      "type": "tool_call",
+      "tool_name": "schedule_orientation"
+    }
+  ],
+  "starting_sentence": "Set up onboarding for Sales Representative E-501, starting Sep 1 in Sales. Full setup: checklist, accounts, buddy assignment, and orientation"
+}

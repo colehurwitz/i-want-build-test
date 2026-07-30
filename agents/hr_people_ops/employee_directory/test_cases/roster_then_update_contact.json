@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "employee_directory",
+  "goals": {
+    "get_department_roster-1": ["update_employee_contact-1"],
+    "update_employee_contact-1": []
+  },
+  "story": "The user wants to see the Engineering department roster and then update the contact information for the first person listed. The agent must first retrieve the roster to identify the employees, then use the first employee's ID to perform the contact update. This tests chaining where the agent must extract a specific value from a list result.",
+  "goal_details": [
+    {
+      "args": {"department": "Engineering"},
+      "name": "get_department_roster-1",
+      "type": "tool_call",
+      "tool_name": "get_department_roster"
+    },
+    {
+      "args": {"employee_id": "E-100", "field": "phone", "value": "555-0150"},
+      "name": "update_employee_contact-1",
+      "type": "tool_call",
+      "tool_name": "update_employee_contact"
+    }
+  ],
+  "starting_sentence": "Find the Engineering department roster and update the phone for the first person listed to 555-0150"
+}

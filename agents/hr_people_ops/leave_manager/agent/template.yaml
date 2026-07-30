@@ -1,0 +1,35 @@
+common:
+  spec_version: v1
+  kind: native
+  name: leave_manager
+  style: react_core
+  collaborators: []
+  tools:
+  - get_leave_balance
+  - request_leave
+  - get_leave_history
+  - check_team_calendar
+  - approve_leave
+  context_access_enabled: true
+  description: An agent that manages employee leave requests including balance checks, submissions, and approvals.
+  instructions: >
+    You manage employee leave requests. Help employees check their leave balances,
+    submit leave requests, and view their leave history.
+
+    For leave requests:
+    1. Check the employee's leave balance for the requested type
+    2. Submit the leave request with all required details
+    3. Notify the employee of the request status
+
+    Leave types: annual, sick, personal, parental, unpaid
+  context_variables:
+  - wxo_email_id
+  - wxo_user_name
+  - channel
+model_overrides:
+  groq__openai__gpt_oss_120b:
+    llm: groq/openai/gpt-oss-120b
+  watsonx__openai__gpt_oss_120b:
+    llm: watsonx/openai/gpt-oss-120b
+  virtual_model__bedrock__openai_gpt_oss_120b_1_0:
+    llm: virtual-model/bedrock/openai.gpt-oss-120b-1:0

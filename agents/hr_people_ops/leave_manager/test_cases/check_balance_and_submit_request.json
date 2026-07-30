@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "leave_manager",
+  "goals": {
+    "get_leave_balance-1": ["request_leave-1"],
+    "request_leave-1": []
+  },
+  "story": "The employee wants to check their annual leave balance and submit a 3-day request. The agent should verify the balance is sufficient before submitting. Employee E-101 has 20 days total with 18 used, leaving only 2 days available, but is requesting 3 days. A well-optimized agent would warn about insufficient balance.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-101", "leave_type": "annual"},
+      "name": "get_leave_balance-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_balance"
+    },
+    {
+      "args": {"employee_id": "E-101", "leave_type": "annual", "start_date": "2024-11-18", "end_date": "2024-11-20", "reason": "personal time off"},
+      "name": "request_leave-1",
+      "type": "tool_call",
+      "tool_name": "request_leave"
+    }
+  ],
+  "starting_sentence": "I'm employee E-101. Check my annual leave balance and submit 3 days off from Nov 18 to Nov 20 for personal time off"
+}

@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_core",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "leave_manager",
+  "goals": {
+    "get_leave_history-1": [],
+    "get_leave_balance-1": []
+  },
+  "story": "Employee E-103 wants to see their 2024 leave history and check their annual leave balance. These are independent read-only operations. The balance shows 0 remaining annual days, which the agent should clearly communicate. This tests the agent's ability to handle a read-only query without attempting any modifications.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-103", "year": "2024"},
+      "name": "get_leave_history-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_history"
+    },
+    {
+      "args": {"employee_id": "E-103", "leave_type": "annual"},
+      "name": "get_leave_balance-1",
+      "type": "tool_call",
+      "tool_name": "get_leave_balance"
+    }
+  ],
+  "starting_sentence": "Show me the 2024 leave history for employee E-103 and check their annual leave balance"
+}

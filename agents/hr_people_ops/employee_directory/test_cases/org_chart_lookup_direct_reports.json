@@ -1,0 +1,38 @@
+{
+  "tags": [
+    "agent_style:default",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:easy"
+  ],
+  "agent": "employee_directory",
+  "goals": {
+    "get_org_chart-1": ["lookup_employee-1", "lookup_employee-2"],
+    "lookup_employee-1": [],
+    "lookup_employee-2": []
+  },
+  "story": "The user wants to see the org chart for a manager and then get detailed information on each direct report. The agent must first retrieve the org chart to discover the direct reports, then look up each one individually. This tests fan-out from a single tool call to multiple subsequent calls based on the results.",
+  "goal_details": [
+    {
+      "args": {"manager_id": "M-100"},
+      "name": "get_org_chart-1",
+      "type": "tool_call",
+      "tool_name": "get_org_chart"
+    },
+    {
+      "args": {"name_or_id": "E-100"},
+      "name": "lookup_employee-1",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    },
+    {
+      "args": {"name_or_id": "E-101"},
+      "name": "lookup_employee-2",
+      "type": "tool_call",
+      "tool_name": "lookup_employee"
+    }
+  ],
+  "starting_sentence": "Show me the org chart for M-100 and then look up each direct report"
+}

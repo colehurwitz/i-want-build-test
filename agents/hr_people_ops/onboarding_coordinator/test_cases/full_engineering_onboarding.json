@@ -1,0 +1,59 @@
+{
+  "tags": [
+    "agent_style:planner",
+    "journey_complexity:hard",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:full_lifecycle",
+    "optimization_difficulty:hard"
+  ],
+  "agent": "onboarding_coordinator",
+  "goals": {
+    "create_onboarding_checklist-1": ["provision_accounts-1", "get_department_buddies-1"],
+    "provision_accounts-1": ["schedule_orientation-1"],
+    "get_department_buddies-1": ["assign_buddy-1"],
+    "assign_buddy-1": ["schedule_orientation-1"],
+    "schedule_orientation-1": ["get_onboarding_status-1"],
+    "get_onboarding_status-1": []
+  },
+  "story": "Full onboarding flow for a new Software Engineer joining Engineering. The agent must create the checklist first, then provision Engineering-specific accounts (email, VPN, Slack, GitHub, Jira, AWS) and check the buddy pool in parallel, assign a buddy, schedule orientation sessions, and finally check the onboarding status. This tests the complete 6-step workflow with proper ordering as documented in the instructions.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-500", "start_date": "2024-08-01", "department": "Engineering", "role": "Software Engineer"},
+      "name": "create_onboarding_checklist-1",
+      "type": "tool_call",
+      "tool_name": "create_onboarding_checklist"
+    },
+    {
+      "args": {"employee_id": "E-500", "account_types": ["email", "vpn", "slack", "github", "jira", "aws_console"]},
+      "name": "provision_accounts-1",
+      "type": "tool_call",
+      "tool_name": "provision_accounts"
+    },
+    {
+      "args": {"department": "Engineering"},
+      "name": "get_department_buddies-1",
+      "type": "tool_call",
+      "tool_name": "get_department_buddies"
+    },
+    {
+      "args": {"employee_id": "E-500", "department": "Engineering"},
+      "name": "assign_buddy-1",
+      "type": "tool_call",
+      "tool_name": "assign_buddy"
+    },
+    {
+      "args": {"employee_id": "E-500", "start_date": "2024-08-01", "sessions": ["Company Overview", "IT Setup", "Security Training", "Department Introduction", "Team Meet", "Role-Specific Training"]},
+      "name": "schedule_orientation-1",
+      "type": "tool_call",
+      "tool_name": "schedule_orientation"
+    },
+    {
+      "args": {"employee_id": "E-500"},
+      "name": "get_onboarding_status-1",
+      "type": "tool_call",
+      "tool_name": "get_onboarding_status"
+    }
+  ],
+  "starting_sentence": "Onboard new Software Engineer E-500, starting Aug 1 in Engineering. Create the checklist, provision all required accounts, check the buddy pool and assign a buddy, schedule orientation, and show me the final status"
+}

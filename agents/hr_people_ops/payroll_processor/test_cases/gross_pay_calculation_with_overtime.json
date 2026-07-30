@@ -1,0 +1,31 @@
+{
+  "tags": [
+    "agent_style:react_intrinsic",
+    "journey_complexity:medium",
+    "tool_type:python_tool",
+    "category:hr_people_ops",
+    "test_type:multi_operation_chain",
+    "optimization_difficulty:medium"
+  ],
+  "agent": "payroll_processor",
+  "goals": {
+    "calculate_gross_pay-1": ["get_benefits_deductions-1"],
+    "get_benefits_deductions-1": []
+  },
+  "story": "Employee E-101 wants to calculate their gross pay for 80 regular hours and 10 overtime hours, and then see their benefits deductions to understand total compensation. The agent should calculate gross pay first, then retrieve the benefits breakdown. This tests the agent's ability to chain payroll calculations with benefits information.",
+  "goal_details": [
+    {
+      "args": {"employee_id": "E-101", "hours": 80.0, "overtime_hours": 10.0},
+      "name": "calculate_gross_pay-1",
+      "type": "tool_call",
+      "tool_name": "calculate_gross_pay"
+    },
+    {
+      "args": {"employee_id": "E-101"},
+      "name": "get_benefits_deductions-1",
+      "type": "tool_call",
+      "tool_name": "get_benefits_deductions"
+    }
+  ],
+  "starting_sentence": "Calculate gross pay for employee E-101 with 80 regular hours and 10 overtime hours, then show their benefits deductions"
+}
