@@ -1,0 +1,32 @@
+# Base evaluation configuration for agent test suite
+# Each agent's eval can override these defaults
+
+test_paths:
+  - test_cases/
+
+output_dir: eval/output
+
+metrics:
+  - JourneySuccessMetric
+  - ToolCalling
+  - RubricEvaluation
+
+tags:
+  # Filter by difficulty tier
+  # optimization_difficulty:easy
+  # optimization_difficulty:medium
+  # optimization_difficulty:hard
+
+  # Filter by category
+  # category:hr_people_ops
+  # category:it_service_mgmt
+  # category:finance_procurement
+  # category:customer_sales
+  # category:supply_chain
+  # category:compliance_risk
+
+  # Filter by agent style
+  # agent_style:default
+  # agent_style:react_core
+  # agent_style:react_intrinsic
+  # agent_style:planner
