@@ -4,6 +4,7 @@ name: procurement_agent
 style: planner
 collaborators: []
 tools:
+- lookup_employee_by_email
 - create_requisition
 - search_vendors
 - request_quote

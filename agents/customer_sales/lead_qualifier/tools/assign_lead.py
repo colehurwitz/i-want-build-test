@@ -19,17 +19,65 @@ STUB_RESPONSES = {
         "assigned_at": "2024-03-15T10:15:00Z",
         "rep_name": "Sarah Palmer",
     },
+    ("l-100", "sr-300", "east"): {
+        "assignment_id": "ASN-1011",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T10:45:00Z",
+        "rep_name": "Mike Torres",
+    },
+    ("l-200", "sr-100", "west"): {
+        "assignment_id": "ASN-1012",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T12:30:00Z",
+        "rep_name": "Sarah Palmer",
+    },
+    ("l-200", "sr-200", "west"): {
+        "assignment_id": "ASN-1013",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T12:45:00Z",
+        "rep_name": "James Rivera",
+    },
+    ("l-200", "sr-100", "east"): {
+        "assignment_id": "ASN-1014",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T13:00:00Z",
+        "rep_name": "Sarah Palmer",
+    },
+    ("l-200", "sr-300", "east"): {
+        "assignment_id": "ASN-1015",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T13:15:00Z",
+        "rep_name": "Mike Torres",
+    },
+    ("l-300", "sr-100", "west"): {
+        "assignment_id": "ASN-1016",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T12:45:00Z",
+        "rep_name": "Sarah Palmer",
+    },
     ("l-300", "sr-200", "west"): {
         "assignment_id": "ASN-1007",
         "status": "assigned",
         "assigned_at": "2024-03-15T13:00:00Z",
         "rep_name": "James Rivera",
     },
+    ("l-300", "sr-100", "east"): {
+        "assignment_id": "ASN-1017",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T13:15:00Z",
+        "rep_name": "Sarah Palmer",
+    },
     ("l-300", "sr-300", "east"): {
         "assignment_id": "ASN-1008",
         "status": "assigned",
         "assigned_at": "2024-03-15T13:30:00Z",
         "rep_name": "Mike Torres",
+    },
+    ("l-400", "sr-100", "west"): {
+        "assignment_id": "ASN-1018",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T10:45:00Z",
+        "rep_name": "Sarah Palmer",
     },
     ("l-400", "sr-100", "east"): {
         "assignment_id": "ASN-1003",
@@ -49,17 +97,29 @@ STUB_RESPONSES = {
         "assigned_at": "2024-03-15T11:45:00Z",
         "rep_name": "Mike Torres",
     },
-    ("l-500", "sr-300", "east"): {
-        "assignment_id": "ASN-1005",
-        "status": "assigned",
-        "assigned_at": "2024-03-15T12:00:00Z",
-        "rep_name": "Mike Torres",
-    },
     ("l-500", "sr-100", "west"): {
         "assignment_id": "ASN-1010",
         "status": "assigned",
         "assigned_at": "2024-03-15T12:15:00Z",
         "rep_name": "Sarah Palmer",
+    },
+    ("l-500", "sr-200", "west"): {
+        "assignment_id": "ASN-1019",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T12:00:00Z",
+        "rep_name": "James Rivera",
+    },
+    ("l-500", "sr-100", "east"): {
+        "assignment_id": "ASN-1020",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T11:45:00Z",
+        "rep_name": "Sarah Palmer",
+    },
+    ("l-500", "sr-300", "east"): {
+        "assignment_id": "ASN-1005",
+        "status": "assigned",
+        "assigned_at": "2024-03-15T12:00:00Z",
+        "rep_name": "Mike Torres",
     },
 }
 

@@ -1,46 +1,62 @@
 from ibm_watsonx_orchestrate.agent_builder.tools import tool
 
+_D100_PROPOSAL = {
+    "deal_id": "D-100",
+    "status": "updated",
+    "previous_stage": "qualification",
+    "new_stage": "proposal",
+    "close_probability": 0.50,
+    "updated_at": "2024-03-15T10:00:00Z",
+}
+_D200_WON = {
+    "deal_id": "D-200",
+    "status": "updated",
+    "previous_stage": "negotiation",
+    "new_stage": "closed_won",
+    "close_probability": 1.00,
+    "updated_at": "2024-03-15T11:00:00Z",
+}
+_D300_QUAL = {
+    "deal_id": "D-300",
+    "status": "updated",
+    "previous_stage": "prospecting",
+    "new_stage": "qualification",
+    "close_probability": 0.25,
+    "updated_at": "2024-03-15T12:00:00Z",
+}
+_D400_NEGOT = {
+    "deal_id": "D-400",
+    "status": "updated",
+    "previous_stage": "proposal",
+    "new_stage": "negotiation",
+    "close_probability": 0.75,
+    "updated_at": "2024-03-15T13:00:00Z",
+}
+_D200_LOST = {
+    "deal_id": "D-200",
+    "status": "updated",
+    "previous_stage": "negotiation",
+    "new_stage": "closed_lost",
+    "close_probability": 0.00,
+    "updated_at": "2024-03-15T14:00:00Z",
+}
+
 STUB_RESPONSES = {
-    ("d-100", "proposal", 0.5): {
-        "deal_id": "D-100",
-        "status": "updated",
-        "previous_stage": "qualification",
-        "new_stage": "proposal",
-        "close_probability": 0.50,
-        "updated_at": "2024-03-15T10:00:00Z",
-    },
-    ("d-200", "closed_won", 1.0): {
-        "deal_id": "D-200",
-        "status": "updated",
-        "previous_stage": "negotiation",
-        "new_stage": "closed_won",
-        "close_probability": 1.00,
-        "updated_at": "2024-03-15T11:00:00Z",
-    },
-    ("d-300", "qualification", 0.25): {
-        "deal_id": "D-300",
-        "status": "updated",
-        "previous_stage": "prospecting",
-        "new_stage": "qualification",
-        "close_probability": 0.25,
-        "updated_at": "2024-03-15T12:00:00Z",
-    },
-    ("d-400", "negotiation", 0.75): {
-        "deal_id": "D-400",
-        "status": "updated",
-        "previous_stage": "proposal",
-        "new_stage": "negotiation",
-        "close_probability": 0.75,
-        "updated_at": "2024-03-15T13:00:00Z",
-    },
-    ("d-200", "closed_lost", 0.0): {
-        "deal_id": "D-200",
-        "status": "updated",
-        "previous_stage": "negotiation",
-        "new_stage": "closed_lost",
-        "close_probability": 0.00,
-        "updated_at": "2024-03-15T14:00:00Z",
-    },
+    ("d-100", "proposal", 0.5): _D100_PROPOSAL,
+    ("d-100", "proposal", 0.4): _D100_PROPOSAL,
+    ("d-100", "proposal", 0.6): _D100_PROPOSAL,
+    ("d-200", "closed_won", 1.0): _D200_WON,
+    ("d-200", "closed_won", 0.95): _D200_WON,
+    ("d-200", "closed_won", 0.9): _D200_WON,
+    ("d-300", "qualification", 0.25): _D300_QUAL,
+    ("d-300", "qualification", 0.2): _D300_QUAL,
+    ("d-300", "qualification", 0.3): _D300_QUAL,
+    ("d-300", "qualification", 0.35): _D300_QUAL,
+    ("d-400", "negotiation", 0.75): _D400_NEGOT,
+    ("d-400", "negotiation", 0.7): _D400_NEGOT,
+    ("d-400", "negotiation", 0.8): _D400_NEGOT,
+    ("d-400", "negotiation", 0.65): _D400_NEGOT,
+    ("d-200", "closed_lost", 0.0): _D200_LOST,
 }
 
 
