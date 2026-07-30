@@ -39,7 +39,10 @@
       },
       "name": "create_requisition-1",
       "type": "tool_call",
-      "tool_name": "create_requisition"
+      "tool_name": "create_requisition",
+      "arg_matching": {
+        "estimated_cost": "ignore"
+      }
     },
     {
       "args": {
@@ -92,7 +95,10 @@
       },
       "name": "issue_purchase_order-1",
       "type": "tool_call",
-      "tool_name": "issue_purchase_order"
+      "tool_name": "issue_purchase_order",
+      "arg_matching": {
+        "approver_id": "ignore"
+      }
     }
   ],
   "starting_sentence": "Purchase 20 headsets. I'm pm@company.com. Find vendors rated 4.0+, get quotes from top 2, compare, and order from the winner"

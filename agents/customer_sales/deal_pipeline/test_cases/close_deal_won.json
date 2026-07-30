@@ -38,7 +38,8 @@
       "type": "tool_call",
       "tool_name": "update_deal_stage",
       "arg_matching": {
-        "notes": "fuzzy"
+        "notes": "fuzzy",
+        "close_probability": "ignore"
       }
     },
     {
@@ -52,7 +53,8 @@
       "type": "tool_call",
       "tool_name": "add_deal_activity",
       "arg_matching": {
-        "description": "fuzzy"
+        "description": "fuzzy",
+        "next_action_date": "ignore"
       }
     }
   ],

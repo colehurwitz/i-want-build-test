@@ -28,7 +28,10 @@
       },
       "name": "get_carrier_rates-1",
       "type": "tool_call",
-      "tool_name": "get_carrier_rates"
+      "tool_name": "get_carrier_rates",
+      "arg_matching": {
+        "weight_kg": "ignore"
+      }
     },
     {
       "args": {

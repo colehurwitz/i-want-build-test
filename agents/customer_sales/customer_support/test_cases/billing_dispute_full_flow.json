@@ -54,7 +54,10 @@
       },
       "name": "search_knowledge_base-1",
       "type": "tool_call",
-      "tool_name": "search_knowledge_base"
+      "tool_name": "search_knowledge_base",
+      "arg_matching": {
+        "query": "fuzzy"
+      }
     },
     {
       "args": {

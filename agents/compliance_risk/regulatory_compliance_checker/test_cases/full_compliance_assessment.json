@@ -60,7 +60,10 @@
       },
       "name": "get_remediation_steps-1",
       "type": "tool_call",
-      "tool_name": "get_remediation_steps"
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
     },
     {
       "args": {

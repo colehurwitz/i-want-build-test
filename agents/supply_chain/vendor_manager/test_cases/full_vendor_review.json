@@ -41,7 +41,10 @@
       },
       "name": "get_vendor_performance-1",
       "type": "tool_call",
-      "tool_name": "get_vendor_performance"
+      "tool_name": "get_vendor_performance",
+      "arg_matching": {
+        "period": "fuzzy"
+      }
     },
     {
       "args": {

@@ -71,7 +71,8 @@
       "type": "tool_call",
       "tool_name": "log_interaction",
       "arg_matching": {
-        "summary": "fuzzy"
+        "summary": "fuzzy",
+        "follow_up_date": "ignore"
       }
     }
   ],

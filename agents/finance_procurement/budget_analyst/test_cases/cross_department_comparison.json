@@ -45,7 +45,10 @@
       },
       "name": "forecast_spending-1",
       "type": "tool_call",
-      "tool_name": "forecast_spending"
+      "tool_name": "forecast_spending",
+      "arg_matching": {
+        "months_ahead": "ignore"
+      }
     },
     {
       "args": {
@@ -54,7 +57,10 @@
       },
       "name": "forecast_spending-2",
       "type": "tool_call",
-      "tool_name": "forecast_spending"
+      "tool_name": "forecast_spending",
+      "arg_matching": {
+        "months_ahead": "ignore"
+      }
     },
     {
       "args": {

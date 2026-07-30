@@ -33,7 +33,11 @@
       },
       "name": "get_audit_logs-1",
       "type": "tool_call",
-      "tool_name": "get_audit_logs"
+      "tool_name": "get_audit_logs",
+      "arg_matching": {
+        "start_date": "ignore",
+        "end_date": "ignore"
+      }
     },
     {
       "args": {
