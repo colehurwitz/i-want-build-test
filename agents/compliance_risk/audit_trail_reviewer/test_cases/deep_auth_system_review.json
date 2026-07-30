@@ -9,47 +9,85 @@
   ],
   "agent": "audit_trail_reviewer",
   "goals": {
-    "get_audit_logs-1": ["search_anomalies-1", "search_anomalies-2"],
-    "search_anomalies-1": ["get_user_activity-1"],
-    "search_anomalies-2": ["get_user_activity-1"],
-    "get_user_activity-1": ["flag_finding-1"],
-    "flag_finding-1": ["generate_audit_report-1"],
+    "get_audit_logs-1": [
+      "search_anomalies-1",
+      "search_anomalies-2"
+    ],
+    "search_anomalies-1": [
+      "get_user_activity-1"
+    ],
+    "search_anomalies-2": [
+      "get_user_activity-1"
+    ],
+    "get_user_activity-1": [
+      "flag_finding-1"
+    ],
+    "flag_finding-1": [
+      "generate_audit_report-1"
+    ],
     "generate_audit_report-1": []
   },
   "story": "Deep review of auth_system: pull logs for 48 hours, search for both unauthorized_access and unusual_hours anomalies, investigate affected users, flag all findings, and generate a report. Tests multi-anomaly investigation with convergent user investigation.",
   "goal_details": [
     {
-      "args": {"system": "auth_system", "start_date": "2024-07-22", "end_date": "2024-07-29"},
+      "args": {
+        "system": "auth_system",
+        "start_date": "2024-07-22",
+        "end_date": "2024-07-29"
+      },
       "name": "get_audit_logs-1",
       "type": "tool_call",
       "tool_name": "get_audit_logs"
     },
     {
-      "args": {"system": "auth_system", "anomaly_type": "unauthorized_access"},
+      "args": {
+        "system": "auth_system",
+        "anomaly_type": "unauthorized_access"
+      },
       "name": "search_anomalies-1",
       "type": "tool_call",
       "tool_name": "search_anomalies"
     },
     {
-      "args": {"system": "auth_system", "anomaly_type": "unusual_hours"},
+      "args": {
+        "system": "auth_system",
+        "anomaly_type": "unusual_hours"
+      },
       "name": "search_anomalies-2",
       "type": "tool_call",
       "tool_name": "search_anomalies"
     },
     {
-      "args": {"user_id": "U-500", "days": 7},
+      "args": {
+        "user_id": "U-500",
+        "days": 7
+      },
       "name": "get_user_activity-1",
       "type": "tool_call",
       "tool_name": "get_user_activity"
     },
     {
-      "args": {"system": "auth_system", "finding_type": "unauthorized_access", "severity": "critical", "description": "TOR-based login with self-approved privilege escalation and after-hours bulk export by separate user", "evidence": "U-500: TOR login at 03:14, admin escalation at 03:15. U-302: bulk export of 5000 records at 02:30."},
+      "args": {
+        "system": "auth_system",
+        "finding_type": "unauthorized_access",
+        "severity": "critical",
+        "description": "TOR-based login with self-approved privilege escalation and after-hours bulk export by separate user",
+        "evidence": "U-500: TOR login at 03:14, admin escalation at 03:15. U-302: bulk export of 5000 records at 02:30."
+      },
       "name": "flag_finding-1",
       "type": "tool_call",
-      "tool_name": "flag_finding"
+      "tool_name": "flag_finding",
+      "arg_matching": {
+        "description": "fuzzy",
+        "evidence": "fuzzy"
+      }
     },
     {
-      "args": {"system": "auth_system", "period": "weekly", "include_findings": true},
+      "args": {
+        "system": "auth_system",
+        "period": "weekly",
+        "include_findings": true
+      },
       "name": "generate_audit_report-1",
       "type": "tool_call",
       "tool_name": "generate_audit_report"

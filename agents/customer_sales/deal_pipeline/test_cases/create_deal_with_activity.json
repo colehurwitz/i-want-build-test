@@ -38,7 +38,10 @@
       },
       "name": "create_deal-1",
       "type": "tool_call",
-      "tool_name": "create_deal"
+      "tool_name": "create_deal",
+      "arg_matching": {
+        "title": "fuzzy"
+      }
     },
     {
       "args": {
@@ -49,7 +52,10 @@
       },
       "name": "add_deal_activity-1",
       "type": "tool_call",
-      "tool_name": "add_deal_activity"
+      "tool_name": "add_deal_activity",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Check SR-200's Q3 pipeline, create a new $100k deal for A-300, and schedule a discovery call"

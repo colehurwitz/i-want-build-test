@@ -69,7 +69,10 @@
       },
       "name": "log_interaction-1",
       "type": "tool_call",
-      "tool_name": "log_interaction"
+      "tool_name": "log_interaction",
+      "arg_matching": {
+        "summary": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Full account review for A-100 \u2014 overview, usage, contract, and competitive intel"

@@ -41,7 +41,11 @@
       },
       "name": "create_support_case-1",
       "type": "tool_call",
-      "tool_name": "create_support_case"
+      "tool_name": "create_support_case",
+      "arg_matching": {
+        "subject": "fuzzy",
+        "description": "fuzzy"
+      }
     },
     {
       "args": {
@@ -61,7 +65,11 @@
       },
       "name": "update_case-1",
       "type": "tool_call",
-      "tool_name": "update_case"
+      "tool_name": "update_case",
+      "arg_matching": {
+        "resolution": "fuzzy",
+        "internal_notes": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Customer C-100 can't access their account. Check history, create a case, and find a solution"

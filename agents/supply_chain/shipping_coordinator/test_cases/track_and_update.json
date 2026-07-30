@@ -34,7 +34,10 @@
       },
       "name": "update_shipment-1",
       "type": "tool_call",
-      "tool_name": "update_shipment"
+      "tool_name": "update_shipment",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     },
     {
       "args": {

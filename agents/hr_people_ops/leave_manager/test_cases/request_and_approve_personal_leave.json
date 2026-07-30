@@ -55,7 +55,10 @@
       },
       "name": "request_leave-1",
       "type": "tool_call",
-      "tool_name": "request_leave"
+      "tool_name": "request_leave",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
     },
     {
       "args": {
@@ -66,7 +69,10 @@
       },
       "name": "approve_leave-1",
       "type": "tool_call",
-      "tool_name": "approve_leave"
+      "tool_name": "approve_leave",
+      "arg_matching": {
+        "comments": "fuzzy"
+      }
     },
     {
       "args": {
@@ -87,5 +93,5 @@
       "tool_name": "check_team_calendar"
     }
   ],
-  "starting_sentence": "Employee E-101 wants personal leave Nov 22-25. Check balance, team calendar, submit, approve as M-100, then show history and updated calendar"
+  "starting_sentence": "Employee E-101 wants personal leave November 22-25, 2024. Check balance, team calendar, submit, approve as M-100, then show history and updated calendar"
 }

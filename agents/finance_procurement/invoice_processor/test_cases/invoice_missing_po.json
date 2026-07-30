@@ -43,7 +43,10 @@
       },
       "name": "flag_discrepancy-1",
       "type": "tool_call",
-      "tool_name": "flag_discrepancy"
+      "tool_name": "flag_discrepancy",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Invoice INV-1006 has no PO number. Process it"

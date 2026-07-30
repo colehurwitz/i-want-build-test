@@ -9,44 +9,89 @@
   ],
   "agent": "onboarding_coordinator",
   "goals": {
-    "create_onboarding_checklist-1": ["provision_accounts-1"],
-    "provision_accounts-1": ["assign_buddy-1"],
-    "assign_buddy-1": ["schedule_orientation-1"],
-    "schedule_orientation-1": ["get_onboarding_status-1"],
+    "create_onboarding_checklist-1": [
+      "provision_accounts-1"
+    ],
+    "provision_accounts-1": [
+      "assign_buddy-1"
+    ],
+    "assign_buddy-1": [
+      "schedule_orientation-1"
+    ],
+    "schedule_orientation-1": [
+      "get_onboarding_status-1"
+    ],
     "get_onboarding_status-1": []
   },
   "story": "Onboarding for an Engineering Manager with a start date of Aug 3 (a Saturday). The agent should create the checklist, provision accounts, assign a buddy, and schedule orientation. The orientation scheduling should handle the weekend start date by shifting sessions to Monday Aug 5. The instructions mention scheduling during business hours but don't explicitly address weekend start dates. This tests whether the agent handles edge cases in date logic.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-502", "start_date": "2024-08-03", "department": "Engineering", "role": "Engineering Manager"},
+      "args": {
+        "employee_id": "E-502",
+        "start_date": "2024-08-03",
+        "department": "Engineering",
+        "role": "Engineering Manager"
+      },
       "name": "create_onboarding_checklist-1",
       "type": "tool_call",
       "tool_name": "create_onboarding_checklist"
     },
     {
-      "args": {"employee_id": "E-502", "account_types": ["email", "vpn", "slack", "github", "jira", "aws_console"]},
+      "args": {
+        "employee_id": "E-502",
+        "account_types": [
+          "email",
+          "vpn",
+          "slack",
+          "github",
+          "jira",
+          "aws_console"
+        ]
+      },
       "name": "provision_accounts-1",
       "type": "tool_call",
-      "tool_name": "provision_accounts"
+      "tool_name": "provision_accounts",
+      "arg_matching": {
+        "account_types": "fuzzy"
+      }
     },
     {
-      "args": {"employee_id": "E-502", "department": "Engineering"},
+      "args": {
+        "employee_id": "E-502",
+        "department": "Engineering"
+      },
       "name": "assign_buddy-1",
       "type": "tool_call",
       "tool_name": "assign_buddy"
     },
     {
-      "args": {"employee_id": "E-502", "start_date": "2024-08-03", "sessions": ["Company Overview", "IT Setup", "Security Training", "Department Introduction", "Team Meet", "Leadership Training"]},
+      "args": {
+        "employee_id": "E-502",
+        "start_date": "2024-08-03",
+        "sessions": [
+          "Company Overview",
+          "IT Setup",
+          "Security Training",
+          "Department Introduction",
+          "Team Meet",
+          "Leadership Training"
+        ]
+      },
       "name": "schedule_orientation-1",
       "type": "tool_call",
-      "tool_name": "schedule_orientation"
+      "tool_name": "schedule_orientation",
+      "arg_matching": {
+        "sessions": "fuzzy"
+      }
     },
     {
-      "args": {"employee_id": "E-502"},
+      "args": {
+        "employee_id": "E-502"
+      },
       "name": "get_onboarding_status-1",
       "type": "tool_call",
       "tool_name": "get_onboarding_status"
     }
   ],
-  "starting_sentence": "Onboard Engineering Manager E-502 starting Aug 3 in Engineering. Create checklist, provision accounts, assign buddy, schedule orientation, and show final status"
+  "starting_sentence": "Onboard Engineering Manager E-502 starting August 3, 2024 in Engineering. Create checklist, provision accounts, assign buddy, schedule orientation, and show final status"
 }

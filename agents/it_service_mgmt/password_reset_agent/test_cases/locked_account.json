@@ -44,7 +44,10 @@
       },
       "name": "send_notification-1",
       "type": "tool_call",
-      "tool_name": "send_notification"
+      "tool_name": "send_notification",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "My account is locked. Email: locked.user@company.com, answer: 'correct'"

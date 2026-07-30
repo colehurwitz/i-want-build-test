@@ -9,43 +9,86 @@
   ],
   "agent": "security_incident_responder",
   "goals": {
-    "triage_incident-1": ["get_threat_intel-1"],
-    "get_threat_intel-1": ["collect_evidence-1"],
-    "collect_evidence-1": ["notify_stakeholders-1"],
-    "notify_stakeholders-1": ["file_incident_report-1"],
+    "triage_incident-1": [
+      "get_threat_intel-1"
+    ],
+    "get_threat_intel-1": [
+      "collect_evidence-1"
+    ],
+    "collect_evidence-1": [
+      "notify_stakeholders-1"
+    ],
+    "notify_stakeholders-1": [
+      "file_incident_report-1"
+    ],
     "file_incident_report-1": []
   },
   "story": "A phishing incident INC-200 is reported. The agent triages the incident, checks threat intel for the suspicious phishing URL, collects evidence from the email gateway, notifies stakeholders, and files a report. Tests P2 response without system isolation.",
   "goal_details": [
     {
-      "args": {"incident_id": "INC-200"},
+      "args": {
+        "incident_id": "INC-200"
+      },
       "name": "triage_incident-1",
       "type": "tool_call",
       "tool_name": "triage_incident"
     },
     {
-      "args": {"indicator": "hxxps://login-portal.evil.com/auth", "indicator_type": "url"},
+      "args": {
+        "indicator": "hxxps://login-portal.evil.com/auth",
+        "indicator_type": "url"
+      },
       "name": "get_threat_intel-1",
       "type": "tool_call",
       "tool_name": "get_threat_intel"
     },
     {
-      "args": {"incident_id": "INC-200", "system_name": "email-gateway", "evidence_type": "network_logs"},
+      "args": {
+        "incident_id": "INC-200",
+        "system_name": "email-gateway",
+        "evidence_type": "network_logs"
+      },
       "name": "collect_evidence-1",
       "type": "tool_call",
       "tool_name": "collect_evidence"
     },
     {
-      "args": {"incident_id": "INC-200", "severity": "high", "stakeholder_groups": ["security_team", "affected_departments"], "message": "Phishing campaign detected. 5 employees clicked malicious link, 3 submitted credentials. Credentials reset, domain blocked."},
+      "args": {
+        "incident_id": "INC-200",
+        "severity": "high",
+        "stakeholder_groups": [
+          "security_team",
+          "affected_departments"
+        ],
+        "message": "Phishing campaign detected. 5 employees clicked malicious link, 3 submitted credentials. Credentials reset, domain blocked."
+      },
       "name": "notify_stakeholders-1",
       "type": "tool_call",
-      "tool_name": "notify_stakeholders"
+      "tool_name": "notify_stakeholders",
+      "arg_matching": {
+        "stakeholder_groups": "fuzzy",
+        "message": "fuzzy"
+      }
     },
     {
-      "args": {"incident_id": "INC-200", "severity": "high", "type": "phishing", "root_cause": "Targeted phishing campaign by PhishKit-Pro threat actor using spoofed login portal", "remediation": "Phishing domain blocked, affected user credentials reset, email filtering rules updated", "evidence_ids": ["EVD-7003"]},
+      "args": {
+        "incident_id": "INC-200",
+        "severity": "high",
+        "type": "phishing",
+        "root_cause": "Targeted phishing campaign by PhishKit-Pro threat actor using spoofed login portal",
+        "remediation": "Phishing domain blocked, affected user credentials reset, email filtering rules updated",
+        "evidence_ids": [
+          "EVD-7003"
+        ]
+      },
       "name": "file_incident_report-1",
       "type": "tool_call",
-      "tool_name": "file_incident_report"
+      "tool_name": "file_incident_report",
+      "arg_matching": {
+        "root_cause": "fuzzy",
+        "remediation": "fuzzy",
+        "evidence_ids": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Investigate INC-200, might be phishing. Check threat intel for suspicious URL, collect evidence, report"

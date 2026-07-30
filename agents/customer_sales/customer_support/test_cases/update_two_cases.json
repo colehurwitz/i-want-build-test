@@ -9,36 +9,64 @@
   ],
   "agent": "customer_support",
   "goals": {
-    "get_case_details-1": ["update_case-1"],
-    "update_case-1": ["get_case_details-2"],
-    "get_case_details-2": ["update_case-2"],
+    "get_case_details-1": [
+      "update_case-1"
+    ],
+    "update_case-1": [
+      "get_case_details-2"
+    ],
+    "get_case_details-2": [
+      "update_case-2"
+    ],
     "update_case-2": []
   },
   "story": "The user needs to review and resolve two cases. First check CS-300 and update it with a resolution, then check CS-400 and resolve it as well. This tests the agent's ability to handle sequential multi-entity case management without mixing up case details.",
   "goal_details": [
     {
-      "args": {"case_id": "CS-300"},
+      "args": {
+        "case_id": "CS-300"
+      },
       "name": "get_case_details-1",
       "type": "tool_call",
       "tool_name": "get_case_details"
     },
     {
-      "args": {"case_id": "CS-300", "status": "resolved", "resolution": "Account access restored after password reset", "internal_notes": "Customer confirmed access is working"},
+      "args": {
+        "case_id": "CS-300",
+        "status": "resolved",
+        "resolution": "Account access restored after password reset",
+        "internal_notes": "Customer confirmed access is working"
+      },
       "name": "update_case-1",
       "type": "tool_call",
-      "tool_name": "update_case"
+      "tool_name": "update_case",
+      "arg_matching": {
+        "resolution": "fuzzy",
+        "internal_notes": "fuzzy"
+      }
     },
     {
-      "args": {"case_id": "CS-400"},
+      "args": {
+        "case_id": "CS-400"
+      },
       "name": "get_case_details-2",
       "type": "tool_call",
       "tool_name": "get_case_details"
     },
     {
-      "args": {"case_id": "CS-400", "status": "resolved", "resolution": "Subscription downgrade processed as requested", "internal_notes": "Customer moved from Pro to Free tier"},
+      "args": {
+        "case_id": "CS-400",
+        "status": "resolved",
+        "resolution": "Subscription downgrade processed as requested",
+        "internal_notes": "Customer moved from Pro to Free tier"
+      },
       "name": "update_case-2",
       "type": "tool_call",
-      "tool_name": "update_case"
+      "tool_name": "update_case",
+      "arg_matching": {
+        "resolution": "fuzzy",
+        "internal_notes": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Check cases CS-300 and CS-400, update them both with resolutions"

@@ -41,7 +41,10 @@
       },
       "name": "update_deal_stage-1",
       "type": "tool_call",
-      "tool_name": "update_deal_stage"
+      "tool_name": "update_deal_stage",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     },
     {
       "args": {
@@ -52,7 +55,10 @@
       },
       "name": "add_deal_activity-1",
       "type": "tool_call",
-      "tool_name": "add_deal_activity"
+      "tool_name": "add_deal_activity",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     },
     {
       "args": {
@@ -71,7 +77,10 @@
       },
       "name": "update_deal_stage-2",
       "type": "tool_call",
-      "tool_name": "update_deal_stage"
+      "tool_name": "update_deal_stage",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     },
     {
       "args": {
@@ -82,7 +91,10 @@
       },
       "name": "add_deal_activity-2",
       "type": "tool_call",
-      "tool_name": "add_deal_activity"
+      "tool_name": "add_deal_activity",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Review deals D-300 and D-400, update both stages based on latest activity"

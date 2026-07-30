@@ -9,30 +9,51 @@
   ],
   "agent": "security_incident_responder",
   "goals": {
-    "triage_incident-1": ["get_threat_intel-1"],
-    "get_threat_intel-1": ["file_incident_report-1"],
+    "triage_incident-1": [
+      "get_threat_intel-1"
+    ],
+    "get_threat_intel-1": [
+      "file_incident_report-1"
+    ],
     "file_incident_report-1": []
   },
-  "story": "Low-priority incident INC-400 — a policy violation. The agent triages the incident, checks threat intel for the indicator (concurrent VPN sessions), and files a basic report. No isolation or evidence collection needed for P4 incidents.",
+  "story": "Low-priority incident INC-400 \u2014 a policy violation. The agent triages the incident, checks threat intel for the indicator (concurrent VPN sessions), and files a basic report. No isolation or evidence collection needed for P4 incidents.",
   "goal_details": [
     {
-      "args": {"incident_id": "INC-400"},
+      "args": {
+        "incident_id": "INC-400"
+      },
       "name": "triage_incident-1",
       "type": "tool_call",
       "tool_name": "triage_incident"
     },
     {
-      "args": {"indicator": "103.45.67.89", "indicator_type": "ip"},
+      "args": {
+        "indicator": "103.45.67.89",
+        "indicator_type": "ip"
+      },
       "name": "get_threat_intel-1",
       "type": "tool_call",
       "tool_name": "get_threat_intel"
     },
     {
-      "args": {"incident_id": "INC-400", "severity": "low", "type": "policy_violation", "root_cause": "Employee sharing VPN credentials with contractor", "remediation": "Policy violation documented, HR notified for follow-up", "evidence_ids": []},
+      "args": {
+        "incident_id": "INC-400",
+        "severity": "low",
+        "type": "policy_violation",
+        "root_cause": "Employee sharing VPN credentials with contractor",
+        "remediation": "Policy violation documented, HR notified for follow-up",
+        "evidence_ids": []
+      },
       "name": "file_incident_report-1",
       "type": "tool_call",
-      "tool_name": "file_incident_report"
+      "tool_name": "file_incident_report",
+      "arg_matching": {
+        "root_cause": "fuzzy",
+        "remediation": "fuzzy",
+        "evidence_ids": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Low-priority INC-400 — triage, check threat intel, file a basic report"
+  "starting_sentence": "Low-priority INC-400 \u2014 triage, check threat intel, file a basic report"
 }

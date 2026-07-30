@@ -9,72 +9,161 @@
   ],
   "agent": "onboarding_coordinator",
   "goals": {
-    "create_onboarding_checklist-1": ["provision_accounts-1", "get_department_buddies-1"],
-    "create_onboarding_checklist-2": ["provision_accounts-2", "get_department_buddies-1"],
-    "provision_accounts-1": ["assign_buddy-1"],
-    "provision_accounts-2": ["assign_buddy-2"],
-    "get_department_buddies-1": ["assign_buddy-1", "assign_buddy-2"],
-    "assign_buddy-1": ["schedule_orientation-1"],
-    "assign_buddy-2": ["schedule_orientation-2"],
+    "create_onboarding_checklist-1": [
+      "provision_accounts-1",
+      "get_department_buddies-1"
+    ],
+    "create_onboarding_checklist-2": [
+      "provision_accounts-2",
+      "get_department_buddies-1"
+    ],
+    "provision_accounts-1": [
+      "assign_buddy-1"
+    ],
+    "provision_accounts-2": [
+      "assign_buddy-2"
+    ],
+    "get_department_buddies-1": [
+      "assign_buddy-1",
+      "assign_buddy-2"
+    ],
+    "assign_buddy-1": [
+      "schedule_orientation-1"
+    ],
+    "assign_buddy-2": [
+      "schedule_orientation-2"
+    ],
     "schedule_orientation-1": [],
     "schedule_orientation-2": []
   },
   "story": "Two new Software Engineers (E-503 and E-504) are both joining Engineering on Oct 1. The agent must onboard both, but the Engineering buddy pool has limited capacity: Sarah Kim (0/2), James Park (1/2), and Chen Wei (2/2 - at max). After assigning E-503 a buddy, E-504 may find all eligible buddies at capacity. This tests multi-entity tracking and buddy capacity management across simultaneous onboardings.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-503", "start_date": "2024-10-01", "department": "Engineering", "role": "Software Engineer"},
+      "args": {
+        "employee_id": "E-503",
+        "start_date": "2024-10-01",
+        "department": "Engineering",
+        "role": "Software Engineer"
+      },
       "name": "create_onboarding_checklist-1",
       "type": "tool_call",
       "tool_name": "create_onboarding_checklist"
     },
     {
-      "args": {"employee_id": "E-504", "start_date": "2024-10-01", "department": "Engineering", "role": "Software Engineer"},
+      "args": {
+        "employee_id": "E-504",
+        "start_date": "2024-10-01",
+        "department": "Engineering",
+        "role": "Software Engineer"
+      },
       "name": "create_onboarding_checklist-2",
       "type": "tool_call",
       "tool_name": "create_onboarding_checklist"
     },
     {
-      "args": {"employee_id": "E-503", "account_types": ["email", "vpn", "slack", "github", "jira", "aws_console"]},
+      "args": {
+        "employee_id": "E-503",
+        "account_types": [
+          "email",
+          "vpn",
+          "slack",
+          "github",
+          "jira",
+          "aws_console"
+        ]
+      },
       "name": "provision_accounts-1",
       "type": "tool_call",
-      "tool_name": "provision_accounts"
+      "tool_name": "provision_accounts",
+      "arg_matching": {
+        "account_types": "fuzzy"
+      }
     },
     {
-      "args": {"employee_id": "E-504", "account_types": ["email", "vpn", "slack", "github", "jira", "aws_console"]},
+      "args": {
+        "employee_id": "E-504",
+        "account_types": [
+          "email",
+          "vpn",
+          "slack",
+          "github",
+          "jira",
+          "aws_console"
+        ]
+      },
       "name": "provision_accounts-2",
       "type": "tool_call",
-      "tool_name": "provision_accounts"
+      "tool_name": "provision_accounts",
+      "arg_matching": {
+        "account_types": "fuzzy"
+      }
     },
     {
-      "args": {"department": "Engineering"},
+      "args": {
+        "department": "Engineering"
+      },
       "name": "get_department_buddies-1",
       "type": "tool_call",
       "tool_name": "get_department_buddies"
     },
     {
-      "args": {"employee_id": "E-503", "department": "Engineering"},
+      "args": {
+        "employee_id": "E-503",
+        "department": "Engineering"
+      },
       "name": "assign_buddy-1",
       "type": "tool_call",
       "tool_name": "assign_buddy"
     },
     {
-      "args": {"employee_id": "E-504", "department": "Engineering"},
+      "args": {
+        "employee_id": "E-504",
+        "department": "Engineering"
+      },
       "name": "assign_buddy-2",
       "type": "tool_call",
       "tool_name": "assign_buddy"
     },
     {
-      "args": {"employee_id": "E-503", "start_date": "2024-10-01", "sessions": ["Company Overview", "IT Setup", "Security Training", "Department Introduction", "Team Meet", "Role-Specific Training"]},
+      "args": {
+        "employee_id": "E-503",
+        "start_date": "2024-10-01",
+        "sessions": [
+          "Company Overview",
+          "IT Setup",
+          "Security Training",
+          "Department Introduction",
+          "Team Meet",
+          "Role-Specific Training"
+        ]
+      },
       "name": "schedule_orientation-1",
       "type": "tool_call",
-      "tool_name": "schedule_orientation"
+      "tool_name": "schedule_orientation",
+      "arg_matching": {
+        "sessions": "fuzzy"
+      }
     },
     {
-      "args": {"employee_id": "E-504", "start_date": "2024-10-01", "sessions": ["Company Overview", "IT Setup", "Security Training", "Department Introduction", "Team Meet", "Role-Specific Training"]},
+      "args": {
+        "employee_id": "E-504",
+        "start_date": "2024-10-01",
+        "sessions": [
+          "Company Overview",
+          "IT Setup",
+          "Security Training",
+          "Department Introduction",
+          "Team Meet",
+          "Role-Specific Training"
+        ]
+      },
       "name": "schedule_orientation-2",
       "type": "tool_call",
-      "tool_name": "schedule_orientation"
+      "tool_name": "schedule_orientation",
+      "arg_matching": {
+        "sessions": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Onboard two new Software Engineers starting Oct 1 in Engineering: E-503 and E-504. Create checklists for both, provision accounts, check the buddy pool, assign buddies, and schedule orientations for each"
+  "starting_sentence": "Onboard two new Software Engineers starting October 1, 2024 in Engineering: E-503 and E-504. Create checklists for both, provision accounts, check the buddy pool, assign buddies, and schedule orientations for each"
 }

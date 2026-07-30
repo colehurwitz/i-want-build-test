@@ -9,26 +9,44 @@
   ],
   "agent": "expense_reporter",
   "goals": {
-    "get_employee_id-1": ["create_expense_report-1"],
-    "create_expense_report-1": ["submit_for_approval-1"],
+    "get_employee_id-1": [
+      "create_expense_report-1"
+    ],
+    "create_expense_report-1": [
+      "submit_for_approval-1"
+    ],
     "submit_for_approval-1": []
   },
-  "story": "The user wants to expense a small $25 lunch. This is a simple flow — look up the employee, create the report, and submit. No receipt needed for this amount, but the agent has no instructions about receipt thresholds so it cannot know without checking the policy.",
+  "story": "The user wants to expense a small $25 lunch. This is a simple flow \u2014 look up the employee, create the report, and submit. No receipt needed for this amount, but the agent has no instructions about receipt thresholds so it cannot know without checking the policy.",
   "goal_details": [
     {
-      "args": {"email": "alice@company.com"},
+      "args": {
+        "email": "alice@company.com"
+      },
       "name": "get_employee_id-1",
       "type": "tool_call",
       "tool_name": "get_employee_id"
     },
     {
-      "args": {"employee_id": "EMP-101", "title": "Team lunch", "amount": 25.0, "category": "meals", "receipt_attached": false},
+      "args": {
+        "employee_id": "EMP-101",
+        "title": "Team lunch",
+        "amount": 25.0,
+        "category": "meals",
+        "receipt_attached": false
+      },
       "name": "create_expense_report-1",
       "type": "tool_call",
-      "tool_name": "create_expense_report"
+      "tool_name": "create_expense_report",
+      "arg_matching": {
+        "title": "fuzzy"
+      }
     },
     {
-      "args": {"report_id": "EXP-1002", "approver_id": "EMP-501"},
+      "args": {
+        "report_id": "EXP-1002",
+        "approver_id": "EMP-501"
+      },
       "name": "submit_for_approval-1",
       "type": "tool_call",
       "tool_name": "submit_for_approval"

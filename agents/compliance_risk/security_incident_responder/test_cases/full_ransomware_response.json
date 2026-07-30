@@ -9,51 +9,100 @@
   ],
   "agent": "security_incident_responder",
   "goals": {
-    "triage_incident-1": ["isolate_system-1"],
-    "isolate_system-1": ["collect_evidence-1"],
-    "collect_evidence-1": ["get_threat_intel-1"],
-    "get_threat_intel-1": ["notify_stakeholders-1"],
-    "notify_stakeholders-1": ["file_incident_report-1"],
+    "triage_incident-1": [
+      "isolate_system-1"
+    ],
+    "isolate_system-1": [
+      "collect_evidence-1"
+    ],
+    "collect_evidence-1": [
+      "get_threat_intel-1"
+    ],
+    "get_threat_intel-1": [
+      "notify_stakeholders-1"
+    ],
+    "notify_stakeholders-1": [
+      "file_incident_report-1"
+    ],
     "file_incident_report-1": []
   },
   "story": "A critical ransomware incident INC-100 is reported. The agent must triage the incident, immediately isolate the affected file server, collect evidence (memory dump), check threat intelligence for the malicious IP, notify CISO/legal/executive team, and file a comprehensive incident report. This tests the full P1 incident response lifecycle.",
   "goal_details": [
     {
-      "args": {"incident_id": "INC-100"},
+      "args": {
+        "incident_id": "INC-100"
+      },
       "name": "triage_incident-1",
       "type": "tool_call",
       "tool_name": "triage_incident"
     },
     {
-      "args": {"system_name": "file-server-01", "isolation_level": "full"},
+      "args": {
+        "system_name": "file-server-01",
+        "isolation_level": "full"
+      },
       "name": "isolate_system-1",
       "type": "tool_call",
       "tool_name": "isolate_system"
     },
     {
-      "args": {"incident_id": "INC-100", "system_name": "file-server-01", "evidence_type": "memory_dump"},
+      "args": {
+        "incident_id": "INC-100",
+        "system_name": "file-server-01",
+        "evidence_type": "memory_dump"
+      },
       "name": "collect_evidence-1",
       "type": "tool_call",
       "tool_name": "collect_evidence"
     },
     {
-      "args": {"indicator": "185.141.63.120", "indicator_type": "ip"},
+      "args": {
+        "indicator": "185.141.63.120",
+        "indicator_type": "ip"
+      },
       "name": "get_threat_intel-1",
       "type": "tool_call",
       "tool_name": "get_threat_intel"
     },
     {
-      "args": {"incident_id": "INC-100", "severity": "critical", "stakeholder_groups": ["ciso", "legal", "executive_team"], "message": "Ransomware (LockCrypt) detected on file-server-01. System isolated. Threat actor: RansomGroup-7. Evidence collected."},
+      "args": {
+        "incident_id": "INC-100",
+        "severity": "critical",
+        "stakeholder_groups": [
+          "ciso",
+          "legal",
+          "executive_team"
+        ],
+        "message": "Ransomware (LockCrypt) detected on file-server-01. System isolated. Threat actor: RansomGroup-7. Evidence collected."
+      },
       "name": "notify_stakeholders-1",
       "type": "tool_call",
-      "tool_name": "notify_stakeholders"
+      "tool_name": "notify_stakeholders",
+      "arg_matching": {
+        "stakeholder_groups": "fuzzy",
+        "message": "fuzzy"
+      }
     },
     {
-      "args": {"incident_id": "INC-100", "severity": "critical", "type": "ransomware", "root_cause": "Ransomware executable deployed via unknown vector, linked to RansomGroup-7 threat actor", "remediation": "Systems isolated, evidence collected, threat intel gathered. Clean backup restoration pending.", "evidence_ids": ["EVD-7001"]},
+      "args": {
+        "incident_id": "INC-100",
+        "severity": "critical",
+        "type": "ransomware",
+        "root_cause": "Ransomware executable deployed via unknown vector, linked to RansomGroup-7 threat actor",
+        "remediation": "Systems isolated, evidence collected, threat intel gathered. Clean backup restoration pending.",
+        "evidence_ids": [
+          "EVD-7001"
+        ]
+      },
       "name": "file_incident_report-1",
       "type": "tool_call",
-      "tool_name": "file_incident_report"
+      "tool_name": "file_incident_report",
+      "arg_matching": {
+        "root_cause": "fuzzy",
+        "remediation": "fuzzy",
+        "evidence_ids": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Security incident INC-100 — triage, contain, collect evidence, check threat intel, notify stakeholders, file report"
+  "starting_sentence": "Security incident INC-100 \u2014 triage, contain, collect evidence, check threat intel, notify stakeholders, file report"
 }

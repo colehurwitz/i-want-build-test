@@ -9,36 +9,65 @@
   ],
   "agent": "lead_qualifier",
   "goals": {
-    "get_lead_info-1": ["score_lead-1"],
-    "score_lead-1": ["assign_lead-1"],
-    "assign_lead-1": ["update_lead_status-1"],
+    "get_lead_info-1": [
+      "score_lead-1"
+    ],
+    "score_lead-1": [
+      "assign_lead-1"
+    ],
+    "assign_lead-1": [
+      "update_lead_status-1"
+    ],
     "update_lead_status-1": []
   },
   "story": "The user wants a full lead qualification workflow: get info, score, assign to a specific rep in the west territory, then update the lead status to reflect the assignment. This tests end-to-end lead processing with all four tools in sequence.",
   "goal_details": [
     {
-      "args": {"lead_id": "L-100"},
+      "args": {
+        "lead_id": "L-100"
+      },
       "name": "get_lead_info-1",
       "type": "tool_call",
       "tool_name": "get_lead_info"
     },
     {
-      "args": {"lead_id": "L-100", "engagement_data": {"page_visits": 12, "emails_opened": 8, "content_downloaded": 3}},
+      "args": {
+        "lead_id": "L-100",
+        "engagement_data": {
+          "page_visits": 12,
+          "emails_opened": 8,
+          "content_downloaded": 3
+        }
+      },
       "name": "score_lead-1",
       "type": "tool_call",
-      "tool_name": "score_lead"
+      "tool_name": "score_lead",
+      "arg_matching": {
+        "engagement_data": "fuzzy"
+      }
     },
     {
-      "args": {"lead_id": "L-100", "sales_rep_id": "SR-200", "territory": "west"},
+      "args": {
+        "lead_id": "L-100",
+        "sales_rep_id": "SR-200",
+        "territory": "west"
+      },
       "name": "assign_lead-1",
       "type": "tool_call",
       "tool_name": "assign_lead"
     },
     {
-      "args": {"lead_id": "L-100", "status": "assigned", "notes": "Assigned to SR-200 in west territory after scoring 85"},
+      "args": {
+        "lead_id": "L-100",
+        "status": "assigned",
+        "notes": "Assigned to SR-200 in west territory after scoring 85"
+      },
       "name": "update_lead_status-1",
       "type": "tool_call",
-      "tool_name": "update_lead_status"
+      "tool_name": "update_lead_status",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Get info on lead L-100, score it, then assign to rep SR-200 in west territory"

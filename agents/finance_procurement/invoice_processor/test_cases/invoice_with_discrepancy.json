@@ -9,37 +9,57 @@
   ],
   "agent": "invoice_processor",
   "goals": {
-    "lookup_invoice-1": ["match_purchase_order-1"],
-    "match_purchase_order-1": ["verify_line_items-1"],
-    "verify_line_items-1": ["flag_discrepancy-1"],
+    "lookup_invoice-1": [
+      "match_purchase_order-1"
+    ],
+    "match_purchase_order-1": [
+      "verify_line_items-1"
+    ],
+    "verify_line_items-1": [
+      "flag_discrepancy-1"
+    ],
     "flag_discrepancy-1": []
   },
   "story": "Process invoice INV-1002 which has a price mismatch with its PO. The invoice charges $350 per monitor while the PO specifies $300. The verification returns a 71.4% match with a price_mismatch discrepancy. The agent must flag this discrepancy instead of approving payment. Tests whether the agent can handle non-happy-path scenarios.",
   "goal_details": [
     {
-      "args": {"invoice_id": "INV-1002"},
+      "args": {
+        "invoice_id": "INV-1002"
+      },
       "name": "lookup_invoice-1",
       "type": "tool_call",
       "tool_name": "lookup_invoice"
     },
     {
-      "args": {"po_number": "PO-2002"},
+      "args": {
+        "po_number": "PO-2002"
+      },
       "name": "match_purchase_order-1",
       "type": "tool_call",
       "tool_name": "match_purchase_order"
     },
     {
-      "args": {"invoice_id": "INV-1002", "po_number": "PO-2002"},
+      "args": {
+        "invoice_id": "INV-1002",
+        "po_number": "PO-2002"
+      },
       "name": "verify_line_items-1",
       "type": "tool_call",
       "tool_name": "verify_line_items"
     },
     {
-      "args": {"invoice_id": "INV-1002", "discrepancy_type": "price_mismatch", "details": "Monitor unit price on invoice is $350 vs PO price of $300, difference of $50 per unit ($1,250 total)"},
+      "args": {
+        "invoice_id": "INV-1002",
+        "discrepancy_type": "price_mismatch",
+        "details": "Monitor unit price on invoice is $350 vs PO price of $300, difference of $50 per unit ($1,250 total)"
+      },
       "name": "flag_discrepancy-1",
       "type": "tool_call",
-      "tool_name": "flag_discrepancy"
+      "tool_name": "flag_discrepancy",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Process invoice INV-1002 — it might have discrepancies"
+  "starting_sentence": "Process invoice INV-1002 \u2014 it might have discrepancies"
 }

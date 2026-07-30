@@ -9,44 +9,77 @@
   ],
   "agent": "order_fulfillment",
   "goals": {
-    "get_order_details-1": ["check_item_availability-1", "check_item_availability-2"],
-    "check_item_availability-1": ["reserve_inventory-1"],
-    "check_item_availability-2": ["reserve_inventory-1"],
-    "reserve_inventory-1": ["update_order_status-1"],
+    "get_order_details-1": [
+      "check_item_availability-1",
+      "check_item_availability-2"
+    ],
+    "check_item_availability-1": [
+      "reserve_inventory-1"
+    ],
+    "check_item_availability-2": [
+      "reserve_inventory-1"
+    ],
+    "reserve_inventory-1": [
+      "update_order_status-1"
+    ],
     "update_order_status-1": []
   },
   "story": "Order ORD-200 has two items but P-300 (Copper Wiring) is out of stock (only 30 available vs 200 needed). The agent should check both items, attempt to reserve what's available, and update the order status to reflect the partial availability.",
   "goal_details": [
     {
-      "args": {"order_id": "ORD-200"},
+      "args": {
+        "order_id": "ORD-200"
+      },
       "name": "get_order_details-1",
       "type": "tool_call",
       "tool_name": "get_order_details"
     },
     {
-      "args": {"product_id": "P-300", "quantity": 200},
+      "args": {
+        "product_id": "P-300",
+        "quantity": 200
+      },
       "name": "check_item_availability-1",
       "type": "tool_call",
       "tool_name": "check_item_availability"
     },
     {
-      "args": {"product_id": "P-400", "quantity": 50},
+      "args": {
+        "product_id": "P-400",
+        "quantity": 50
+      },
       "name": "check_item_availability-2",
       "type": "tool_call",
       "tool_name": "check_item_availability"
     },
     {
-      "args": {"order_id": "ORD-200", "items": ["P-300", "P-400"]},
+      "args": {
+        "order_id": "ORD-200",
+        "items": [
+          "P-300",
+          "P-400"
+        ]
+      },
       "name": "reserve_inventory-1",
       "type": "tool_call",
-      "tool_name": "reserve_inventory"
+      "tool_name": "reserve_inventory",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
     },
     {
-      "args": {"order_id": "ORD-200", "status": "confirmed", "notes": "Partial availability — awaiting restock for remaining items"},
+      "args": {
+        "order_id": "ORD-200",
+        "status": "confirmed",
+        "notes": "Partial availability \u2014 awaiting restock for remaining items"
+      },
       "name": "update_order_status-1",
       "type": "tool_call",
-      "tool_name": "update_order_status"
+      "tool_name": "update_order_status",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Order ORD-200 — some items might be out of stock. Check availability and handle accordingly"
+  "starting_sentence": "Order ORD-200 \u2014 some items might be out of stock. Check availability and handle accordingly"
 }

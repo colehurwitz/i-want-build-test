@@ -9,29 +9,45 @@
   ],
   "agent": "budget_analyst",
   "goals": {
-    "get_department_budget-1": ["get_department_budget-2"],
-    "get_department_budget-2": ["request_reallocation-1"],
+    "get_department_budget-1": [
+      "get_department_budget-2"
+    ],
+    "get_department_budget-2": [
+      "request_reallocation-1"
+    ],
     "request_reallocation-1": []
   },
-  "story": "Reallocate $75,000 from Marketing to Engineering for an AI initiative. This exceeds the $50K CFO approval threshold. The agent should check BOTH departments' budgets before requesting — Marketing only has $50K remaining, so this reallocation would put them at -$25K. An agent that only checks the destination department would miss this critical issue.",
+  "story": "Reallocate $75,000 from Marketing to Engineering for an AI initiative. This exceeds the $50K CFO approval threshold. The agent should check BOTH departments' budgets before requesting \u2014 Marketing only has $50K remaining, so this reallocation would put them at -$25K. An agent that only checks the destination department would miss this critical issue.",
   "goal_details": [
     {
-      "args": {"department": "Marketing"},
+      "args": {
+        "department": "Marketing"
+      },
       "name": "get_department_budget-1",
       "type": "tool_call",
       "tool_name": "get_department_budget"
     },
     {
-      "args": {"department": "Engineering"},
+      "args": {
+        "department": "Engineering"
+      },
       "name": "get_department_budget-2",
       "type": "tool_call",
       "tool_name": "get_department_budget"
     },
     {
-      "args": {"from_dept": "Marketing", "to_dept": "Engineering", "amount": 75000.0, "justification": "AI initiative funding — Engineering needs additional budget for machine learning infrastructure"},
+      "args": {
+        "from_dept": "Marketing",
+        "to_dept": "Engineering",
+        "amount": 75000.0,
+        "justification": "AI initiative funding \u2014 Engineering needs additional budget for machine learning infrastructure"
+      },
       "name": "request_reallocation-1",
       "type": "tool_call",
-      "tool_name": "request_reallocation"
+      "tool_name": "request_reallocation",
+      "arg_matching": {
+        "justification": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Reallocate $75,000 from Marketing to Engineering for the AI initiative"

@@ -9,43 +9,76 @@
   ],
   "agent": "account_manager",
   "goals": {
-    "get_account_overview-1": ["get_usage_analytics-1"],
-    "get_usage_analytics-1": ["get_contract_details-1"],
-    "get_contract_details-1": ["create_renewal_proposal-1"],
-    "create_renewal_proposal-1": ["log_interaction-1"],
+    "get_account_overview-1": [
+      "get_usage_analytics-1"
+    ],
+    "get_usage_analytics-1": [
+      "get_contract_details-1"
+    ],
+    "get_contract_details-1": [
+      "create_renewal_proposal-1"
+    ],
+    "create_renewal_proposal-1": [
+      "log_interaction-1"
+    ],
     "log_interaction-1": []
   },
   "story": "Account A-200 has a contract expiring in 60 days. The agent should review the account (at_risk status, health score 45), check usage analytics (declining 28%), review the contract (no auto-renew, pending renewal), and create a retention proposal since usage is declining. The agent should recognize the at-risk signals and propose a retention package rather than an expansion. Without guidance on interpreting usage trend patterns, the agent may miss the severity of the decline.",
   "goal_details": [
     {
-      "args": {"account_id": "A-200"},
+      "args": {
+        "account_id": "A-200"
+      },
       "name": "get_account_overview-1",
       "type": "tool_call",
       "tool_name": "get_account_overview"
     },
     {
-      "args": {"account_id": "A-200", "period": "Q2"},
+      "args": {
+        "account_id": "A-200",
+        "period": "Q2"
+      },
       "name": "get_usage_analytics-1",
       "type": "tool_call",
       "tool_name": "get_usage_analytics"
     },
     {
-      "args": {"account_id": "A-200"},
+      "args": {
+        "account_id": "A-200"
+      },
       "name": "get_contract_details-1",
       "type": "tool_call",
       "tool_name": "get_contract_details"
     },
     {
-      "args": {"account_id": "A-200", "proposal_type": "retention", "adjustments": {"discount_pct": 15, "add_dedicated_csm": true}},
+      "args": {
+        "account_id": "A-200",
+        "proposal_type": "retention",
+        "adjustments": {
+          "discount_pct": 15,
+          "add_dedicated_csm": true
+        }
+      },
       "name": "create_renewal_proposal-1",
       "type": "tool_call",
-      "tool_name": "create_renewal_proposal"
+      "tool_name": "create_renewal_proposal",
+      "arg_matching": {
+        "adjustments": "fuzzy"
+      }
     },
     {
-      "args": {"account_id": "A-200", "interaction_type": "review", "summary": "Renewal review for at-risk account. Usage declining 28%, contract expiring soon. Created retention proposal with custom pricing.", "follow_up_date": "2024-04-01"},
+      "args": {
+        "account_id": "A-200",
+        "interaction_type": "review",
+        "summary": "Renewal review for at-risk account. Usage declining 28%, contract expiring soon. Created retention proposal with custom pricing.",
+        "follow_up_date": "2024-04-01"
+      },
       "name": "log_interaction-1",
       "type": "tool_call",
-      "tool_name": "log_interaction"
+      "tool_name": "log_interaction",
+      "arg_matching": {
+        "summary": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Account A-200's contract expires in 60 days. Create a renewal proposal based on their usage"

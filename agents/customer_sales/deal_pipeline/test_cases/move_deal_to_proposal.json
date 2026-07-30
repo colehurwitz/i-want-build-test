@@ -9,29 +9,51 @@
   ],
   "agent": "deal_pipeline",
   "goals": {
-    "get_deal_details-1": ["update_deal_stage-1"],
-    "update_deal_stage-1": ["add_deal_activity-1"],
+    "get_deal_details-1": [
+      "update_deal_stage-1"
+    ],
+    "update_deal_stage-1": [
+      "add_deal_activity-1"
+    ],
     "add_deal_activity-1": []
   },
   "story": "The user wants to advance deal D-100 from qualification to proposal stage and log a demo activity. The agent must first review current deal details to know the current stage, then update the stage with an appropriate close probability, and finally log the demo activity. Without stage progression rules in the instructions, the agent may skip reviewing the deal first or set an incorrect probability.",
   "goal_details": [
     {
-      "args": {"deal_id": "D-100"},
+      "args": {
+        "deal_id": "D-100"
+      },
       "name": "get_deal_details-1",
       "type": "tool_call",
       "tool_name": "get_deal_details"
     },
     {
-      "args": {"deal_id": "D-100", "new_stage": "proposal", "close_probability": 0.5, "notes": "Demo completed successfully, moving to proposal"},
+      "args": {
+        "deal_id": "D-100",
+        "new_stage": "proposal",
+        "close_probability": 0.5,
+        "notes": "Demo completed successfully, moving to proposal"
+      },
       "name": "update_deal_stage-1",
       "type": "tool_call",
-      "tool_name": "update_deal_stage"
+      "tool_name": "update_deal_stage",
+      "arg_matching": {
+        "notes": "fuzzy"
+      }
     },
     {
-      "args": {"deal_id": "D-100", "activity_type": "demo", "description": "Product demo completed with stakeholders", "next_action_date": "2024-04-01"},
+      "args": {
+        "deal_id": "D-100",
+        "activity_type": "demo",
+        "description": "Product demo completed with stakeholders",
+        "next_action_date": "2024-04-01"
+      },
       "name": "add_deal_activity-1",
       "type": "tool_call",
-      "tool_name": "add_deal_activity"
+      "tool_name": "add_deal_activity",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Move deal D-100 from qualification to proposal and log a demo activity"

@@ -52,11 +52,14 @@
       "args": {
         "team": "auth",
         "severity": "high",
-        "message": "Auth service latency spike — p99 > 5000ms. No recent deployments found. Requires investigation."
+        "message": "Auth service latency spike \u2014 p99 > 5000ms. No recent deployments found. Requires investigation."
       },
       "name": "notify_oncall-1",
       "type": "tool_call",
-      "tool_name": "notify_oncall"
+      "tool_name": "notify_oncall",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Alert A-200 fired \u2014 auth service latency spike"

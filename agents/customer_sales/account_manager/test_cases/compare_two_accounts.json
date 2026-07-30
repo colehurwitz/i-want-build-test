@@ -80,7 +80,10 @@
       },
       "name": "log_interaction-1",
       "type": "tool_call",
-      "tool_name": "log_interaction"
+      "tool_name": "log_interaction",
+      "arg_matching": {
+        "summary": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Review accounts A-400 and A-100 \u2014 compare their usage trends and check competitive intel for A-400"

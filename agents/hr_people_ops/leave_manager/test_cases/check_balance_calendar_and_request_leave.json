@@ -9,37 +9,61 @@
   ],
   "agent": "leave_manager",
   "goals": {
-    "get_leave_balance-1": ["check_team_calendar-1"],
-    "check_team_calendar-1": ["request_leave-1"],
-    "request_leave-1": ["get_leave_history-1"],
+    "get_leave_balance-1": [
+      "check_team_calendar-1"
+    ],
+    "check_team_calendar-1": [
+      "request_leave-1"
+    ],
+    "request_leave-1": [
+      "get_leave_history-1"
+    ],
     "get_leave_history-1": []
   },
   "story": "The employee wants to take annual leave during the holiday period. The agent should check the leave balance first, then verify team calendar coverage, submit the request, and finally show the leave history. The team calendar shows a coverage warning for this period which a well-optimized agent would flag, but the base instructions don't mention checking the calendar.",
   "goal_details": [
     {
-      "args": {"employee_id": "E-100", "leave_type": "annual"},
+      "args": {
+        "employee_id": "E-100",
+        "leave_type": "annual"
+      },
       "name": "get_leave_balance-1",
       "type": "tool_call",
       "tool_name": "get_leave_balance"
     },
     {
-      "args": {"department": "Engineering", "date_range": "2024-12-23 to 2024-12-27"},
+      "args": {
+        "department": "Engineering",
+        "date_range": "2024-12-23 to 2024-12-27"
+      },
       "name": "check_team_calendar-1",
       "type": "tool_call",
       "tool_name": "check_team_calendar"
     },
     {
-      "args": {"employee_id": "E-100", "leave_type": "annual", "start_date": "2024-12-23", "end_date": "2024-12-27", "reason": "holiday vacation"},
+      "args": {
+        "employee_id": "E-100",
+        "leave_type": "annual",
+        "start_date": "2024-12-23",
+        "end_date": "2024-12-27",
+        "reason": "holiday vacation"
+      },
       "name": "request_leave-1",
       "type": "tool_call",
-      "tool_name": "request_leave"
+      "tool_name": "request_leave",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
     },
     {
-      "args": {"employee_id": "E-100", "year": "2024"},
+      "args": {
+        "employee_id": "E-100",
+        "year": "2024"
+      },
       "name": "get_leave_history-1",
       "type": "tool_call",
       "tool_name": "get_leave_history"
     }
   ],
-  "starting_sentence": "I'm employee E-100 in Engineering. Check my annual leave balance, verify the team calendar for Dec 23-27, submit my leave request for those dates for holiday vacation, and show my 2024 leave history"
+  "starting_sentence": "I'm employee E-100 in Engineering. Check my annual leave balance, verify the team calendar for December 23-27, 2024, submit my leave request for those dates for holiday vacation, and show my 2024 leave history"
 }

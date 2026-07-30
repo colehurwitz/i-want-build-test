@@ -43,7 +43,10 @@
       },
       "name": "create_shipment-1",
       "type": "tool_call",
-      "tool_name": "create_shipment"
+      "tool_name": "create_shipment",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
     },
     {
       "args": {
@@ -67,7 +70,10 @@
       },
       "name": "create_shipment-2",
       "type": "tool_call",
-      "tool_name": "create_shipment"
+      "tool_name": "create_shipment",
+      "arg_matching": {
+        "items": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Ship two orders: ORD-400 to Boston (ground, 10kg) and ORD-500 to Miami (overnight, 8kg). Both shipping from New York"

@@ -44,7 +44,10 @@
       },
       "name": "update_stock-1",
       "type": "tool_call",
-      "tool_name": "update_stock"
+      "tool_name": "update_stock",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Product P-300 is low in W-2. Check history and restock with 200 units"

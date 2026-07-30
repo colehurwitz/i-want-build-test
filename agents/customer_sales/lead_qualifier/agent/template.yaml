@@ -6,6 +6,7 @@ collaborators: []
 tools:
 - get_lead_info
 - score_lead
+- get_available_sales_reps
 - assign_lead
 - update_lead_status
 context_access_enabled: true

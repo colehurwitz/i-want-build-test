@@ -9,43 +9,75 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "assess_compliance_status-1": ["get_violation_history-1"],
-    "get_violation_history-1": ["get_remediation_steps-1"],
-    "get_remediation_steps-1": ["notify_compliance_officer-1"],
-    "notify_compliance_officer-1": ["file_compliance_report-1"],
+    "assess_compliance_status-1": [
+      "get_violation_history-1"
+    ],
+    "get_violation_history-1": [
+      "get_remediation_steps-1"
+    ],
+    "get_remediation_steps-1": [
+      "notify_compliance_officer-1"
+    ],
+    "notify_compliance_officer-1": [
+      "file_compliance_report-1"
+    ],
     "file_compliance_report-1": []
   },
   "story": "Entity-B has 4 prior violations for REG-200 (Financial Services), making them a repeat offender. The agent assesses compliance (score 55%), checks violation history to confirm repeat offender status, gets remediation steps for financial controls, escalates to compliance officer, and files a report. Tests repeat offender detection and escalation.",
   "goal_details": [
     {
-      "args": {"entity": "Entity-B", "regulation_id": "REG-200"},
+      "args": {
+        "entity": "Entity-B",
+        "regulation_id": "REG-200"
+      },
       "name": "assess_compliance_status-1",
       "type": "tool_call",
       "tool_name": "assess_compliance_status"
     },
     {
-      "args": {"entity": "Entity-B"},
+      "args": {
+        "entity": "Entity-B"
+      },
       "name": "get_violation_history-1",
       "type": "tool_call",
       "tool_name": "get_violation_history"
     },
     {
-      "args": {"violation_type": "financial_controls"},
+      "args": {
+        "violation_type": "financial_controls"
+      },
       "name": "get_remediation_steps-1",
       "type": "tool_call",
       "tool_name": "get_remediation_steps"
     },
     {
-      "args": {"entity": "Entity-B", "severity": "critical", "message": "REPEAT OFFENDER: Entity-B has 4 violations for REG-200, including 3 for late suspicious transaction reporting. Score 55%. Unresolved VIO-204 ($500K fine). Immediate board-level escalation recommended."},
+      "args": {
+        "entity": "Entity-B",
+        "severity": "critical",
+        "message": "REPEAT OFFENDER: Entity-B has 4 violations for REG-200, including 3 for late suspicious transaction reporting. Score 55%. Unresolved VIO-204 ($500K fine). Immediate board-level escalation recommended."
+      },
       "name": "notify_compliance_officer-1",
       "type": "tool_call",
-      "tool_name": "notify_compliance_officer"
+      "tool_name": "notify_compliance_officer",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
     },
     {
-      "args": {"entity": "Entity-B", "regulation_id": "REG-200", "status": "non_compliant", "findings": "Score 55%. REPEAT OFFENDER with 4 violations. REQ-200-A partial (outdated AML), REQ-200-B fail (late STR filing), REQ-200-D partial (15% CDD gaps). Unresolved VIO-204.", "remediation_plan": "Update AML procedures (3 weeks), implement real-time transaction monitoring (6 weeks), staff training (2 weeks), external audit (4 weeks)."},
+      "args": {
+        "entity": "Entity-B",
+        "regulation_id": "REG-200",
+        "status": "non_compliant",
+        "findings": "Score 55%. REPEAT OFFENDER with 4 violations. REQ-200-A partial (outdated AML), REQ-200-B fail (late STR filing), REQ-200-D partial (15% CDD gaps). Unresolved VIO-204.",
+        "remediation_plan": "Update AML procedures (3 weeks), implement real-time transaction monitoring (6 weeks), staff training (2 weeks), external audit (4 weeks)."
+      },
       "name": "file_compliance_report-1",
       "type": "tool_call",
-      "tool_name": "file_compliance_report"
+      "tool_name": "file_compliance_report",
+      "arg_matching": {
+        "findings": "fuzzy",
+        "remediation_plan": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Entity-B has 4 prior violations for REG-200. Check compliance, get remediation, escalate"

@@ -43,7 +43,10 @@
       },
       "name": "create_vendor_scorecard-1",
       "type": "tool_call",
-      "tool_name": "create_vendor_scorecard"
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
     },
     {
       "args": {
@@ -68,7 +71,10 @@
       },
       "name": "create_vendor_scorecard-2",
       "type": "tool_call",
-      "tool_name": "create_vendor_scorecard"
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Compare vendors V-100 and V-400 for Q2 2026 \u2014 create scorecards for both"

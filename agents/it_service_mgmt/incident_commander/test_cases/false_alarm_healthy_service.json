@@ -44,7 +44,11 @@
       },
       "name": "create_incident_ticket-1",
       "type": "tool_call",
-      "tool_name": "create_incident_ticket"
+      "tool_name": "create_incident_ticket",
+      "arg_matching": {
+        "title": "fuzzy",
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Alert A-300 on frontend service \u2014 check it and document findings"

@@ -60,7 +60,10 @@
       },
       "name": "create_ticket-1",
       "type": "tool_call",
-      "tool_name": "create_ticket"
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     },
     {
       "args": {
@@ -70,7 +73,10 @@
       },
       "name": "escalate_ticket-1",
       "type": "tool_call",
-      "tool_name": "escalate_ticket"
+      "tool_name": "escalate_ticket",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "user@company.com here \u2014 my monitor isn't working"

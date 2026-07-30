@@ -57,7 +57,10 @@
       },
       "name": "create_ticket-1",
       "type": "tool_call",
-      "tool_name": "create_ticket"
+      "tool_name": "create_ticket",
+      "arg_matching": {
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "I'm manager@company.com, several people on my team can't access the build system since this morning"

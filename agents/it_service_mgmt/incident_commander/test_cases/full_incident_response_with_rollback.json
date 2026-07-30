@@ -9,57 +9,97 @@
   ],
   "agent": "incident_commander",
   "goals": {
-    "get_alert_details-1": ["check_service_health-1"],
-    "check_service_health-1": ["get_recent_deployments-1", "get_runbook-1"],
-    "get_recent_deployments-1": ["rollback_deployment-1"],
-    "get_runbook-1": ["rollback_deployment-1"],
-    "rollback_deployment-1": ["notify_oncall-1"],
-    "notify_oncall-1": ["create_incident_ticket-1"],
+    "get_alert_details-1": [
+      "check_service_health-1"
+    ],
+    "check_service_health-1": [
+      "get_recent_deployments-1",
+      "get_runbook-1"
+    ],
+    "get_recent_deployments-1": [
+      "rollback_deployment-1"
+    ],
+    "get_runbook-1": [
+      "rollback_deployment-1"
+    ],
+    "rollback_deployment-1": [
+      "notify_oncall-1"
+    ],
+    "notify_oncall-1": [
+      "create_incident_ticket-1"
+    ],
     "create_incident_ticket-1": []
   },
   "story": "Critical alert fires for the payments service. The agent must get alert details, check service health (service is down), retrieve recent deployments and the runbook in parallel, find that a recent deployment correlates with the outage, roll it back, notify the on-call team, and create an incident ticket. This tests the full 6-step incident response lifecycle with deployment correlation and rollback.",
   "goal_details": [
     {
-      "args": {"alert_id": "A-100"},
+      "args": {
+        "alert_id": "A-100"
+      },
       "name": "get_alert_details-1",
       "type": "tool_call",
       "tool_name": "get_alert_details"
     },
     {
-      "args": {"service_name": "payments"},
+      "args": {
+        "service_name": "payments"
+      },
       "name": "check_service_health-1",
       "type": "tool_call",
       "tool_name": "check_service_health"
     },
     {
-      "args": {"service_name": "payments", "hours": 24},
+      "args": {
+        "service_name": "payments",
+        "hours": 24
+      },
       "name": "get_recent_deployments-1",
       "type": "tool_call",
       "tool_name": "get_recent_deployments"
     },
     {
-      "args": {"service_name": "payments"},
+      "args": {
+        "service_name": "payments"
+      },
       "name": "get_runbook-1",
       "type": "tool_call",
       "tool_name": "get_runbook"
     },
     {
-      "args": {"deploy_id": "DEP-501"},
+      "args": {
+        "deploy_id": "DEP-501"
+      },
       "name": "rollback_deployment-1",
       "type": "tool_call",
       "tool_name": "rollback_deployment"
     },
     {
-      "args": {"team": "payments", "severity": "critical", "message": "Payment service is DOWN. Rolled back deployment DEP-501. Monitoring recovery."},
+      "args": {
+        "team": "payments",
+        "severity": "critical",
+        "message": "Payment service is DOWN. Rolled back deployment DEP-501. Monitoring recovery."
+      },
       "name": "notify_oncall-1",
       "type": "tool_call",
-      "tool_name": "notify_oncall"
+      "tool_name": "notify_oncall",
+      "arg_matching": {
+        "message": "fuzzy"
+      }
     },
     {
-      "args": {"service_name": "payments", "severity": "critical", "title": "Payment service outage - deployment rollback", "description": "Payment processing service went down after deployment DEP-501. Rolled back to v3.2.0. Monitoring recovery."},
+      "args": {
+        "service_name": "payments",
+        "severity": "critical",
+        "title": "Payment service outage - deployment rollback",
+        "description": "Payment processing service went down after deployment DEP-501. Rolled back to v3.2.0. Monitoring recovery."
+      },
       "name": "create_incident_ticket-1",
       "type": "tool_call",
-      "tool_name": "create_incident_ticket"
+      "tool_name": "create_incident_ticket",
+      "arg_matching": {
+        "title": "fuzzy",
+        "description": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Alert A-100 fired for the payments service"

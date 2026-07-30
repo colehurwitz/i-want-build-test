@@ -65,7 +65,10 @@
       },
       "name": "create_vendor_scorecard-1",
       "type": "tool_call",
-      "tool_name": "create_vendor_scorecard"
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
     },
     {
       "args": {
@@ -77,7 +80,10 @@
       },
       "name": "manage_vendor_relationship-1",
       "type": "tool_call",
-      "tool_name": "manage_vendor_relationship"
+      "tool_name": "manage_vendor_relationship",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Full vendor review for V-100 \u2014 profile, Q2 performance, contract, and scorecard"

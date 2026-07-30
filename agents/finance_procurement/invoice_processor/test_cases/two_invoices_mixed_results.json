@@ -9,65 +9,101 @@
   ],
   "agent": "invoice_processor",
   "goals": {
-    "lookup_invoice-1": ["match_purchase_order-1"],
-    "lookup_invoice-2": ["match_purchase_order-2"],
-    "match_purchase_order-1": ["verify_line_items-1"],
-    "match_purchase_order-2": ["verify_line_items-2"],
-    "verify_line_items-1": ["approve_payment-1"],
-    "verify_line_items-2": ["flag_discrepancy-1"],
+    "lookup_invoice-1": [
+      "match_purchase_order-1"
+    ],
+    "lookup_invoice-2": [
+      "match_purchase_order-2"
+    ],
+    "match_purchase_order-1": [
+      "verify_line_items-1"
+    ],
+    "match_purchase_order-2": [
+      "verify_line_items-2"
+    ],
+    "verify_line_items-1": [
+      "approve_payment-1"
+    ],
+    "verify_line_items-2": [
+      "flag_discrepancy-1"
+    ],
     "approve_payment-1": [],
     "flag_discrepancy-1": []
   },
   "story": "Process two invoices: INV-1004 and INV-1005. INV-1004 matches its PO perfectly and should be approved. INV-1005 has a price mismatch (invoice at $1500/laptop vs PO at $1400/laptop) and should be flagged. Tests multi-entity processing with different outcomes per entity.",
   "goal_details": [
     {
-      "args": {"invoice_id": "INV-1004"},
+      "args": {
+        "invoice_id": "INV-1004"
+      },
       "name": "lookup_invoice-1",
       "type": "tool_call",
       "tool_name": "lookup_invoice"
     },
     {
-      "args": {"invoice_id": "INV-1005"},
+      "args": {
+        "invoice_id": "INV-1005"
+      },
       "name": "lookup_invoice-2",
       "type": "tool_call",
       "tool_name": "lookup_invoice"
     },
     {
-      "args": {"po_number": "PO-2004"},
+      "args": {
+        "po_number": "PO-2004"
+      },
       "name": "match_purchase_order-1",
       "type": "tool_call",
       "tool_name": "match_purchase_order"
     },
     {
-      "args": {"po_number": "PO-2005"},
+      "args": {
+        "po_number": "PO-2005"
+      },
       "name": "match_purchase_order-2",
       "type": "tool_call",
       "tool_name": "match_purchase_order"
     },
     {
-      "args": {"invoice_id": "INV-1004", "po_number": "PO-2004"},
+      "args": {
+        "invoice_id": "INV-1004",
+        "po_number": "PO-2004"
+      },
       "name": "verify_line_items-1",
       "type": "tool_call",
       "tool_name": "verify_line_items"
     },
     {
-      "args": {"invoice_id": "INV-1005", "po_number": "PO-2005"},
+      "args": {
+        "invoice_id": "INV-1005",
+        "po_number": "PO-2005"
+      },
       "name": "verify_line_items-2",
       "type": "tool_call",
       "tool_name": "verify_line_items"
     },
     {
-      "args": {"invoice_id": "INV-1004", "approver_id": "AP-MGR-001"},
+      "args": {
+        "invoice_id": "INV-1004",
+        "approver_id": "AP-MGR-001"
+      },
       "name": "approve_payment-1",
       "type": "tool_call",
       "tool_name": "approve_payment"
     },
     {
-      "args": {"invoice_id": "INV-1005", "discrepancy_type": "price_mismatch", "details": "Laptop unit price on invoice is $1500 vs PO price of $1400, total difference of $1,000"},
+      "args": {
+        "invoice_id": "INV-1005",
+        "discrepancy_type": "price_mismatch",
+        "details": "Laptop unit price on invoice is $1500 vs PO price of $1400, total difference of $1,000"
+      },
       "name": "flag_discrepancy-1",
       "type": "tool_call",
-      "tool_name": "flag_discrepancy"
+      "tool_name": "flag_discrepancy",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "Process both INV-1004 and INV-1005 — verify and approve or flag each"
+  "starting_sentence": "Process both INV-1004 and INV-1005 \u2014 verify and approve or flag each"
 }

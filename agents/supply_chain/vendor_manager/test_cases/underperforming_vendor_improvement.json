@@ -9,29 +9,58 @@
   ],
   "agent": "vendor_manager",
   "goals": {
-    "get_vendor_performance-1": ["create_vendor_scorecard-1"],
-    "create_vendor_scorecard-1": ["manage_vendor_relationship-1"],
+    "get_vendor_performance-1": [
+      "create_vendor_scorecard-1"
+    ],
+    "create_vendor_scorecard-1": [
+      "manage_vendor_relationship-1"
+    ],
     "manage_vendor_relationship-1": []
   },
   "story": "Vendor V-200 has been underperforming (declining from 7.2 to 5.0 score). Check their Q2 performance metrics, create a scorecard to document the decline, and escalate the issues to management. The scorecard should show 'Adequate' rating with a declining trend.",
   "goal_details": [
     {
-      "args": {"vendor_id": "V-200", "period": "Q2-2026"},
+      "args": {
+        "vendor_id": "V-200",
+        "period": "Q2-2026"
+      },
       "name": "get_vendor_performance-1",
       "type": "tool_call",
       "tool_name": "get_vendor_performance"
     },
     {
-      "args": {"vendor_id": "V-200", "period": "Q2-2026", "categories": ["delivery", "quality", "pricing", "responsiveness", "innovation"]},
+      "args": {
+        "vendor_id": "V-200",
+        "period": "Q2-2026",
+        "categories": [
+          "delivery",
+          "quality",
+          "pricing",
+          "responsiveness",
+          "innovation"
+        ]
+      },
       "name": "create_vendor_scorecard-1",
       "type": "tool_call",
-      "tool_name": "create_vendor_scorecard"
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
     },
     {
-      "args": {"vendor_id": "V-200", "action": "issue_escalation", "details": {"reason": "Declining performance across all categories"}},
+      "args": {
+        "vendor_id": "V-200",
+        "action": "issue_escalation",
+        "details": {
+          "reason": "Declining performance across all categories"
+        }
+      },
       "name": "manage_vendor_relationship-1",
       "type": "tool_call",
-      "tool_name": "manage_vendor_relationship"
+      "tool_name": "manage_vendor_relationship",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "Vendor V-200 has been underperforming. Check their performance, create a scorecard, and initiate an improvement plan"

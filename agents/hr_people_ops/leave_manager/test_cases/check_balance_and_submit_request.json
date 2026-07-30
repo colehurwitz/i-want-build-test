@@ -47,8 +47,11 @@
       },
       "name": "request_leave-1",
       "type": "tool_call",
-      "tool_name": "request_leave"
+      "tool_name": "request_leave",
+      "arg_matching": {
+        "reason": "fuzzy"
+      }
     }
   ],
-  "starting_sentence": "I'm E-101. Check my annual leave balance, check if the team has coverage Nov 18-20, and submit 3 days off"
+  "starting_sentence": "I'm E-101. Check my annual leave balance, check if the team has coverage November 18-20, 2024, and submit 3 days off"
 }

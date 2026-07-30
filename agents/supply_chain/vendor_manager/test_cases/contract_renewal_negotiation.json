@@ -56,7 +56,10 @@
       },
       "name": "create_vendor_scorecard-1",
       "type": "tool_call",
-      "tool_name": "create_vendor_scorecard"
+      "tool_name": "create_vendor_scorecard",
+      "arg_matching": {
+        "categories": "fuzzy"
+      }
     },
     {
       "args": {
@@ -68,7 +71,10 @@
       },
       "name": "negotiate_terms-1",
       "type": "tool_call",
-      "tool_name": "negotiate_terms"
+      "tool_name": "negotiate_terms",
+      "arg_matching": {
+        "proposed_changes": "fuzzy"
+      }
     },
     {
       "args": {
@@ -80,7 +86,10 @@
       },
       "name": "manage_vendor_relationship-1",
       "type": "tool_call",
-      "tool_name": "manage_vendor_relationship"
+      "tool_name": "manage_vendor_relationship",
+      "arg_matching": {
+        "details": "fuzzy"
+      }
     }
   ],
   "starting_sentence": "V-300's contract is up for renewal. Review terms, check performance, and negotiate better pricing"
