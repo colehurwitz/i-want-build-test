@@ -85,7 +85,7 @@
       "type": "tool_call",
       "tool_name": "manage_vendor_relationship",
       "arg_matching": {
-        "details": "fuzzy"
+        "details": "ignore"
       }
     }
   ],

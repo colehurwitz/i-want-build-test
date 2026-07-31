@@ -9,22 +9,13 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "get_regulation_details-1": [
-      "assess_compliance_status-1"
-    ],
-    "assess_compliance_status-1": [
-      "get_violation_history-1",
-      "get_remediation_steps-1"
-    ],
-    "get_violation_history-1": [
-      "file_compliance_report-1"
-    ],
-    "get_remediation_steps-1": [
-      "file_compliance_report-1"
-    ],
-    "file_compliance_report-1": [
-      "notify_compliance_officer-1"
-    ],
+    "get_regulation_details-1": [],
+    "assess_compliance_status-1": [],
+    "get_violation_history-1": [],
+    "get_remediation_steps-1": [],
+    "get_remediation_steps-2": [],
+    "get_remediation_steps-3": [],
+    "file_compliance_report-1": ["notify_compliance_officer-1"],
     "notify_compliance_officer-1": []
   },
   "story": "Full compliance assessment of Entity-A against REG-100 (Data Protection). Get regulation details, assess compliance (score 45% \u2014 non-compliant), then in parallel check violation history and get remediation steps. Both feed into filing the compliance report, followed by notifying the compliance officer.",
@@ -59,6 +50,28 @@
         "violation_type": "documentation"
       },
       "name": "get_remediation_steps-1",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "violation_type": "incident_response"
+      },
+      "name": "get_remediation_steps-2",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "violation_type": "assessment"
+      },
+      "name": "get_remediation_steps-3",
       "type": "tool_call",
       "tool_name": "get_remediation_steps",
       "arg_matching": {

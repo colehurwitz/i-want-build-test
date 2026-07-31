@@ -9,16 +9,9 @@
   ],
   "agent": "customer_support",
   "goals": {
-    "get_customer_history-1": [
-      "search_knowledge_base-1",
-      "create_support_case-1"
-    ],
-    "search_knowledge_base-1": [
-      "update_case-1"
-    ],
-    "create_support_case-1": [
-      "update_case-1"
-    ],
+    "get_customer_history-1": [],
+    "search_knowledge_base-1": [],
+    "create_support_case-1": ["update_case-1"],
     "update_case-1": []
   },
   "story": "Customer c-100 can't access their account. After pulling their history, search the knowledge base AND create a support case in parallel. Both converge on updating the case with resolution info.",

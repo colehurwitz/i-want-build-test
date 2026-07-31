@@ -36,7 +36,10 @@
       },
       "name": "get_pay_stub-1",
       "type": "tool_call",
-      "tool_name": "get_pay_stub"
+      "tool_name": "get_pay_stub",
+      "arg_matching": {
+        "period": "ignore"
+      }
     },
     {
       "args": {

@@ -17,7 +17,8 @@
       "update_lead_status-1"
     ],
     "assign_lead-1": [],
-    "update_lead_status-1": []
+    "update_lead_status-1": [],
+    "get_available_sales_reps-1": []
   },
   "story": "Score lead L-100 and then fan out: assign it to the right rep AND update its status to qualified in parallel.",
   "goal_details": [
@@ -66,6 +67,17 @@
       "tool_name": "update_lead_status",
       "arg_matching": {
         "notes": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "territory": "west"
+      },
+      "name": "get_available_sales_reps-1",
+      "type": "tool_call",
+      "tool_name": "get_available_sales_reps",
+      "arg_matching": {
+        "territory": "fuzzy"
       }
     }
   ],

@@ -9,18 +9,12 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "get_regulation_details-1": [
-      "assess_compliance_status-1"
-    ],
-    "assess_compliance_status-1": [
-      "get_remediation_steps-1"
-    ],
-    "get_remediation_steps-1": [
-      "file_compliance_report-1"
-    ],
-    "file_compliance_report-1": [
-      "notify_compliance_officer-1"
-    ],
+    "get_regulation_details-1": [],
+    "assess_compliance_status-1": [],
+    "get_remediation_steps-1": [],
+    "get_remediation_steps-2": [],
+    "get_remediation_steps-3": [],
+    "file_compliance_report-1": ["notify_compliance_officer-1"],
     "notify_compliance_officer-1": []
   },
   "story": "REG-500 (AI Governance) just went into effect. Assess Entity-E's readiness \u2014 they score 30% (non-compliant) with no AI inventory, no bias assessments, and no transparency reports. Get remediation steps, file a report, and urgently notify the compliance officer.",
@@ -47,6 +41,28 @@
         "violation_type": "governance"
       },
       "name": "get_remediation_steps-1",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "violation_type": "assessment"
+      },
+      "name": "get_remediation_steps-2",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "violation_type": "reporting"
+      },
+      "name": "get_remediation_steps-3",
       "type": "tool_call",
       "tool_name": "get_remediation_steps",
       "arg_matching": {

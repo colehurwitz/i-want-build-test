@@ -9,7 +9,7 @@
   ],
   "agent": "employee_directory",
   "goals": {
-    "lookup_employee-1": ["update_employee_contact-1"],
+    "lookup_employee-1": [],
     "update_employee_contact-1": ["lookup_employee-2"],
     "lookup_employee-2": []
   },

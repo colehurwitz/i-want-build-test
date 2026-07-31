@@ -38,7 +38,10 @@
       },
       "name": "get_spending_breakdown-1",
       "type": "tool_call",
-      "tool_name": "get_spending_breakdown"
+      "tool_name": "get_spending_breakdown",
+      "arg_matching": {
+        "period": "ignore"
+      }
     },
     {
       "args": {
@@ -62,5 +65,5 @@
       "tool_name": "generate_budget_report"
     }
   ],
-  "starting_sentence": "I need a full budget health analysis for the Engineering department"
+  "starting_sentence": "I need a full Q2 budget health analysis for the Engineering department"
 }

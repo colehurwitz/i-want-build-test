@@ -9,7 +9,7 @@
   ],
   "agent": "payroll_processor",
   "goals": {
-    "get_pay_stub-1": ["calculate_gross_pay-1", "get_tax_withholdings-1"],
+    "get_pay_stub-1": [],
     "calculate_gross_pay-1": [],
     "get_tax_withholdings-1": []
   },

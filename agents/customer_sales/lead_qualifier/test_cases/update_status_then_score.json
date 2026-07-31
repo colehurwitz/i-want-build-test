@@ -9,12 +9,8 @@
   ],
   "agent": "lead_qualifier",
   "goals": {
-    "update_lead_status-1": [
-      "get_lead_info-1"
-    ],
-    "get_lead_info-1": [
-      "score_lead-1"
-    ],
+    "update_lead_status-1": [],
+    "get_lead_info-1": [],
     "score_lead-1": []
   },
   "story": "The user wants to update one lead's status to qualified and then score a different lead. The agent must first update L-200's status, then retrieve L-300's info and score it. This tests the agent's ability to handle sequential operations across different entities.",

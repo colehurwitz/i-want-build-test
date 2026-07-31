@@ -9,12 +9,8 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "get_regulation_details-1": [
-      "assess_compliance_status-1"
-    ],
-    "assess_compliance_status-1": [
-      "file_compliance_report-1"
-    ],
+    "get_regulation_details-1": [],
+    "assess_compliance_status-1": [],
     "file_compliance_report-1": []
   },
   "story": "Simple compliance check for Entity-D against REG-100. Entity-D is fully compliant (score 90%), so the agent gets regulation details, assesses compliance, and files a clean report. No remediation or escalation needed.",

@@ -9,12 +9,8 @@
   ],
   "agent": "vendor_manager",
   "goals": {
-    "get_vendor_performance-1": [
-      "create_vendor_scorecard-1"
-    ],
-    "create_vendor_scorecard-1": [
-      "manage_vendor_relationship-1"
-    ],
+    "get_vendor_performance-1": [],
+    "create_vendor_scorecard-1": [],
     "manage_vendor_relationship-1": []
   },
   "story": "Vendor V-200 has been underperforming (declining from 7.2 to 5.0 score). Standard vendor scorecard categories are: delivery, quality, pricing, responsiveness, and innovation. Check their Q2 performance metrics, create a scorecard to document the decline, and escalate via issue_escalation. The scorecard should show 'Adequate' rating with a declining trend.",

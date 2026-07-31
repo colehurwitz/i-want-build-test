@@ -70,7 +70,8 @@
       "type": "tool_call",
       "tool_name": "create_vendor_scorecard",
       "arg_matching": {
-        "categories": "fuzzy"
+        "categories": "fuzzy",
+        "period": "ignore"
       }
     },
     {
@@ -89,5 +90,5 @@
       }
     }
   ],
-  "starting_sentence": "Vendor V-500's quality has dropped significantly. We may need to terminate the relationship"
+  "starting_sentence": "Vendor V-500's Q2 performance has dropped significantly. We may need to terminate the relationship"
 }

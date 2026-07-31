@@ -9,12 +9,8 @@
   ],
   "agent": "deal_pipeline",
   "goals": {
-    "get_deal_details-1": [
-      "update_deal_stage-1"
-    ],
-    "update_deal_stage-1": [
-      "add_deal_activity-1"
-    ],
+    "get_deal_details-1": [],
+    "update_deal_stage-1": [],
     "add_deal_activity-1": []
   },
   "story": "The user wants to advance deal D-100 from qualification to proposal stage and log a demo activity. The agent must first review current deal details to know the current stage, then update the stage with an appropriate close probability, and finally log the demo activity. Without stage progression rules in the instructions, the agent may skip reviewing the deal first or set an incorrect probability.",

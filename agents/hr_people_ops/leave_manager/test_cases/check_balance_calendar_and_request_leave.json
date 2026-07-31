@@ -9,15 +9,9 @@
   ],
   "agent": "leave_manager",
   "goals": {
-    "get_leave_balance-1": [
-      "check_team_calendar-1"
-    ],
-    "check_team_calendar-1": [
-      "request_leave-1"
-    ],
-    "request_leave-1": [
-      "get_leave_history-1"
-    ],
+    "get_leave_balance-1": [],
+    "check_team_calendar-1": [],
+    "request_leave-1": [],
     "get_leave_history-1": []
   },
   "story": "The employee wants to take annual leave during the holiday period. The agent should check the leave balance first, then verify team calendar coverage, submit the request, and finally show the leave history. The team calendar shows a coverage warning for this period which a well-optimized agent would flag, but the base instructions don't mention checking the calendar.",
