@@ -27,7 +27,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "Critical data breach INC-300. The agent must triage, immediately isolate the customer database, collect both network_logs and access_logs as required for data breaches, notify CISO and legal (regulatory notification required), and file a report noting the 72-hour GDPR deadline.",
+  "story": "Critical data breach INC-300 involving the customer database. For data breaches, standard forensic protocol requires collecting both network_logs and access_logs from the compromised system. Critical incidents require notifying stakeholder groups: ciso, legal, and executive_team. Regulatory notification (GDPR 72-hour deadline) is required for breaches involving PII. The compromised database should be isolated immediately. A full incident response includes triage, isolation, evidence collection, stakeholder notification, and a comprehensive incident report.",
   "goal_details": [
     {
       "args": {
@@ -107,5 +107,5 @@
       }
     }
   ],
-  "starting_sentence": "Data breach INC-300. Isolate the database, collect network_logs and access_logs, notify legal and CISO, file report"
+  "starting_sentence": "URGENT: We have a confirmed data breach, incident INC-300. The database appears compromised. Please initiate a full incident response"
 }

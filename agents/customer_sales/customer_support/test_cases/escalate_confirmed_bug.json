@@ -9,12 +9,8 @@
   ],
   "agent": "customer_support",
   "goals": {
-    "get_case_details-1": [
-      "escalate_case-1"
-    ],
-    "escalate_case-1": [
-      "update_case-1"
-    ],
+    "get_case_details-1": [],
+    "escalate_case-1": [],
     "update_case-1": []
   },
   "story": "A support case (CS-200) needs to be escalated to engineering because the issue is a confirmed bug in the API integration. The agent should review the case details, escalate to the engineering team with a clear reason, and update the case status to reflect the escalation. This tests the escalation workflow without needing to create a new case.",

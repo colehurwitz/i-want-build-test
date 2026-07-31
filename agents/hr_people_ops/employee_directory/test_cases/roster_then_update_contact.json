@@ -46,5 +46,5 @@
       "tool_name": "lookup_employee"
     }
   ],
-  "starting_sentence": "Find the Engineering roster, update E-100's phone to 555-0150, then show their full profile to confirm"
+  "starting_sentence": "I need the Engineering team roster and also need to update E-100's phone number to 555-0150"
 }

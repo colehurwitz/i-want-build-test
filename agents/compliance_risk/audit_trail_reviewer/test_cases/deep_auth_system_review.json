@@ -27,7 +27,7 @@
     ],
     "generate_audit_report-1": []
   },
-  "story": "Deep review of auth_system: pull logs for 48 hours, search for both unauthorized_access and unusual_hours anomalies, investigate affected users, flag all findings, and generate a report. Tests multi-anomaly investigation with convergent user investigation.",
+  "story": "Deep review of auth_system covering a full week. The auth_system has been flagged for two categories of concern: unauthorized_access anomalies (e.g., logins from suspicious IPs, self-approved escalations) and unusual_hours anomalies (e.g., bulk operations outside business hours). A thorough review should cover both anomaly types, investigate any affected users, flag findings with appropriate severity, and produce an audit report. Tests multi-anomaly investigation with convergent user investigation.",
   "goal_details": [
     {
       "args": {
@@ -93,5 +93,5 @@
       "tool_name": "generate_audit_report"
     }
   ],
-  "starting_sentence": "Check auth_system logs from July 22, 2024 to July 29, 2024, search for both unauthorized_access and unusual_hours anomalies, investigate affected users, flag all findings"
+  "starting_sentence": "We had some suspicious activity on auth_system last week (July 22-29, 2024). Can you do a thorough security review?"
 }

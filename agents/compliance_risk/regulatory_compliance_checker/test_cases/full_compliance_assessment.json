@@ -9,25 +9,16 @@
   ],
   "agent": "regulatory_compliance_checker",
   "goals": {
-    "get_regulation_details-1": [
-      "assess_compliance_status-1"
-    ],
-    "assess_compliance_status-1": [
-      "get_violation_history-1",
-      "get_remediation_steps-1"
-    ],
-    "get_violation_history-1": [
-      "file_compliance_report-1"
-    ],
-    "get_remediation_steps-1": [
-      "file_compliance_report-1"
-    ],
-    "file_compliance_report-1": [
-      "notify_compliance_officer-1"
-    ],
+    "get_regulation_details-1": [],
+    "assess_compliance_status-1": [],
+    "get_violation_history-1": [],
+    "get_remediation_steps-1": [],
+    "get_remediation_steps-2": [],
+    "get_remediation_steps-3": [],
+    "file_compliance_report-1": ["notify_compliance_officer-1"],
     "notify_compliance_officer-1": []
   },
-  "story": "Full compliance assessment of Entity-A against REG-100 (Data Protection). Get regulation details, assess compliance (score 45% \u2014 non-compliant), then in parallel check violation history and get remediation steps. Both feed into filing the compliance report, followed by notifying the compliance officer.",
+  "story": "Full compliance assessment of Entity-A against REG-100 (Data Protection). The assessment should cover regulation details, compliance status evaluation, violation history review, and remediation planning for any gaps found. Once the assessment is complete, a compliance report should be filed and the compliance officer notified. Entity-A's compliance score is expected to be low (around 45%), so remediation steps will be critical.",
   "goal_details": [
     {
       "args": {
@@ -67,6 +58,28 @@
     },
     {
       "args": {
+        "violation_type": "incident_response"
+      },
+      "name": "get_remediation_steps-2",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "violation_type": "assessment"
+      },
+      "name": "get_remediation_steps-3",
+      "type": "tool_call",
+      "tool_name": "get_remediation_steps",
+      "arg_matching": {
+        "violation_type": "fuzzy"
+      }
+    },
+    {
+      "args": {
         "entity": "Entity-A",
         "regulation_id": "REG-100",
         "status": "non_compliant",
@@ -95,5 +108,5 @@
       }
     }
   ],
-  "starting_sentence": "Assess Entity-A's compliance with REG-100 \u2014 full assessment, check history, remediate gaps, file report"
+  "starting_sentence": "Entity-A needs a full compliance assessment against REG-100. We need the complete picture including any gaps and how to fix them"
 }

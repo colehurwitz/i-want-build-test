@@ -50,5 +50,5 @@
       "tool_name": "get_delivery_estimate"
     }
   ],
-  "starting_sentence": "Track TRK-200-EXP, update its status, and get a delivery estimate"
+  "starting_sentence": "What's the status of shipment TRK-200-EXP? I need an update and delivery estimate"
 }

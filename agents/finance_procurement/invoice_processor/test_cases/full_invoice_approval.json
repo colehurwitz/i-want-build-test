@@ -41,5 +41,5 @@
       "tool_name": "approve_payment"
     }
   ],
-  "starting_sentence": "Process invoice INV-1001 — verify against PO, check line items, and approve if everything matches"
+  "starting_sentence": "I need to process invoice INV-1001 for payment"
 }

@@ -26,7 +26,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "A critical ransomware incident INC-100 is reported. The agent must triage the incident, immediately isolate the affected file server, collect evidence (memory dump), check threat intelligence for the malicious IP, notify CISO/legal/executive team, and file a comprehensive incident report. This tests the full P1 incident response lifecycle.",
+  "story": "A critical ransomware incident INC-100 is reported on the file server. For ransomware incidents, memory_dump is the standard evidence type to capture volatile forensic data. Critical severity incidents require notifying stakeholder groups: ciso, legal, and executive_team. The agent should follow the full P1 incident response lifecycle: triage, isolate, collect evidence, check threat intelligence, notify stakeholders, and file a report.",
   "goal_details": [
     {
       "args": {
@@ -104,5 +104,5 @@
       }
     }
   ],
-  "starting_sentence": "Security incident INC-100 \u2014 triage, contain, collect evidence, check threat intel, notify stakeholders, file report"
+  "starting_sentence": "Critical security incident INC-100 \u2014 suspected ransomware attack on our file server. Please respond immediately"
 }

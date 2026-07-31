@@ -27,7 +27,7 @@
     ],
     "issue_purchase_order-1": []
   },
-  "story": "Purchase 20 headsets with a higher minimum vendor rating (4.0+). The user wants quotes from the top 2 vendors, compared side-by-side, then order from the recommended winner. SoundGear Inc wins on price ($1,500 vs $1,780). This is under $10K so 2 quotes are sufficient. Tests the agent's ability to follow the comparison-based selection workflow.",
+  "story": "Purchase 20 headsets with a higher minimum vendor rating (4.0+). The user wants quotes from the top 2 vendors, compared side-by-side, then order from the recommended winner. SoundGear Inc wins on price ($1,500 vs $1,780). This is under $10K so 2 quotes are sufficient. The requester pm@company.com maps to employee ID PM-001. Approval required from PM Manager (ID: MGR-PM-001).",
   "goal_details": [
     {
       "args": {
@@ -95,5 +95,5 @@
       "tool_name": "issue_purchase_order"
     }
   ],
-  "starting_sentence": "Purchase 20 headsets, estimated budget of $3,000. I'm pm@company.com. Find vendors rated 4.0+, get quotes from top 2, compare, and order from the winner. Get approval from PM Manager, ID MGR-PM-001"
+  "starting_sentence": "I'm pm@company.com. I need to purchase 20 headsets, budget around $3,000. We want vendors rated 4.0 or higher"
 }

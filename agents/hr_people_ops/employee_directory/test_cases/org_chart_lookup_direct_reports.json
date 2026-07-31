@@ -34,5 +34,5 @@
       "tool_name": "lookup_employee"
     }
   ],
-  "starting_sentence": "Show me the org chart for M-100 and then look up each direct report"
+  "starting_sentence": "I need to see who reports to manager M-100 and get their details"
 }

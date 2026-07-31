@@ -23,7 +23,7 @@
     ],
     "get_onboarding_status-1": []
   },
-  "story": "Onboarding for an Engineering Manager with a start date of Aug 3 (a Saturday). The agent should create the checklist, provision accounts, assign a buddy, and schedule orientation. The orientation scheduling should handle the weekend start date by shifting sessions to Monday Aug 5. The instructions mention scheduling during business hours but don't explicitly address weekend start dates. This tests whether the agent handles edge cases in date logic.",
+  "story": "Onboarding for an Engineering Manager with a start date of Aug 3 (a Saturday). Standard Engineering accounts to provision are: email, vpn, slack, github, jira, aws_console. Standard orientation sessions for Engineering Managers include: Company Overview, IT Setup, Security Training, Department Introduction, Team Meet, and Leadership Training. The orientation scheduling should handle the weekend start date by shifting sessions to Monday Aug 5. This tests whether the agent handles edge cases in date logic.",
   "goal_details": [
     {
       "args": {
@@ -93,5 +93,5 @@
       "tool_name": "get_onboarding_status"
     }
   ],
-  "starting_sentence": "Onboard Engineering Manager E-502 starting August 3, 2024 in Engineering. Create checklist, provision accounts, assign buddy, schedule orientation, and show final status"
+  "starting_sentence": "New Engineering Manager E-502 starts August 3, 2024 in Engineering. Please get them onboarded"
 }

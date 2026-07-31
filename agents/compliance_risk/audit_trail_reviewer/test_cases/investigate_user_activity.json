@@ -17,7 +17,7 @@
     ],
     "flag_finding-1": []
   },
-  "story": "Investigate a specific user U-500 by checking their activity for 30 days, searching for privilege escalation anomalies, and flagging suspicious findings. This tests targeted user investigation without starting from audit logs.",
+  "story": "User U-500 has been flagged in a separate review — there are concerns about possible privilege escalation. The auth_system should be checked for privilege_escalation anomalies related to this user. Any suspicious findings (e.g., unauthorized role changes, self-approvals) should be flagged. This tests targeted user investigation without starting from audit logs.",
   "goal_details": [
     {
       "args": {
@@ -54,5 +54,5 @@
       }
     }
   ],
-  "starting_sentence": "Investigate user U-500 \u2014 check their activity for 30 days, search for privilege escalation, flag suspicious activity"
+  "starting_sentence": "User U-500 may be involved in something concerning \u2014 can you look into their recent activity over the past 30 days?"
 }

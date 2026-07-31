@@ -6,6 +6,7 @@ collaborators: []
 tools:
 - create_shipment
 - get_carrier_rates
+- get_order_details
 - track_shipment
 - update_shipment
 - get_delivery_estimate

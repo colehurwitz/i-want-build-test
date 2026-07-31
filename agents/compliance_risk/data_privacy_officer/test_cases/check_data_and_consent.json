@@ -47,5 +47,5 @@
       "tool_name": "generate_privacy_report"
     }
   ],
-  "starting_sentence": "Check what data we have on subject user@company.com, their consent status for marketing, and generate a data inventory report"
+  "starting_sentence": "I need a data inventory for user@company.com, including their marketing consent status"
 }

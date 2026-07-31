@@ -23,7 +23,7 @@
     ],
     "manage_vendor_relationship-1": []
   },
-  "story": "V-300 contract renewal. Get contract terms and performance metrics in parallel, both feed into creating the scorecard. Then negotiate better pricing and initiate renewal.",
+  "story": "V-300 contract renewal. Standard vendor scorecard categories are: delivery, quality, pricing, responsiveness, and innovation. Get contract terms and performance metrics in parallel, both feed into creating the scorecard. Then negotiate better pricing and initiate the contract_renewal process.",
   "goal_details": [
     {
       "args": {

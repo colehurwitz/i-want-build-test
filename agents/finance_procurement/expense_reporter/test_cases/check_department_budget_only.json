@@ -43,5 +43,5 @@
       "tool_name": "get_expense_policy"
     }
   ],
-  "starting_sentence": "I'm dev@company.com in Engineering. Check our department budget and the equipment expense policy"
+  "starting_sentence": "I'm dev@company.com in Engineering. What's our department budget looking like? I'm thinking about buying some equipment"
 }

@@ -23,7 +23,7 @@
     ],
     "track_delivery-1": []
   },
-  "story": "Emergency purchase of 5 replacement servers. The urgency is 'emergency' which allows skipping the multi-quote requirement \u2014 a single quote is acceptable. After creating the emergency requisition, search vendors, get one quote from the fastest vendor (ServerMax with 7-day lead time), issue the PO, and track delivery. The total ($47,500) exceeds $25K so VP approval is needed.",
+  "story": "Emergency purchase of 5 replacement servers. The urgency is 'emergency' which allows skipping the multi-quote requirement \u2014 a single quote is acceptable. The total ($47,500) exceeds $25K so VP approval is needed. The requester ops.lead@company.com maps to employee ID OPS-LEAD-001. Approval required from Director of Operations (ID: DIR-OPS-001).",
   "goal_details": [
     {
       "args": {
@@ -75,5 +75,5 @@
       "tool_name": "track_delivery"
     }
   ],
-  "starting_sentence": "URGENT: We need 5 replacement servers immediately, estimated cost $50,000. I'm ops.lead@company.com, this is critical. Get approval from Director of Operations, ID DIR-OPS-001"
+  "starting_sentence": "URGENT: We need 5 replacement servers immediately, estimated cost $50,000. I'm ops.lead@company.com, this is critical infrastructure"
 }

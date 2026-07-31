@@ -17,7 +17,7 @@
     "generate_audit_report-2": [],
     "search_anomalies-2": []
   },
-  "story": "Generate quarterly audit reports for both payment_system and hr_system. First search for data exfiltration anomalies in the payment system, then generate reports for both systems in parallel. Also search for unauthorized access anomalies independently.",
+  "story": "Quarterly compliance reporting is due for payment_system and hr_system. The payment_system has had recent concerns around data_exfiltration and unauthorized_access — both anomaly types should be investigated as part of the quarterly review. Reports for both systems should include any findings. Tests multi-system reporting with parallel anomaly searches.",
   "goal_details": [
     {
       "args": {
@@ -58,5 +58,5 @@
       "tool_name": "search_anomalies"
     }
   ],
-  "starting_sentence": "Search payment_system for data_exfiltration anomalies, generate quarterly reports for both payment_system and hr_system, and also search for unauthorized_access anomalies"
+  "starting_sentence": "I need the quarterly compliance reports for payment_system and hr_system. We also have concerns about data security on payment_system"
 }

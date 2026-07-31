@@ -15,7 +15,8 @@
     "check_service_health-1": [
       "create_incident_ticket-1"
     ],
-    "create_incident_ticket-1": []
+    "create_incident_ticket-1": [],
+    "get_recent_deployments-1": []
   },
   "story": "Alert fires for frontend service, health check shows everything is healthy \u2014 false alarm. Agent documents the false alarm by creating a low-severity incident ticket for tracking.",
   "goal_details": [
@@ -48,6 +49,18 @@
       "arg_matching": {
         "title": "fuzzy",
         "description": "fuzzy"
+      }
+    },
+    {
+      "args": {
+        "service_name": "frontend",
+        "hours": 24
+      },
+      "name": "get_recent_deployments-1",
+      "type": "tool_call",
+      "tool_name": "get_recent_deployments",
+      "arg_matching": {
+        "hours": "ignore"
       }
     }
   ],

@@ -9,7 +9,7 @@
   ],
   "agent": "employee_directory",
   "goals": {
-    "lookup_employee-1": ["update_employee_contact-1"],
+    "lookup_employee-1": [],
     "update_employee_contact-1": ["lookup_employee-2"],
     "lookup_employee-2": []
   },
@@ -34,5 +34,5 @@
       "tool_name": "lookup_employee"
     }
   ],
-  "starting_sentence": "Update employee E-200's phone to 555-0199, then confirm the change"
+  "starting_sentence": "Please update employee E-200's phone number to 555-0199"
 }

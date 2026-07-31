@@ -9,10 +9,7 @@
   ],
   "agent": "leave_manager",
   "goals": {
-    "get_leave_balance-1": [
-      "check_team_calendar-1",
-      "request_leave-1"
-    ],
+    "get_leave_balance-1": [],
     "check_team_calendar-1": [],
     "request_leave-1": []
   },

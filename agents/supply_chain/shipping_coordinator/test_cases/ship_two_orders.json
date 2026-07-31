@@ -9,6 +9,12 @@
   ],
   "agent": "shipping_coordinator",
   "goals": {
+    "get_order_details-1": [
+      "get_carrier_rates-1"
+    ],
+    "get_order_details-2": [
+      "get_carrier_rates-2"
+    ],
     "get_carrier_rates-1": [
       "create_shipment-1"
     ],
@@ -20,6 +26,22 @@
   },
   "story": "Ship two independent orders: ORD-400 to Boston (ground) and ORD-500 to Miami (overnight). Rate lookups happen in parallel, each followed by shipment creation.",
   "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-400"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
+    {
+      "args": {
+        "order_id": "ORD-500"
+      },
+      "name": "get_order_details-2",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
     {
       "args": {
         "origin": "New York",

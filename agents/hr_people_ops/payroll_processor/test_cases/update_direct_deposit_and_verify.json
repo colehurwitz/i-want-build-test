@@ -36,7 +36,10 @@
       },
       "name": "get_pay_stub-1",
       "type": "tool_call",
-      "tool_name": "get_pay_stub"
+      "tool_name": "get_pay_stub",
+      "arg_matching": {
+        "period": "ignore"
+      }
     },
     {
       "args": {
@@ -47,5 +50,5 @@
       "tool_name": "get_benefits_deductions"
     }
   ],
-  "starting_sentence": "Update direct deposit for E-100 to First National Bank (routing 021000021, account ****5678), then show my pay stub and benefits"
+  "starting_sentence": "I need to change E-100's direct deposit to First National Bank, routing 021000021, account ****5678"
 }

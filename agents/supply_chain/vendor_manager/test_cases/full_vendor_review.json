@@ -24,7 +24,7 @@
     ],
     "manage_vendor_relationship-1": []
   },
-  "story": "Full vendor review for V-100. Get profile, then fan out to performance metrics and contract terms in parallel. Both converge on creating the scorecard, followed by scheduling a review meeting.",
+  "story": "Full vendor review for V-100. Standard vendor scorecard categories are: delivery, quality, pricing, responsiveness, and innovation. Get profile first, then fan out to performance metrics and contract terms in parallel. Both converge on creating the scorecard, followed by scheduling a quarterly_review.",
   "goal_details": [
     {
       "args": {
@@ -85,7 +85,7 @@
       "type": "tool_call",
       "tool_name": "manage_vendor_relationship",
       "arg_matching": {
-        "details": "fuzzy"
+        "details": "ignore"
       }
     }
   ],

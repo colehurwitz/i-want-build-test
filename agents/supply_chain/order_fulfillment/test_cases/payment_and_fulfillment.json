@@ -18,7 +18,9 @@
     "create_fulfillment-1": [
       "update_order_status-1"
     ],
-    "update_order_status-1": []
+    "update_order_status-1": [],
+    "check_item_availability-1": [],
+    "reserve_inventory-1": []
   },
   "story": "Process payment for ORD-300 (already confirmed) and create the fulfillment record. The order is for Rubber Gaskets shipping standard from W-1. After fulfillment is created, update the order status.",
   "goal_details": [
@@ -61,7 +63,32 @@
       "arg_matching": {
         "notes": "fuzzy"
       }
+    },
+    {
+      "args": {
+        "product_id": "P-500",
+        "quantity": 300
+      },
+      "name": "check_item_availability-1",
+      "type": "tool_call",
+      "tool_name": "check_item_availability",
+      "arg_matching": {
+        "product_id": "ignore",
+        "quantity": "ignore"
+      }
+    },
+    {
+      "args": {
+        "order_id": "ORD-300",
+        "items": ["P-500"]
+      },
+      "name": "reserve_inventory-1",
+      "type": "tool_call",
+      "tool_name": "reserve_inventory",
+      "arg_matching": {
+        "items": "ignore"
+      }
     }
   ],
-  "starting_sentence": "Process payment for ORD-300 and create the fulfillment"
+  "starting_sentence": "I need order ORD-300 paid and fulfilled"
 }

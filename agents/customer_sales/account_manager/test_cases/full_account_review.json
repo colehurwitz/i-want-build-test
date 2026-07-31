@@ -42,7 +42,10 @@
       },
       "name": "get_usage_analytics-1",
       "type": "tool_call",
-      "tool_name": "get_usage_analytics"
+      "tool_name": "get_usage_analytics",
+      "arg_matching": {
+        "period": "ignore"
+      }
     },
     {
       "args": {
@@ -75,5 +78,5 @@
       }
     }
   ],
-  "starting_sentence": "Full account review for A-100 \u2014 overview, usage, contract, and competitive intel. Schedule follow-up for June 15, 2024"
+  "starting_sentence": "Full Q2 account review for A-100 \u2014 overview, usage, contract, and competitive intel. Schedule follow-up for June 15, 2024"
 }

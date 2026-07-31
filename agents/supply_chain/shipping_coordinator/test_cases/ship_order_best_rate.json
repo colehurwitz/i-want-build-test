@@ -9,6 +9,9 @@
   ],
   "agent": "shipping_coordinator",
   "goals": {
+    "get_order_details-1": [
+      "get_carrier_rates-1"
+    ],
     "get_carrier_rates-1": [
       "create_shipment-1"
     ],
@@ -19,6 +22,14 @@
   },
   "story": "The user wants to ship order ORD-100 to New York. The agent should get carrier rates for the express route from Chicago, create the shipment with the best carrier, and provide a delivery estimate.",
   "goal_details": [
+    {
+      "args": {
+        "order_id": "ORD-100"
+      },
+      "name": "get_order_details-1",
+      "type": "tool_call",
+      "tool_name": "get_order_details"
+    },
     {
       "args": {
         "origin": "Chicago",
@@ -62,5 +73,5 @@
       "tool_name": "get_delivery_estimate"
     }
   ],
-  "starting_sentence": "Ship order ORD-100 to New York, get the best rate, and create the shipment. We're shipping from Chicago, 15kg total, express service"
+  "starting_sentence": "I need to ship order ORD-100 to New York as fast as possible. We're shipping from Chicago, about 15kg, express service"
 }

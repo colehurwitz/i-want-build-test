@@ -27,7 +27,7 @@
     ],
     "get_onboarding_status-1": []
   },
-  "story": "Full onboarding flow for a new Software Engineer joining Engineering. The agent must create the checklist first, then provision Engineering-specific accounts (email, VPN, Slack, GitHub, Jira, AWS) and check the buddy pool in parallel, assign a buddy, schedule orientation sessions, and finally check the onboarding status. This tests the complete 6-step workflow with proper ordering as documented in the instructions.",
+  "story": "Full onboarding flow for a new Software Engineer joining Engineering. Standard Engineering accounts to provision are: email, vpn, slack, github, jira, aws_console. Standard orientation sessions for Software Engineers include: Company Overview, IT Setup, Security Training, Department Introduction, Team Meet, and Role-Specific Training. The agent should create the checklist, provision accounts, check the buddy pool and assign a buddy, schedule orientation, and check final status.",
   "goal_details": [
     {
       "args": {
@@ -105,5 +105,5 @@
       "tool_name": "get_onboarding_status"
     }
   ],
-  "starting_sentence": "Onboard new Software Engineer E-500, starting August 1, 2024 in Engineering. Create the checklist, provision all required accounts, check the buddy pool and assign a buddy, schedule orientation, and show me the final status"
+  "starting_sentence": "New Software Engineer E-500 starts August 1, 2024 in Engineering. Please get them fully onboarded"
 }

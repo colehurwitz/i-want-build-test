@@ -16,7 +16,7 @@
     "get_reorder_history-1": [],
     "update_stock-1": []
   },
-  "story": "Product P-300 is low in W-2. Check current levels, then fan out to review reorder history AND restock with 200 units in parallel.",
+  "story": "Product P-300 is running low in warehouse W-2. Before restocking, review the reorder history to understand the trend. Then restock with the requested quantity. The agent should check current inventory levels, review historical reorder patterns, and update stock in parallel where possible.",
   "goal_details": [
     {
       "args": {
@@ -50,5 +50,5 @@
       }
     }
   ],
-  "starting_sentence": "Product P-300 is low in W-2. Check history and restock with 200 units"
+  "starting_sentence": "Product P-300 is running low in warehouse W-2 — we need 200 more units"
 }

@@ -17,7 +17,7 @@
     ],
     "add_deal_activity-1": []
   },
-  "story": "The user wants to see their Q3 pipeline and then create a new $50k deal for account A-200. The agent should first retrieve the pipeline summary, then create the deal, and log an initial activity. This tests the agent's ability to handle read-then-write operations across different tool domains.",
+  "story": "The user is sales rep SR-100 and wants to see their Q3 pipeline and then create a new $50k deal for account A-200. After creating the deal, an initial discovery call should be logged with a follow-up date.",
   "goal_details": [
     {
       "args": {
@@ -59,5 +59,5 @@
       }
     }
   ],
-  "starting_sentence": "Show me rep SR-100's Q3 pipeline and create a new $50k deal for account A-200. Schedule a follow-up for April 5, 2024"
+  "starting_sentence": "I'm rep SR-100. Show me my Q3 pipeline and I need to create a new $50k deal for account A-200 with a follow-up on April 5, 2024"
 }

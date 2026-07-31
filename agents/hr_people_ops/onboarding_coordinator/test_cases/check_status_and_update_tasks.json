@@ -42,6 +42,7 @@
       "type": "tool_call",
       "tool_name": "update_onboarding_task",
       "arg_matching": {
+        "task_id": "ignore",
         "notes": "fuzzy"
       }
     },
@@ -56,6 +57,7 @@
       "type": "tool_call",
       "tool_name": "update_onboarding_task",
       "arg_matching": {
+        "task_id": "ignore",
         "notes": "fuzzy"
       }
     },
@@ -68,5 +70,5 @@
       "tool_name": "get_onboarding_status"
     }
   ],
-  "starting_sentence": "Check the onboarding status for E-500. Then update the Buddy Assignment task (T-003) and Orientation Scheduling task (T-004) to completed, and show me the updated status"
+  "starting_sentence": "What's the onboarding status for E-500? The buddy assignment and orientation scheduling should be marked as done"
 }

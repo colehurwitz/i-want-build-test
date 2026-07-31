@@ -73,5 +73,5 @@
       "tool_name": "transfer_stock"
     }
   ],
-  "starting_sentence": "Audit P-400: check W-1, then check W-2 and W-3 in parallel, review history, and transfer from W-1 to W-3"
+  "starting_sentence": "I need a full inventory audit of P-400 across all warehouses. W-1 has excess stock that should go to W-3"
 }

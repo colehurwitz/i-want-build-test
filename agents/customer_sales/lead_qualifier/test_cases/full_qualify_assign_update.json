@@ -20,7 +20,7 @@
     ],
     "update_lead_status-1": []
   },
-  "story": "The user wants a full lead qualification workflow: get info, score, assign to a specific rep in the west territory, then update the lead status to reflect the assignment. This tests end-to-end lead processing with all four tools in sequence.",
+  "story": "The user wants lead L-100 fully qualified and assigned to the best available rep in the west territory. James Rivera (SR-200) is the mid-market specialist covering west. After scoring and assigning, the lead status should be updated to reflect the assignment.",
   "goal_details": [
     {
       "args": {
@@ -70,5 +70,5 @@
       }
     }
   ],
-  "starting_sentence": "Get info on lead L-100, score it, then assign to rep SR-200 in west territory"
+  "starting_sentence": "I need lead L-100 fully qualified and assigned to the best available rep in the west territory"
 }

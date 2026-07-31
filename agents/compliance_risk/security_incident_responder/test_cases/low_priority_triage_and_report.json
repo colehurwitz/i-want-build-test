@@ -17,7 +17,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "Low-priority incident INC-400 \u2014 a policy violation. The agent triages the incident, checks threat intel for the indicator (concurrent VPN sessions), and files a basic report. No isolation or evidence collection needed for P4 incidents.",
+  "story": "Low-priority incident INC-400 \u2014 a policy violation involving concurrent VPN sessions. P4 incidents do not require system isolation or evidence collection \u2014 just triage, threat intel lookup, and a basic report. The response is lighter-weight than critical incidents.",
   "goal_details": [
     {
       "args": {
