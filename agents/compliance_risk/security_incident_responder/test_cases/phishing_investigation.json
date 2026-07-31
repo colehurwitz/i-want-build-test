@@ -23,7 +23,7 @@
     ],
     "file_incident_report-1": []
   },
-  "story": "A phishing incident INC-200 is reported involving a suspicious login portal URL. For phishing incidents, evidence is collected from the email-gateway as network_logs. P2 phishing incidents require notifying security_team and affected_departments as stakeholder groups. No system isolation is needed for phishing — the focus is on threat intel lookup, evidence collection, notification, and reporting.",
+  "story": "A phishing incident INC-200 is reported involving a suspicious login portal URL (hxxps://login-portal.evil.com/auth). For phishing incidents, threat intelligence should be checked against suspicious URLs. Evidence is collected from the email-gateway as network_logs. P2 phishing incidents require notifying security_team and affected_departments as stakeholder groups. No system isolation is needed for phishing — the focus is on threat intel, evidence collection, notification, and filing an incident report.",
   "goal_details": [
     {
       "args": {
@@ -91,5 +91,5 @@
       }
     }
   ],
-  "starting_sentence": "Investigate INC-200, might be phishing. Check threat intel for suspicious URL, collect evidence, report"
+  "starting_sentence": "Incident INC-200 just came in — looks like it could be a phishing attempt. Can you investigate?"
 }
