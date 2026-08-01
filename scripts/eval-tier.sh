@@ -56,21 +56,36 @@ for domain in "${DOMAINS[@]}"; do
       continue
     fi
 
+    # Create a temp directory with only test cases matching the tier
+    tier_tmp=$(mktemp -d)
+    trap "rm -rf $tier_tmp" EXIT
+    for tc_file in "$test_cases_dir"/*.json; do
+      if grep -q "optimization_difficulty:$TIER" "$tc_file" 2>/dev/null; then
+        cp "$tc_file" "$tier_tmp/"
+      fi
+    done
+
+    if [ -z "$(ls -A "$tier_tmp" 2>/dev/null)" ]; then
+      SKIPPED+=("$domain/$agent_name")
+      rm -rf "$tier_tmp"
+      continue
+    fi
+
     output_dir="$OUTPUT_BASE/$domain/$agent_name"
     mkdir -p "$output_dir"
 
     echo ""
     echo "--- Evaluating ($TIER tier): $domain/$agent_name ---"
     if orchestrate evaluations evaluate \
-      -p "$test_cases_dir" \
+      -p "$tier_tmp" \
       -o "$output_dir" \
-      -e "$ENV_FILE" \
-      -t "optimization_difficulty:$TIER"; then
+      -e "$ENV_FILE"; then
       SUCCEEDED+=("$domain/$agent_name")
     else
       echo "  ERROR: Evaluation failed for $domain/$agent_name"
       FAILED+=("$domain/$agent_name")
     fi
+    rm -rf "$tier_tmp"
   done
 done
 
